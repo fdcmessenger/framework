@@ -8,3 +8,6 @@
 org.eclipse.core.resources.prefs
 org.eclipse.m2e.core.prefs
 .classpath
+
+/model/.settings/*.prefs
+/dao/.settings/*.prefs

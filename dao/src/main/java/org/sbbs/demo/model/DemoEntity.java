@@ -1,4 +1,4 @@
-package org.sbbs.base.model;
+package org.sbbs.demo.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -12,11 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.sbbs.base.model.BaseObject;
 
 
 @Entity
@@ -269,8 +268,9 @@ public class DemoEntity extends BaseObject {
 		this.shortObjField = shortObjField;
 	}
 
-	 @NotNull
-	 @Size( min = 2, max = 500, message =	 "size must be between {min} and {max}" )
+	// @NotNull
+	// @Size( min = 2, max = 500, message =
+	// "size must be between {min} and {max}" )
 	@Column(name = "stringField", length = 50, nullable = false)
 	public String getStringField() {
 		return this.stringField;
