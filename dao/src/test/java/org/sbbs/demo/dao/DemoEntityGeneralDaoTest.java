@@ -22,14 +22,15 @@ import com.googlecode.genericdao.search.Sort;
 public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Autowired
 	GeneralDao generalDao;
+
 	@Test
-	public void testCommonProcedure(){
-		Object[] args = {10,10};
+	public void testCommonProcedure() {
+		Object[] args = { 10, 10 };
 		CallReturn cr = this.generalDao.procedureCall("commonProcedure", args);
-		
-		Assert.assertTrue(cr.getReturnCode()==0);
+
+		Assert.assertTrue(cr.getReturnCode() == 0);
 		Assert.assertTrue(cr.getReturnMessage().equals("20"));
-		
+
 	}
 
 	@Test
@@ -86,8 +87,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testGetReferences() {
 		Long[] ids0 = { -1l, -2l };// , ids1 = { 1l, 2l };
-		DemoEntity[] des = this.generalDao
-				.getReferences(DemoEntity.class, ids0);
+		DemoEntity[] des = this.generalDao.getReferences(DemoEntity.class, ids0);
 		Assert.assertTrue(des.length == 2);
 		Assert.assertTrue(des[0] instanceof HibernateProxy);
 		int iv = des[0].getIntField();
@@ -99,8 +99,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Test(expected = HibernateException.class)
 	public void testGetReferencesException() {
 		Long[] ids0 = { 1l, 2l };
-		DemoEntity[] des = this.generalDao
-				.getReferences(DemoEntity.class, ids0);
+		DemoEntity[] des = this.generalDao.getReferences(DemoEntity.class, ids0);
 		Assert.assertTrue(des.length == 2);
 		Assert.assertTrue(des[0] instanceof HibernateProxy);
 		int iv = des[0].getIntField();
@@ -116,8 +115,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		DemoEntity de1 = this.generalDao.find(DemoEntity.class, -1l);
 		Assert.assertEquals(100, de1.getIntField());
 		this.generalDao.flush();
-		int jdbcv = this.jdbcTemplate
-				.queryForInt("SELECT a.intField from t_demo_entity a where demoId=-1 ");
+		int jdbcv = this.jdbcTemplate.queryForInt("SELECT a.intField from t_demo_entity a where demoId=-1 ");
 		Assert.assertTrue(jdbcv == de1.getIntField());
 	}
 
@@ -130,9 +128,8 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		Assert.assertTrue(saveType);
 		Assert.assertNotNull(de.getDemoId());
 		// this.demoEntityDao.flush();
-		int jdbcv = this.jdbcTemplate
-				.queryForInt("SELECT a.intField from t_demo_entity a where demoId="
-						+ de.getDemoId());
+		int jdbcv = this.jdbcTemplate.queryForInt("SELECT a.intField from t_demo_entity a where demoId="
+				+ de.getDemoId());
 		Assert.assertTrue(jdbcv == de.getIntField());
 		List l = this.generalDao.findAll(DemoEntity.class);
 		Assert.assertTrue(l.size() == 201);
@@ -180,8 +177,8 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testRemoveEntities() {
-		List l = this.generalDao.getHibernateTemplate().find(
-				"from DemoEntity where demoId>=-50 and demoId<=-1");
+		List l = this.generalDao.getCurrentSession().createQuery("from DemoEntity where demoId>=-50 and demoId<=-1")
+				.list();
 		Assert.assertTrue(l.size() == 50);
 		DemoEntity[] des = new DemoEntity[l.size()];
 		l.toArray(des);
@@ -395,9 +392,9 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		Assert.assertTrue(!rs);
 	}
 
-	@Test
+	// @Test
 	public void testGetHibernateTemplate() {
-		Assert.assertNotNull(this.generalDao.getHibernateTemplate());
+		// Assert.assertNotNull(this.generalDao.getHibernateTemplate());
 	}
 
 	@Test

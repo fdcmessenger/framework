@@ -5,14 +5,16 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
 
 	<!-- For mail settings and future properties files -->
+	<!--
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="ignoreUnresolvablePlaceholders" value="true"/>
-		<property name="locations">
-			<list>
-				<value>classpath:jdbc.properties</value>
-			</list>
-		</property>
-	</bean>
+			<property name="ignoreUnresolvablePlaceholders" value="true"/>
+			<property name="locations">
+				<list>
+					<value>classpath:jdbc.properties</value>
+				</list>
+			</property>
+		</bean>-->
+	
 
 	<!-- JNDI DataSource for J2EE environments -->
 	<!--<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/appfuse"/>-->

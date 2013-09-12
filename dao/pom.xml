@@ -17,11 +17,17 @@
 			<groupId>org.sbbs</groupId>
 			<artifactId>model</artifactId>
 			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>ehcache-core</artifactId>
+					<groupId>net.sf.ehcache</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.genericdao</groupId>
 			<artifactId>dao-hibernate</artifactId>
-			<version>1.1.0</version>
+			<version>1.2.0</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>persistence-api</artifactId>
@@ -49,6 +55,7 @@
 				<groupId>net.sf.ehcache</groupId>
 				<artifactId>ehcache-core</artifactId>
 			</dependency>
+		
 		<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-lang3</artifactId> </dependency> -->
 		<dependency>
 			<groupId>commons-beanutils</groupId>

@@ -16,10 +16,10 @@
 		<jsp.version>2.1</jsp.version>
 		<jstl.version>1.1.2</jstl.version>
 		<junit.version>4.8.2</junit.version>
-		<hibernate.version>3.6.10.Final</hibernate.version>
-		<!-- <hibernate.version>3.6.1.Final</hibernate.version> -->
+		<hibernate.version>4.2.5.Final</hibernate.version>
+		<!-- <hibernate.version>3.6.10.Final</hibernate.version> -->
 		<hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
-		<ehcache.version>2.3.1</ehcache.version>
+		<ehcache.version>2.6.0</ehcache.version>
 		<jpa.version>2.0-cr-1</jpa.version>
 		<slf4j.version>1.7.2</slf4j.version>
 		<logback.version>1.0.9</logback.version>
@@ -296,13 +296,18 @@
 							</configuration>
 						</execution>
 					</executions>
-					<dependencies>
-						<dependency>
-							<groupId>${jdbc.groupId}</groupId>
-							<artifactId>${jdbc.artifactId}</artifactId>
-							<version>${jdbc.version}</version>
-						</dependency>
-					</dependencies>
+						<dependencies>
+							<dependency>
+								<groupId>${jdbc.groupId}</groupId>
+								<artifactId>${jdbc.artifactId}</artifactId>
+								<version>${jdbc.version}</version>
+							</dependency>
+							<dependency>
+								<groupId>org.hibernate</groupId>
+								<artifactId>hibernate-core</artifactId>
+								<version>3.6.10.Final</version>
+							</dependency>
+						</dependencies>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>

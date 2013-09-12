@@ -2,8 +2,8 @@ package org.sbbs.base.dao;
 
 import java.io.Serializable;
 
+import org.hibernate.Session;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.googlecode.genericdao.dao.hibernate.GenericDAO;
 
@@ -12,8 +12,10 @@ public interface IBaseDAO<T, ID extends Serializable> extends GenericDAO<T, ID> 
 	/**
 	 * 活的HibernateTemplate助手类,以供在需要的时候方便使用
 	 */
-	public HibernateTemplate getHibernateTemplate();
+//	public HibernateTemplate getHibernateTemplate();
 
+	
+	public Session getCurrentSession();
 	/**
 	 * 活的JdbcTemplate助手类,以供在需要的时候方便使用
 	 */

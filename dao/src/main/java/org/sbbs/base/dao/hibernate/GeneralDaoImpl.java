@@ -9,6 +9,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.sbbs.base.dao.GeneralDao;
 import org.slf4j.Logger;
@@ -18,8 +19,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.orm.hibernate3.SessionFactoryUtils;
+import org.springframework.orm.hibernate4.SessionFactoryUtils;
 import org.springframework.stereotype.Repository;
 
 import com.googlecode.genericdao.dao.hibernate.GeneralDAOImpl;
@@ -29,7 +29,7 @@ public class GeneralDaoImpl extends GeneralDAOImpl implements GeneralDao {
 
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 
-	private HibernateTemplate hibernateTemplate;
+	//private HibernateTemplate hibernateTemplate;
 
 	private JdbcTemplate jdbcTemplate;
 
@@ -37,13 +37,13 @@ public class GeneralDaoImpl extends GeneralDAOImpl implements GeneralDao {
 	@Override
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
-		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
+		//this.hibernateTemplate = new HibernateTemplate(sessionFactory);
 		this.jdbcTemplate = new JdbcTemplate(SessionFactoryUtils.getDataSource(sessionFactory));
 	}
 
-	public HibernateTemplate getHibernateTemplate() {
+/*	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
-	}
+	}*/
 
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
@@ -138,5 +138,10 @@ public class GeneralDaoImpl extends GeneralDAOImpl implements GeneralDao {
 		callStat.registerOutParameter(j + 1, Types.VARCHAR);
 
 		return callStat;
+	}
+
+	@Override
+	public Session getCurrentSession() {
+		return this.getSession();
 	}
 }
