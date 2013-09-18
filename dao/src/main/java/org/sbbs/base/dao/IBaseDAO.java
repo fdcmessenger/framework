@@ -15,7 +15,7 @@ public interface IBaseDAO<T, ID extends Serializable> extends GenericDAO<T, ID> 
 //	public HibernateTemplate getHibernateTemplate();
 
 	
-	public Session getCurrentSession();
+	public Session getSession();
 	/**
 	 * 活的JdbcTemplate助手类,以供在需要的时候方便使用
 	 */

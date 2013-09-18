@@ -12,7 +12,7 @@ import com.googlecode.genericdao.dao.hibernate.GeneralDAO;
 
 public interface GeneralDao extends GeneralDAO {
 	//public HibernateTemplate getHibernateTemplate();
-	public Session getCurrentSession();
+	public Session getSession();
 	public JdbcTemplate getJdbcTemplate();
 
 	public <T> boolean exists(Class<T> type, Serializable id);

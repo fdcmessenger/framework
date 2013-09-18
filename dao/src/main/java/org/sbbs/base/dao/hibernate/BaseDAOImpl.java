@@ -16,7 +16,6 @@ import com.googlecode.genericdao.dao.hibernate.GenericDAOImpl;
 
 public class BaseDAOImpl<T, ID extends Serializable> extends GenericDAOImpl<T, ID> implements IBaseDAO<T, ID> {
 	protected final Logger log = LoggerFactory.getLogger(getClass());
-	//private HibernateTemplate hibernateTemplate;
 
 	private JdbcTemplate jdbcTemplate;
 
@@ -24,17 +23,13 @@ public class BaseDAOImpl<T, ID extends Serializable> extends GenericDAOImpl<T, I
 	@Override
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
-	//	this.hibernateTemplate = new HibernateTemplate(sessionFactory);
 		this.jdbcTemplate = new JdbcTemplate(SessionFactoryUtils.getDataSource(sessionFactory));
 	}
 
-/*	public HibernateTemplate getHibernateTemplate() {
-		return hibernateTemplate;
+	public Session getSession() {
+		return super.getSession();
 	}
-*/
-	public Session getCurrentSession(){
-		return this.getSession();
-	}
+
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}

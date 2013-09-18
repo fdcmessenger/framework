@@ -23,7 +23,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Autowired
 	GeneralDao generalDao;
 
-	@Test
+	//@Test
 	public void testCommonProcedure() {
 		Object[] args = { 10, 10 };
 		CallReturn cr = this.generalDao.procedureCall("commonProcedure", args);
@@ -177,7 +177,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testRemoveEntities() {
-		List l = this.generalDao.getCurrentSession().createQuery("from DemoEntity where demoId>=-50 and demoId<=-1")
+		List l = this.generalDao.getSession().createQuery("from DemoEntity where demoId>=-50 and demoId<=-1")
 				.list();
 		Assert.assertTrue(l.size() == 50);
 		DemoEntity[] des = new DemoEntity[l.size()];
@@ -392,10 +392,6 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		Assert.assertTrue(!rs);
 	}
 
-	// @Test
-	public void testGetHibernateTemplate() {
-		// Assert.assertNotNull(this.generalDao.getHibernateTemplate());
-	}
 
 	@Test
 	public void testGetJdbcTemplate() {

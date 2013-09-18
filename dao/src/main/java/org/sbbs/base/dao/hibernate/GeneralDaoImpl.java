@@ -141,7 +141,7 @@ public class GeneralDaoImpl extends GeneralDAOImpl implements GeneralDao {
 	}
 
 	@Override
-	public Session getCurrentSession() {
-		return this.getSession();
+	public Session getSession() {
+		return super.getSession();
 	}
 }

@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>model</artifactId>
 	<version>${project.parent.version}</version>
-	<name>model</name>
+	<name>sbbs-model</name>
 	<dependencies>
 		<dependency>
 			<groupId>org.hibernate.java-persistence</groupId>

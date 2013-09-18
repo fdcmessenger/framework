@@ -11,3 +11,6 @@ org.eclipse.m2e.core.prefs
 
 /model/.settings/*.prefs
 /dao/.settings/*.prefs
+
+/service/.settings/*.prefs
+/web/.settings/org.eclipse.jdt.core.prefs

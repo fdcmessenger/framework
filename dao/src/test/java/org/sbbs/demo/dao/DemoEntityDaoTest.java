@@ -178,7 +178,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testRemoveEntities() {
-		List l = this.demoEntityDao.getCurrentSession().createQuery("from DemoEntity where demoId>=-50 and demoId<=-1").list();
+		List l = this.demoEntityDao.getSession().createQuery("from DemoEntity where demoId>=-50 and demoId<=-1").list();
 		
 		//this.demoEntityDao.
 		Assert.assertTrue(l.size() == 50);
@@ -393,10 +393,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 		 rs = this.demoEntityDao.exists(1l);
 		Assert.assertTrue(!rs);
 	}
-	//@Test
-	public void testGetHibernateTemplate(){
-		//Assert.assertNotNull(this.demoEntityDao.getHibernateTemplate());
-	}
+
 	@Test
 	public void testGetJdbcTemplate(){
 		Assert.assertNotNull(this.demoEntityDao.getJdbcTemplate());

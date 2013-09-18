@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN"  
+"http://jetty.mortbay.org/configure.dtd">  
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">  
+    <New id="dataSource" class="org.mortbay.jetty.plus.naming.Resource">  
+        <Arg>jdbc/DefaultDS</Arg>  
+        <Arg>  
+            <New class="${jdbc.jndiDS}">  
+            	<Set name="driverClassName">${jdbc.driverClassName}</Set>
+                <Set name="url">${jdbc.url}</Set>  
+                <Set name="username">${jdbc.username}</Set>  
+                <Set name="password">${jdbc.password}</Set>  
+            </New>  
+        </Arg>  
+    </New>  
+ <!--    <Arg>
+         <New class="org.apache.commons.dbcp.BasicDataSource">
+            <Set name="driverClassName">org.some.Driver</Set>
+            <Set name="url">jdbc.url</Set>
+            <Set name="username">jdbc.user</Set>
+            <Set name="password">jdbc.pass</Set>
+            <Set name="validationQuery">SELECT 1</Set>
+         </New>
+     </Arg> -->
+</Configure> 
