@@ -14,12 +14,16 @@
 	<properties>
 	</properties>
 	<dependencies>
+		<!-- <dependency>
+			<groupId>${jdbc.groupId}</groupId>
+			<artifactId>${jdbc.artifactId}</artifactId>
+		</dependency> -->
 		<dependency>
 			<groupId>org.sbbs</groupId>
 			<artifactId>dao</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
@@ -28,12 +32,12 @@
 			<artifactId>aspectjrt</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>org.powermock</groupId>
-				<artifactId>powermock-module-junit4</artifactId>
-			</dependency>
-			<dependency>
-				<groupId>org.powermock</groupId>
-				<artifactId>powermock-api-mockito</artifactId>
-			</dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+		</dependency>
 	</dependencies>
 </project>

@@ -18,7 +18,7 @@ public class GeneralDaoCallTest extends BaseDaoTestCase {
 	public void dummyTest() {
 		Assert.assertTrue(true);
 	}
-
+ 
 	// @Test
 	// @Rollback(false)
 	public void testCommonCall() {

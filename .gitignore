@@ -14,3 +14,13 @@ org.eclipse.m2e.core.prefs
 
 /service/.settings/*.prefs
 /web/.settings/org.eclipse.jdt.core.prefs
+
+/dao/.settings/org.eclipse.wst.common.component
+
+/dao/.settings/org.eclipse.wst.common.project.facet.core.xml
+
+org.eclipse.wst.common.component
+
+org.eclipse.wst.common.project.facet.core.xml
+
+.settings
