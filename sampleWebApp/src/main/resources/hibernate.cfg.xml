@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration
+<!-- <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration 
 	DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"> -->
-<!-- NOTE: If you're working offline, you might have to change the DOCTYPE
-	to the following: <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate
+<!-- NOTE: If you're working offline, you might have to change the DOCTYPE 
+	to the following: <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate 
 	Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"> -->
     <!DOCTYPE hibernate-configuration PUBLIC
 	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
@@ -10,6 +10,15 @@
 <hibernate-configuration>
 	<session-factory>
 		<mapping class="org.sbbs.demo.model.DemoEntity" />
-		
+		<!-- security used entity model -->
+		<mapping class="org.sbbs.security.model.LogEntity" />
+		<mapping class="org.sbbs.security.model.Module" />
+		<mapping class="org.sbbs.security.model.Organization" />
+		<mapping class="org.sbbs.security.model.OrganizationRole" />
+		<mapping class="org.sbbs.security.model.Permission" />
+		<mapping class="org.sbbs.security.model.Role" />
+		<mapping class="org.sbbs.security.model.RolePermission" />
+		<mapping class="org.sbbs.security.model.User" />
+		<mapping class="org.sbbs.security.model.UserRole" />
 	</session-factory>
 </hibernate-configuration>
