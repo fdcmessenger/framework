@@ -34,6 +34,7 @@
 
 		<db.name>sbbs</db.name>
 		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+		<dbunit.sampledata>src/test/resources/sample-data.xml</dbunit.sampledata>
 		<!-- <dbunit.foreign_off/> <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName> 
 			<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect> -->
 		<hibernatetools.configurationfile>src/test/resources/hibernate.cfg.xml</hibernatetools.configurationfile>
@@ -428,11 +429,11 @@
 						<username>${jdbc.username}</username>
 						<password>${jdbc.password}</password>
 						<url>${jdbc.url}${dbunit.foreign_off}</url>
-						<src>src/test/resources/sample-data.xml</src>
+						<src>${dbunit.sampledata}</src>
 						<type>${dbunit.operation.type}</type>
 						<schema>${dbunit.schema}</schema>
 						<skip>${skipTests}</skip>
-						<transaction>true</transaction>
+						<transaction>false</transaction>
 						<encoding>GBK</encoding>
 						<ordered>true</ordered>
 					</configuration>
@@ -666,7 +667,7 @@
 		<profile>
 			<id>h2</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
 				<!-- <dbunit.dataTypeFactoryName>org.dbunit.ext.mysql.MySqlDataTypeFactory</dbunit.dataTypeFactoryName> 
@@ -701,7 +702,7 @@
 		<profile>
 			<id>mysql</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
 				<dbunit.dataTypeFactoryName>org.dbunit.ext.mysql.MySqlDataTypeFactory</dbunit.dataTypeFactoryName>
