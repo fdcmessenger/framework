@@ -226,7 +226,7 @@ a img {
 						<input type="password" name="password" id="password" tabindex="2" />
 					</div>
 				</div>
-				<div class="formRow">
+				<%-- <div class="formRow">
 					<div class="label">
 						<label>验证码:</label> <span class="required">*</span>
 					</div>
@@ -238,8 +238,8 @@ a img {
 							src="${ctx}/Captcha.jpg" alt="点击刷新验证码" width="75" height="24"
 							id="captcha" /></span>
 					</div>
-				</div>
-				<div class="formRow">
+				</div> --%>
+			<!-- 	<div class="formRow">
 					<div class="label">
 						<label>记住我:</label>
 					</div>
@@ -247,7 +247,7 @@ a img {
 					<div class="field">
 						<input type="checkbox" id="rememberMe" name="rememberMe" />
 					</div>
-				</div>
+				</div> -->
 
 
 			</div>

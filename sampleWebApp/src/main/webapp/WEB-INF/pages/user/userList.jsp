@@ -15,7 +15,7 @@
 
 				grid = jQuery(gridIdString);
 				grid.jqGrid({
-					url : "security/userGrid",
+					url : "${ctx}/security/userGrid",
 					datatype : "json",
 					mtype : "GET",
 					colModel : [ {
