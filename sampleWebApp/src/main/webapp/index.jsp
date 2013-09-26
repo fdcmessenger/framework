@@ -103,6 +103,10 @@
 								<ul>
 									<li><a href="${ctx}/demoEntityList" target="navTab" rel="demoEntityList" external="false">样例实体列表页面</a></li>
 								</ul></li>
+							<li><a>安全管理</a>
+								<ul>
+									<li><a href="${ctx}/security/userList" target="navTab" rel="userList" external="false">用户管理</a></li>
+								</ul></li>
 						</ul>
 					</div>
 
