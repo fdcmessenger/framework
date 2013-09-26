@@ -57,8 +57,10 @@
 					<li theme="silver"><div>银色</div></li>
 					<li theme="azure"><div>天蓝</div></li>
 				</ul>
+			
+			
+			<a href="${ctx }/logout">logout</a>
 			</div>
-
 			<!-- navMenu -->
 
 

@@ -9,8 +9,9 @@
 			</pattern>
 		</encoder>
 	</appender>
-	<logger name="org.sbbs" level="INFO" />
+	<logger name="org.sbbs" level="DEBUG" />
 	<logger name="org.hibernate.tool" level="DEBUG" />
+	<logger name="org.apache.shiro" level="DEBUG" />
 	<logger name="org.springframework" level="INFO" />
 	<logger name="com.opensymphony.xwork2" level="INFO" />
 	<!-- <level value="INFO"/> </logger> -->
@@ -19,7 +20,7 @@
 	<logger name="com.googlecode.genericdao" level="WARN" />
 	<logger name="net.sf.ehcache" level="INFO" />
 	<!-- <level value="DEBUG"/> </logger> -->
-	<root level="INFO">
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
 	</root>
 </configuration>

@@ -52,6 +52,7 @@ import org.sbbs.security.utils.Digests;
 import org.sbbs.security.utils.Encodes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.octo.captcha.service.image.ImageCaptchaService;
 
@@ -73,14 +74,15 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 	// 是否使用验证码
 	protected boolean useCaptcha = false;
-
+	@Autowired
 	protected UserManager userManager;
-
+	@Autowired
 	protected UserRoleManager userRoleManager;
+	@Autowired
 	protected RolePermissionManager rolePermissionManager;
-
+	@Autowired
 	protected OrganizationRoleManager organizationRoleManager;
-
+	@Autowired
 	protected ModuleManager moduleService;
 
 	protected ImageCaptchaService imageCaptchaService;

@@ -6,8 +6,8 @@
 	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="false" 
 		/> -->
 	<constant name="struts.devMode" value="false" />
-	    <constant name="struts.action.extension" value="action,"/>
-    <constant name="struts.objectFactory" value="spring"/>
+	<constant name="struts.action.extension" value="action," />
+	<constant name="struts.objectFactory" value="spring" />
 	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
 	<constant name="struts.codebehind.pathPrefix" value="/WEB-INF/pages/" />
@@ -15,19 +15,18 @@
 		value="" />
 	<package name="default" extends="json-default" namespace="/">
 		<interceptors>
-			
+
 			<interceptor name="s2hibernatevalidator"
-							class="org.sbbs.base.webapp.s2hibernatevalidator.interceptor.HibernateValidatorInterceptor">
-							<param name="excludeMethods">input,prepare,back,cancel,browse</param>
+				class="org.sbbs.base.webapp.s2hibernatevalidator.interceptor.HibernateValidatorInterceptor">
+				<param name="excludeMethods">input,prepare,back,cancel,browse</param>
 			</interceptor>
-			
 			<interceptor-stack name="shvStack">
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="s2hibernatevalidator" />
 			</interceptor-stack>
 		</interceptors>
 		<default-interceptor-ref name="shvStack"></default-interceptor-ref>
-		
+
 		<global-results>
 			<result name="input" type="json">
 				<param name="ignoreHierarchy">false</param>
