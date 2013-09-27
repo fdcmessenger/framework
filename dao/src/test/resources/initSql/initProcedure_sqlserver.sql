@@ -2,6 +2,7 @@
 -- ----------------------------
 -- Procedure structure for [commonProcedure]
 -- ----------------------------
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'commonProcedure')
 DROP PROCEDURE [commonProcedure]
 GO
 
@@ -34,6 +35,7 @@ GO
 
 -- ----------------------------
 -- Procedure structure for [queryProcedure]
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'queryProcedure')
 -- ----------------------------
 DROP PROCEDURE [queryProcedure]
 GO
