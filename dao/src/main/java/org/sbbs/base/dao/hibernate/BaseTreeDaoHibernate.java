@@ -215,6 +215,7 @@ public abstract class BaseTreeDaoHibernate<T extends BaseTreeNode, PK extends Se
 		BaseTreeNode root = this.find(id);
 		List children = this.getTreeByNodeId(id);
 		Stack<Integer> stack = new Stack<Integer>();
+		System.out.println("ID  父       左    右    层");
 		for (Iterator iterator = children.iterator(); iterator.hasNext();) {
 			BaseTreeNode node = (BaseTreeNode) iterator.next();
 			if (!stack.isEmpty()) {

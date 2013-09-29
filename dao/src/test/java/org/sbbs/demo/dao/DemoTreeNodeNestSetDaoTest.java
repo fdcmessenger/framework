@@ -323,7 +323,7 @@ public class DemoTreeNodeNestSetDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testDebugDisplayTree() {
-		// this.demoTreeNodeNestSetDao.debugDisplayTree(1l);
+		 this.demoTreeNodeDao.debugDisplayTree(1l);
 		Assert.assertTrue(true);
 	}
 
