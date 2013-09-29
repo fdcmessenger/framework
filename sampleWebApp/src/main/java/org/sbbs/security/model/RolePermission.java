@@ -13,8 +13,6 @@
  
 package org.sbbs.security.model;
 
-import java.util.Objects;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;

@@ -48,17 +48,26 @@
 	<div id="layout">
 		<div id="header">
 			<div class="headerNav">
-
-				<ul class="themeList" id="themeList">
-					<li theme="default"><div class="selected">蓝色</div></li>
-					<li theme="green"><div>绿色</div></li>
-					<!--<li theme="red"><div>红色</div></li>-->
+				<ul class="nav">
+					<%-- <li><a href="${contextPath}/management/index">主页</a></li>
+					<li><a href="${contextPath}/management/index/updateBase"
+						target="dialog" mask="true" width="550" height="250">修改用户信息</a></li>
+					<li><a href="${contextPath}/management/index/updatePwd"
+						target="dialog" mask="true" width="500" height="200">修改密码</a></li> --%>
+					<li><a href="${ctx}/logout">退出</a></li>
+				</ul>
+			<!-- 	<ul class="themeList" id="themeList">
+					<li theme="default"><div>蓝色</div></li>
+					<li theme="green"><div  class="selected">绿色</div></li>
+					<li theme="red"><div>红色</div></li>
 					<li theme="purple"><div>紫色</div></li>
 					<li theme="silver"><div>银色</div></li>
 					<li theme="azure"><div>天蓝</div></li>
 				</ul>
+			 -->
+			
+			<%-- <a href="${ctx }/logout">logout</a> --%>
 			</div>
-
 			<!-- navMenu -->
 
 
@@ -101,6 +110,22 @@
 								<ul>
 									<li><a href="${ctx}/demoEntityList" target="navTab" rel="demoEntityList" external="false">样例实体列表页面</a></li>
 								</ul></li>
+							<li><a>安全管理</a>
+								<ul>
+									<li><a href="${ctx}/security/userList" target="navTab" rel="userList" external="false">用户管理</a></li>
+								</ul>
+								<ul>
+									<li><a href="${ctx}/security/roleList" target="navTab" rel="roleList" external="false">角色管理</a></li>
+								</ul>
+								<ul>
+									<li><a href="${ctx}/security/module_tree_list" target="navTab" rel="moduleList" external="false">模块管理</a></li>
+<%-- 									<li><a href="${ctx}/security/moduleList" target="navTab" rel="moduleList" external="false">模块管理</a></li> --%>
+								</ul>
+								<ul>
+									<li><a href="${ctx}/security/organizationList" target="navTab" rel="organizationList" external="false">组织管理</a></li>
+								</ul>
+								
+								</li>
 						</ul>
 					</div>
 

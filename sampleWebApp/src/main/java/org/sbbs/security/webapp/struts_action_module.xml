@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="module" extends="default" namespace="/security">
+	<action name="module_tree_list">
+			<result name="success">/WEB-INF/pages/module/module_tree_list.jsp</result>
+	
+	</action>
+	
+		<action name="moduleList" class="org.sbbs.security.webapp.action.ModulePagedAction">
+			<result name="success">/WEB-INF/pages/module/moduleList.jsp</result>
+		</action>
+		<action name="moduleGrid" class="org.sbbs.security.webapp.action.ModulePagedAction"
+			method="gridPageList">
+			<result type="json">
+				<param name="includeProperties">pageList.*,total,records,page,statusCode,message</param>
+				<param name="noCache">true</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<!-- <action name="editEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" 
+			method="edit"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result> 
+			</action> <action name="addEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" 
+			method="add"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result> 
+			</action> <action name="saveEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" 
+			method="save"/> <action name="deleteEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" 
+			method="delete"/> -->
+		<!-- <action name="exportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" 
+			method="excelExport"/> <action name="beforeExportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" 
+			method="beforeExcelExport"/> -->
+	</package>
+</struts>

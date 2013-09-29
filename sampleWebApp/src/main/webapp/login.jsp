@@ -1,228 +1,95 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"
+    pageEncoding="UTF-8"%>
+<%-- <%@ include file="/WEB-INF/views/include.inc.jsp"%>    --%>     
 <%@ include file="/common/taglibs.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>KETA定制化平台</title>
+<link href="${ctx}/styles/dwz/themes/default/style.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/styles/dwz/themes/css/core.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/styles/dwz/themes/css/login.css" rel="stylesheet" type="text/css" />
 
-<title><s:text name="label.login"/></title>
+<!-- form验证 -->
+<link rel="stylesheet" href="${ctx}/styles/validationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<script src="${ctx}/styles/jquery/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="${ctx}/styles/validationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="${ctx}/styles/validationEngine/js/jquery.validationEngine-2.6.4.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    jQuery(document).ready(function(){
+        jQuery("#formID").validationEngine();
+    });
+    jQuery(document).ready(function(){
+    	$("#captcha").click(function(){
+    		$(this).attr("src", "${ctx}/Captcha.jpg?time=" + new Date());
+    		return false;
+    	});
+    });
 
-<style>
-* { /* Resetting the default styles of the page */
-	margin: 0;
-	padding: 0;
-}
-
-html {
-	overflow: auto;
-}
-
-body { /* Setting default text color, background and a font stack */
-	font-size: 0.825em;
-	color: #eee;
-	background:#222222;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-#carbonForm { /* The main form container */
-	background-color: #1C1C1C;
-	border: 1px solid #080808;
-	margin: 20px auto;
-	padding: 20px;
-	width: 500px;
-	-moz-box-shadow: 0 0 1px #444 inset;
-	-webkit-box-shadow: 0 0 1px #444 inset;
-	box-shadow: 0 0 1px #444 inset;
-	vertical-align: middle;
-	position: absolute;
-	top: 20%;
-	left: 35%
-}
-
-#carbonForm h1 { /* The form heading */
-	font-family: Century Gothic, Myriad Pro, Arial, Helvetica, sans-serif;
-	font-size: 60px;
-	font-weight: normal;
-	padding: 0 0 30px 10px;
-	text-align: left;
-}
-
-.fieldContainer {
-	/* The light rounded section, which contans the fields */
-	background-color: #1E1E1E;
-	border: 1px solid #0E0E0E;
-	padding: 30px 10px;
-	/* CSS3 box shadow, used as an inner glow */
-	-moz-box-shadow: 0 0 20px #292929 inset;
-	-webkit-box-shadow: 0 0 20px #292929 inset;
-	box-shadow: 0 0 20px #292929 inset;
-}
-
-#carbonForm,.fieldContainer,.errorTip { /* Rounding the divs at once */
-	-moz-border-radius: 12px;
-	-webkit-border-radius: 12px;
-	border-radius: 12px;
-}
-
-.formRow {
-	height: 35px;
-	padding: 10px;
-	position: relative;
-}
-
-.label {
-	float: left;
-	padding: 0 20px 0 0;
-	text-align: right;
-	width: 70px;
-}
-
-label {
-	font-family: Century Gothic, Myriad Pro, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	letter-spacing: 1px;
-	line-height: 35px;
-}
-
-.field {
-	float: left;
-}
-
-.field input { /* The text boxes */
-	border: 1px solid white;
-	color: #666666;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 22px;
-/* 	padding: 4px 5px; */
-	background: url("img/box_bg.png") repeat-x scroll left top #FFFFFF;
-	outline: none;
-	/* Preventing the default Safari and Chrome text box highlight */
-}
-
-.signupButton { /* The submit button container */
-	text-align: center;
-	padding: 30px 0 10px;
-}
-
-#submit { /* The submit button */
-	/* border: 1px solid #f4f4f4; */
-	cursor: pointer;
-	height: 40px;
-	/* text-indent: -9999px;
-	text-transform: uppercase; */
-	width: 100px;
-	background:  #d0ecfd;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-}
-
-#submit.active {
-	/* Marking the submit button as active adds the preloader gif as background */
-	background-image: url("img/preloader.gif");
-}
-
-#submit:hover {
-	background-color: #dcf2ff;
-	border: 1px solid white;
-}
-
-input:hover,input:focus {
-	-moz-box-shadow: 0 0 8px lightblue;
-	-webkit-box-shadow: 0 0 8px lightblue;
-	box-shadow: 0 0 8px lightblue;
-}
-
-.errorTip { /* The error divs */
-	background-color: #970F08;
-	color: white;
-	font-size: 10px;
-	height: 26px;
-	letter-spacing: 0.4px;
-	margin-left: 20px;
-	padding: 5px 0 5px 10px;
-	position: absolute;
-	text-shadow: 1px 1px 0 #555555;
-	width: 200px;
-	right: -130px;
-}
-
-/* The styles below are only necessary for the styling of the demo page: */
-#footer {
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	padding: 10px;
-	color: #eee;
-	text-align: center;
-	font-weight: normal;
-	font-style: italic;
-}
-
-a,a:visited {
-	color: #0196e3;
-	text-decoration: none;
-	outline: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a img {
-	border: none;
-}
-</style>
+</script>
 </head>
 
 <body>
+	<div id="login">
+		<div id="login_header">
+			<h1 class="login_logo">
+				<img src="${ctx}/styles/dwz/themes/default/images/logo.png" />
+			</h1>
 
-	<div id="carbonForm">
-		<h1><s:text name="label.login"/></h1>
-
-		<form method="post" id="loginForm" action="<c:url value='/j_security_check'/>"
-          onsubmit="saveUsername(this);return validateForm(this)">
-			<div class="fieldContainer">
-
-				<div class="formRow">
-					<div class="label">
-						 <s:text name="label.username"/> <span class="required">*</span>
-					</div>
-
-					<div class="field">
-						 <input type="text" name="j_username" id="j_username" tabindex="1"/>
-					</div>
+			<div class="login_headerContent">
+				<div class="navList">
+					<ul>
+						<li><a href="${ctx}/management/index">后台主页</a></li>
+						<li><a href="https://github.com/ketayao/keta-custom" target="_blank">k-custom主页</a></li>
+					</ul>
 				</div>
-
-			
-				<div class="formRow">
-					<div class="label">
-						 <s:text name="label.password"/> <span class="required">*</span>
+				<h2 class="login_title">请登录</h2>
+			</div>
+		</div>
+		<div id="login_content">
+			<div class="loginForm">
+				<form method="post" action="${ctx}/login" id="formID" >
+					<c:if test="${msg!=null }">
+						<p style="color: red; margin-left: 10px;">${msg }</p>
+					</c:if>
+					<p>
+						<label>用户名:</label>
+						<input type="text" name="username" style="width: 150px;" class="validate[required] login_input" id="username" value="${username }"/>
+					</p>
+					<p>
+						<label>密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+						<input type="password" name="password" style="width: 150px;" class="validate[required] login_input" id="password"/>
+					</p>
+					<p>
+						<label>验证码:</label>
+						<input type="text" id="captcha_key" style="width: 70px;float:left;" name="captcha_key" class="login_input validate[required,maxSize[6]]" size="6" />
+						<span><img src="${ctx}/Captcha.jpg" alt="点击刷新验证码" width="75" height="24" id="captcha"/></span>
+					</p>
+					<p>
+						<label>记住我:</label>
+						<input type="checkbox" id="rememberMe" name="rememberMe"/>
+					</p>					
+					<div class="login_bar" style="disply:block;float:left;">
+						<input class="sub" type="submit" value=""/>
 					</div>
+				</form>
+			</div>
+			<div class="login_banner"><img src="${ctx}/styles/dwz/themes/default/images/login_banner.jpg" /></div>
+			<div class="login_main">
+				<ul class="helpList">
+					<li><a href="javascript:toggleBox('forgotPwd')">忘记密码?</a></li>
+				</ul>
 
-					<div class="field">
-						 <input type="password" name="j_password" id="j_password" tabindex="2"/>
-					</div>
+				<div class="login_inner">
+					<p>测试用户名: admin</p>
+					<p>测试密码: 123456</p>
 				</div>
-
-
 			</div>
-			<!-- Closing fieldContainer -->
-
-			<div class="signupButton">
-			
-				<input type="submit" id="submit"  name="login" value="<s:text name='button.login'/>"
-                   tabindex="4"/>
-                    <label class="checkbox">
-                       <%--  <input type="checkbox" name="_spring_security_remember_me" id="rememberMe" tabindex="3"/>
-                        <s:text name="login.rememberMe"/> --%>
-                    </label>
-			</div>
-
-		</form>
-
+		</div>
+		<div id="login_footer">
+			Copyright &copy; 2012-2013, ketayao.com, All Rights Reserve.
+		</div>
 	</div>
-
-
 </body>
 </html>
