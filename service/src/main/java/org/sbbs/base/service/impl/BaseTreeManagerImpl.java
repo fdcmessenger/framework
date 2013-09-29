@@ -13,7 +13,7 @@ public abstract class BaseTreeManagerImpl<T extends BaseTreeNode, PK extends Ser
 	BaseTreeDao treeDao;
 
 	public BaseTreeManagerImpl(BaseTreeDao<T, PK> genericDao) {
-		// super((BaseDao<T, PK>) genericDao);
+		 super( genericDao);
 		this.treeDao = genericDao;
 	}
 
