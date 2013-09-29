@@ -31,33 +31,33 @@
 						index : 'name',
 						align : 'center',
 						label : '<s:text name="module.name" />'
-					}, 
+					},
 					{
 						name : 'parentNode.name',
 						index : 'parentNode.name',
 						align : 'center',
 						label : '<s:text name="module.parentName" />'
-					}, 
+					},
 					{
 						name : 'url',
 						index : 'url',
 						align : 'center',
 						label : '<s:text name="module.url" />'
-					}, 
+					},
 					{
 						name : 'sn',
 						index : 'sn',
 						align : 'center',
 						label : '<s:text name="module.sn" />'
-					}, 
+					},
 					{
 						name : 'priority',
 						index : 'priority',
 						align : 'center',
 						label : '<s:text name="module.priority" />'
-					}, 
-					
-					
+					},
+
+
 					{
 						name : 'description',
 						index : 'description',
@@ -84,11 +84,11 @@
 					rowNum : 10,
 					rowList : [ 5, 10, 20, 50, 100, 200, 500, 1000, 2000 ],
 					rownumbers : true,
-					rownumWidth : 50,
+					//rownumWidth : 50,
 					pager : '#modulePager',
 					sortname : 'id',
 					sortorder : 'desc',
-					caption : '<s:text name="moduleList.title" />',
+					//caption : '<s:text name="moduleList.title" />',
 					//height : "685",
 
 					 width : 800,
@@ -96,7 +96,7 @@
 					forceFit : false,
 					shrinkToFit : false,
 					//loadui: "disable",
-					multiselect : true,
+					multiselect : false,
 					multiboxonly : true,
 					hidegrid : false,
 					loadError : function(xhr, status, error) {
@@ -117,7 +117,7 @@
 
 				//jQuery(grid).jqGrid('bindKeys');
 
-				jQuery(grid).jqGrid('navGrid', '#modulePager', {
+				 jQuery(grid).jqGrid('navGrid', '#modulePager', {
 					edit : false,
 					add : false,
 					del : false,
@@ -158,28 +158,8 @@
 			</div>
 		</form>
 	</div> -->
-	<div class="panelBar">
-		<ul class="toolBar">
-		<li><a class="icon" href="#"
-				onclick="javascript:processSimpleRequest('${ctx}/security/rebuildTree');"><span>initMenu</span></a></li>
-		
-		
-			<li><a class="add" href="#"
-				onclick="javascript:addFormDialog('addEntity','样例添加',800,600,'moduleList');"><span>添加</span></a></li>
-			<li><a class="delete" href="#"
-				onclick="javascript:processMultiSelectedRecords('moduleList','deleteEntity','你确认要删除demo数据吗?');"><span>删除</span></a></li>
-			<li><a class="edit" href="#"
-				onclick="javascript:editFormDialog('editEntity','样例修改',800,600,'moduleList');"><span>修改</span></a></li>
-			<li class="line">line</li>
-				<li><a class="icon" href="#"
-				onclick="javascript:exportEntity('exportEntity','moduleList',1);"><span>导出EXCEL</span></a></li>
-			<li><a class="icon"
-				href="javascript:$.printBox('moduleGridContainer')"><span>打印</span></a></li>
-			<li><a class="icon" href="#"
-				onclick="javascript:searchAreaToggle(this,'moduleSearchArea','moduleGridContainer',80);"><span>收起</span></a></li>
-		</ul>
-	</div>
-	<div id="moduleGridContainer" class="pageContent" layoutH="20">
+
+	<div id="moduleGridContainer" class="pageContent" layoutH="8">
 		<table id="moduleList"></table>
 		<div id="modulePager"></div>
 	</div>

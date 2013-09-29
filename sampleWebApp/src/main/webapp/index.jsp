@@ -65,7 +65,7 @@
 					<li theme="azure"><div>天蓝</div></li>
 				</ul>
 			 -->
-			
+
 			<%-- <a href="${ctx }/logout">logout</a> --%>
 			</div>
 			<!-- navMenu -->
@@ -104,7 +104,7 @@
 								</ul></li> -->
 							<li><a>dwz布局学习</a>
 								<ul>
-								
+
 								</ul></li>
 							<li><a>Demo样例</a>
 								<ul>
@@ -113,18 +113,17 @@
 							<li><a>安全管理</a>
 								<ul>
 									<li><a href="${ctx}/security/userList" target="navTab" rel="userList" external="false">用户管理</a></li>
-								
+
 									<li><a href="${ctx}/security/roleList" target="navTab" rel="roleList" external="false">角色管理</a></li>
-							
-									<%-- <li><a href="${ctx}/security/module_tree_list" target="navTab" rel="moduleList" external="false">模块管理</a></li> --%>
-									<li><a href="${ctx}/security/moduleList" target="navTab" rel="moduleList" external="false">模块管理</a></li>
-								
-									<%-- <li><a href="${ctx}/security/module_tree_list" target="navTab" rel="moduleList" external="false">模块管理</a></li> --%>
+
+									<li><a href="${ctx}/security/module_tree_list" target="navTab" rel="moduletreeList" external="false">模块综合管理</a></li>
+									<%-- <li><a href="${ctx}/security/moduleList" target="navTab" rel="moduleList" external="false">模块管理</a></li>
+
 									<li><a href="${ctx}/security/moduleTree" target="navTab" rel="moduleTree" external="false">模块树管理</a></li>
-								
+ --%>
 									<li><a href="${ctx}/security/organizationList" target="navTab" rel="organizationList" external="false">组织管理</a></li>
 								</ul>
-								
+
 								</li>
 						</ul>
 					</div>
