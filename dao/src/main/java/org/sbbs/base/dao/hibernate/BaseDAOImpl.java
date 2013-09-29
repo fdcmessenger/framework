@@ -1,6 +1,8 @@
 package org.sbbs.base.dao.hibernate;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,6 +39,16 @@ public class BaseDAOImpl<T, ID extends Serializable> extends GenericDAOImpl<T, I
 	public boolean exists(ID id) {
 		T entity = this.find(id);
 		return entity != null;
+	}
+
+	@Override
+	public void remove(List<T> list) {
+
+		T[] array = (T[]) Array.newInstance(this.persistentClass, list.size());
+		list.toArray(array);
+
+		this.remove(array);
+
 	}
 
 }

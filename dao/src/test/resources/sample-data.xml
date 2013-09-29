@@ -4623,5 +4623,58 @@
       <value><![CDATA[2012-07-19 00:00:00.0]]></value>
     </row>
   </table>
-  
+   <table name="t_demo_tree">
+    <column>id</column>
+    <column>level</column>
+    <column>lft</column>
+    <column>rgt</column>
+    <column>nodeName</column>
+    <column>parent_id</column>
+    <column>disabled</column>
+       <row>
+      <value>5</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>5</value>
+      <value>2</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>4</value>
+      <value>2</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>3</value>
+      <value>2</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>2</value>
+      <value>1</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>0</value>
+      <value>1</value>
+      <value>1</value>
+      <value>1</value>
+      <null/>
+      <value>0</value>
+    </row>
+  </table>
 </dataset>

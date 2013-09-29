@@ -4,6 +4,7 @@ public class AjaxReturn {
 	private static final String AJAX_STATUS_SUCCESS = "200";
 	private static final String AJAX_STATUS_ERROR = "300";
 	private static final String AJAX_STATUS_TIMEOUT = "301";
+	private static final String AJAX_STATUS_FORBIDDEN = "403";
 
 	protected static final String CALLBACKTYPE_CLOSECURRENT = "closeCurrent";
 	protected static final String CALLBACKTYPE_FORWARD = "forward";

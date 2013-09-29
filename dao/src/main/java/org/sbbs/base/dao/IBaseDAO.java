@@ -1,6 +1,7 @@
 package org.sbbs.base.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,10 +13,10 @@ public interface IBaseDAO<T, ID extends Serializable> extends GenericDAO<T, ID> 
 	/**
 	 * 活的HibernateTemplate助手类,以供在需要的时候方便使用
 	 */
-//	public HibernateTemplate getHibernateTemplate();
+	// public HibernateTemplate getHibernateTemplate();
 
-	
 	public Session getSession();
+
 	/**
 	 * 活的JdbcTemplate助手类,以供在需要的时候方便使用
 	 */
@@ -25,4 +26,6 @@ public interface IBaseDAO<T, ID extends Serializable> extends GenericDAO<T, ID> 
 	 * 判断主键为id的实体是否存在
 	 */
 	public boolean exists(ID id);
+
+	public void remove(List<T> list);
 }
