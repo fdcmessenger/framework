@@ -70,8 +70,7 @@ public class Permission extends BaseIDEntity {
 	@Column(length=255)
 	private String description;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="moduleId")
+
 	private Module module;
 	
 	@OneToMany(mappedBy="permission", cascade={CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval=true)
@@ -119,6 +118,8 @@ public class Permission extends BaseIDEntity {
 	 * 返回 module 的值   
 	 * @return module  
 	 */
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="moduleId")
 	public Module getModule() {
 		return module;
 	}

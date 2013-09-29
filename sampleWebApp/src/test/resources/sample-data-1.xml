@@ -31,7 +31,7 @@
     <column>priority</column>
     <column>sn</column>
     <column>url</column>
-    <column>parentId</column>
+    <column>parent_id</column>
     <row>
       <value>1</value>
       <value>所有模块的根节点，不能删除。</value>

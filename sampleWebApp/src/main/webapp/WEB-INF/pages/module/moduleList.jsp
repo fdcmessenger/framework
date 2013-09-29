@@ -33,8 +33,8 @@
 						label : '<s:text name="module.name" />'
 					}, 
 					{
-						name : 'parent.name',
-						index : 'parent.name',
+						name : 'parentNode.name',
+						index : 'parentNode.name',
 						align : 'center',
 						label : '<s:text name="module.parentName" />'
 					}, 
@@ -158,8 +158,12 @@
 			</div>
 		</form>
 	</div> -->
-<!-- 	<div class="panelBar">
+	<div class="panelBar">
 		<ul class="toolBar">
+		<li><a class="icon" href="#"
+				onclick="javascript:processSimpleRequest('${ctx}/security/rebuildTree');"><span>initMenu</span></a></li>
+		
+		
 			<li><a class="add" href="#"
 				onclick="javascript:addFormDialog('addEntity','样例添加',800,600,'moduleList');"><span>添加</span></a></li>
 			<li><a class="delete" href="#"
@@ -174,7 +178,7 @@
 			<li><a class="icon" href="#"
 				onclick="javascript:searchAreaToggle(this,'moduleSearchArea','moduleGridContainer',80);"><span>收起</span></a></li>
 		</ul>
-	</div> -->
+	</div>
 	<div id="moduleGridContainer" class="pageContent" layoutH="20">
 		<table id="moduleList"></table>
 		<div id="modulePager"></div>

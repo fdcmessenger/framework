@@ -31,7 +31,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
-import org.sbbs.base.model.BaseIDEntity;
+import org.sbbs.base.model.BaseTreeNode;
+import org.sbbs.demo.model.DemoTreeNode;
 
 /**
  * 
@@ -41,7 +42,7 @@ import org.sbbs.base.model.BaseIDEntity;
 @Entity
 @Table(name = "security_module")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Module extends BaseIDEntity implements Comparable<Module> {
+public class Module extends BaseTreeNode<Module, Long> implements Comparable<Module> {
 
 	/** 描述 */
 	private static final long serialVersionUID = -6926690440815291509L;
@@ -79,21 +80,21 @@ public class Module extends BaseIDEntity implements Comparable<Module> {
 	@Column(length = 2)
 	private Integer priority = 99;
 
-	@ManyToOne
+/*	@ManyToOne
 	@JoinColumn(name = "parentId")
 	private Module parent;
 
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, mappedBy = "parent")
 	@OrderBy("priority ASC")
-	private List<Module> children = new ArrayList<Module>();
+	private List<Module> children = new ArrayList<Module>();*/
 
 	/**
 	 * 因为hibernate更新使用的是merge方法，会自动新增关联的瞬时对象，如果再次配置CascadeType.MERGE，会插入两条数据。<br/>
 	 * 详见我的博客：<a href="ketayao.com">ketayao.com</a>
 	 */
-	@OneToMany(mappedBy = "module", cascade = { CascadeType.PERSIST,
-			CascadeType.REMOVE }, orphanRemoval = true)
-	private List<Permission> permissions = new ArrayList<Permission>();
+
+/*	@OneToMany(mappedBy = "module", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
+*/	private List<Permission> permissions = new ArrayList<Permission>();
 
 	/**
 	 * 返回 name 的值
@@ -172,36 +173,36 @@ public class Module extends BaseIDEntity implements Comparable<Module> {
 	 * 
 	 * @return parent
 	 */
-	public Module getParent() {
+/*	public Module getParent() {
 		return parent;
-	}
+	}*/
 
 	/**
 	 * 设置 parent 的值
 	 * 
 	 * @param parent
 	 */
-	public void setParent(Module parent) {
+/*	public void setParent(Module parent) {
 		this.parent = parent;
-	}
+	}*/
 
 	/**
 	 * 返回 children 的值
 	 * 
 	 * @return children
 	 */
-	public List<Module> getChildren() {
+/*	public List<Module> getChildren() {
 		return children;
-	}
+	}*/
 
 	/**
 	 * 设置 children 的值
 	 * 
 	 * @param children
 	 */
-	public void setChildren(List<Module> children) {
+/*	public void setChildren(List<Module> children) {
 		this.children = children;
-	}
+	}*/
 
 	/**
 	 * 返回 sn 的值
@@ -226,6 +227,7 @@ public class Module extends BaseIDEntity implements Comparable<Module> {
 	 * 
 	 * @return permissions
 	 */
+	@OneToMany(mappedBy = "module")
 	public List<Permission> getPermissions() {
 		return permissions;
 	}
@@ -261,12 +263,9 @@ public class Module extends BaseIDEntity implements Comparable<Module> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
-		result = prime * result
-				+ ((priority == null) ? 0 : priority.hashCode());
+		result = prime * result + ((priority == null) ? 0 : priority.hashCode());
 		result = prime * result + ((sn == null) ? 0 : sn.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
@@ -291,11 +290,6 @@ public class Module extends BaseIDEntity implements Comparable<Module> {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (parent == null) {
-			if (other.parent != null)
-				return false;
-		} else if (!parent.equals(other.parent))
-			return false;
 		if (priority == null) {
 			if (other.priority != null)
 				return false;
@@ -316,9 +310,8 @@ public class Module extends BaseIDEntity implements Comparable<Module> {
 
 	@Override
 	public String toString() {
-		return "Module [name=" + name + ", url=" + url + ", description="
-				+ description + ", sn=" + sn + ", priority=" + priority
-				+ ", parent=" + parent + "]";
+		return "Module [name=" + name + ", url=" + url + ", description=" + description + ", sn=" + sn + ", priority="
+				+ priority + "]";
 	}
 
 	/*

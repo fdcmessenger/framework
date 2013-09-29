@@ -13,7 +13,7 @@
  
 package org.sbbs.security.service;
 
-import org.sbbs.base.service.IBaseManager;
+import org.sbbs.base.service.BaseTreeManager;
 import org.sbbs.security.model.Module;
 
 
@@ -24,7 +24,7 @@ import org.sbbs.security.model.Module;
  * @since   2012-8-6 上午9:32:17 
  */
 
-public interface ModuleManager extends IBaseManager<Module, Long>{
+public interface ModuleManager extends BaseTreeManager<Module, Long>{
 /*	void save(Module module) throws ExistedException;
 	
 	Module get(Long id);

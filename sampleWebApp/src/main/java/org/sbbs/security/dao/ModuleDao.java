@@ -13,7 +13,7 @@
  
 package org.sbbs.security.dao;
 
-import org.sbbs.base.dao.IBaseDAO;
+import org.sbbs.base.dao.BaseTreeDao;
 import org.sbbs.security.model.Module;
 
 /** 
@@ -23,7 +23,7 @@ import org.sbbs.security.model.Module;
  * @since   2012-8-6 上午9:31:03 
  */
 
-public interface ModuleDao extends IBaseDAO<Module, Long> {
+public interface ModuleDao extends BaseTreeDao<Module, Long> {
 /*	Page<Module> findByParentId(Long parentId, Pageable pageable);
 	
 	Page<Module> findByParentIdAndNameContaining(Long parentId, String name, Pageable pageable);

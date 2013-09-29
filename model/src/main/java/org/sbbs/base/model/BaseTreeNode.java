@@ -55,14 +55,14 @@ public abstract class BaseTreeNode<T extends BaseTreeNode, PK extends Serializab
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public final PK getId() {
+	public  PK getId() {
 		return id;
 	}
 
 	/**
 	 * @param nodeId
 	 */
-	public final void setId(final PK nodeId) {
+	public  void setId(final PK nodeId) {
 		this.id = nodeId;
 	}
 
@@ -71,14 +71,14 @@ public abstract class BaseTreeNode<T extends BaseTreeNode, PK extends Serializab
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent_id", nullable = true)
-	public final T getParentNode() {
+	public  T getParentNode() {
 		return parentNode;
 	}
 
 	/**
 	 * @param parentNode
 	 */
-	public final void setParentNode(final T parentNode) {
+	public  void setParentNode(final T parentNode) {
 		this.parentNode = parentNode;
 	}
 
@@ -86,14 +86,14 @@ public abstract class BaseTreeNode<T extends BaseTreeNode, PK extends Serializab
 	 * @return
 	 */
 	@Column(name = "lft", columnDefinition = "int default 1")
-	public final int getLft() {
+	public  int getLft() {
 		return lft;
 	}
 
 	/**
 	 * @param lft
 	 */
-	public final void setLft(final int lft) {
+	public  void setLft(final int lft) {
 		this.lft = lft;
 	}
 
@@ -101,14 +101,14 @@ public abstract class BaseTreeNode<T extends BaseTreeNode, PK extends Serializab
 	 * @return
 	 */
 	@Column(name = "rgt", columnDefinition = "int default 1")
-	public final int getRgt() {
+	public  int getRgt() {
 		return rgt;
 	}
 
 	/**
 	 * @param rgt
 	 */
-	public final void setRgt(final int rgt) {
+	public  void setRgt(final int rgt) {
 		this.rgt = rgt;
 	}
 
@@ -116,14 +116,14 @@ public abstract class BaseTreeNode<T extends BaseTreeNode, PK extends Serializab
 	 * @return
 	 */
 	@Column(name = "level", columnDefinition = "int default 0")
-	public final int getLevel() {
+	public  int getLevel() {
 		return level;
 	}
 
 	/**
 	 * @param level
 	 */
-	public final void setLevel(final int level) {
+	public  void setLevel(final int level) {
 		this.level = level;
 	}
 
@@ -140,7 +140,7 @@ public abstract class BaseTreeNode<T extends BaseTreeNode, PK extends Serializab
 	 * @return
 	 */
 	@Transient
-	public final String getParent() {
+	public  String getParent() {
 		if (this.getParentNode() != null) {
 			return this.getParentNode().getId() + "";
 		} else {
@@ -152,7 +152,7 @@ public abstract class BaseTreeNode<T extends BaseTreeNode, PK extends Serializab
 	 * @return
 	 */
 	@Transient
-	public final boolean getIsLeaf() {
+	public  boolean getIsLeaf() {
 		return (this.getRgt() == (this.getLft() + 1)) ? true : false;
 	}
 
@@ -160,7 +160,7 @@ public abstract class BaseTreeNode<T extends BaseTreeNode, PK extends Serializab
 	 * @return
 	 */
 	@Transient
-	public final boolean getIsParent() {
+	public  boolean getIsParent() {
 		/* return (this.getRgt() == (this.getLft() + 1)) ? false : true; */
 		return !this.getIsLeaf();
 	}
