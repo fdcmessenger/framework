@@ -17,9 +17,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -32,7 +29,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.sbbs.base.model.BaseObject;
+import org.sbbs.base.model.BaseIDEntity;
 
 /**
  * 
@@ -42,65 +39,36 @@ import org.sbbs.base.model.BaseObject;
 @Entity
 @Table(name = "security_user")
 // 默认的缓存策略.
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.ketayao.ketacustom.entity.main")
-public class User extends BaseObject {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE,region="org.sbbs.security")
+public class User extends BaseIDEntity {
 
 	/** 描述 */
 	private static final long serialVersionUID = -4277639149589431277L;
 
-	@NotBlank
-	@Length(min = 1, max = 32)
-	@Column(nullable = false, length = 32, updatable = false)
 	private String realname;
 
-	@NotBlank
-	@Length(min = 1, max = 32)
-	@Column(nullable = false, length = 32, unique = true, updatable = false)
 	private String username;
 
-	@Column(nullable = false, length = 64)
 	private String password;
 
-	@Transient
 	private String plainPassword;
 
-	@Column(nullable = false, length = 32)
 	private String salt;
 
-	@Length(max = 32)
-	@Column(length = 32)
 	private String phone;
 
-	@Email
-	@Length(max = 128)
-	@Column(length = 128)
 	private String email;
 
 	/**
 	 * 帐号创建时间
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(updatable = false)
+
 	private Date createTime;
 
 	/**
 	 * 使用状态disabled，enabled
 	 */
-	@NotBlank
-	@Length(max = 16)
-	@Column(nullable = false, length = 16)
+
 	private String status = "enabled";
 
 	/*
@@ -111,8 +79,6 @@ public class User extends BaseObject {
 	 * ArrayList<UserRole>();
 	 */
 
-	@ManyToOne
-	@JoinColumn(name = "orgId")
 	private Organization organization;
 
 	/**
@@ -120,6 +86,9 @@ public class User extends BaseObject {
 	 * 
 	 * @return realname
 	 */
+	@NotBlank
+	@Length(min = 1, max = 32)
+	@Column(nullable = false, length = 32, updatable = false)
 	public String getRealname() {
 		return realname;
 	}
@@ -138,6 +107,9 @@ public class User extends BaseObject {
 	 * 
 	 * @return username
 	 */
+	@NotBlank
+	@Length(min = 1, max = 32)
+	@Column(nullable = false, length = 32, unique = true, updatable = false)
 	public String getUsername() {
 		return username;
 	}
@@ -156,6 +128,7 @@ public class User extends BaseObject {
 	 * 
 	 * @return password
 	 */
+	@Column(nullable = false, length = 64)
 	public String getPassword() {
 		return password;
 	}
@@ -174,6 +147,8 @@ public class User extends BaseObject {
 	 * 
 	 * @return createTime
 	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(updatable = false)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -192,6 +167,9 @@ public class User extends BaseObject {
 	 * 
 	 * @return status
 	 */
+	@NotBlank
+	@Length(max = 16)
+	@Column(nullable = false, length = 16)
 	public String getStatus() {
 		return status;
 	}
@@ -210,6 +188,7 @@ public class User extends BaseObject {
 	 * 
 	 * @return plainPassword
 	 */
+	@Transient
 	public String getPlainPassword() {
 		return plainPassword;
 	}
@@ -228,6 +207,7 @@ public class User extends BaseObject {
 	 * 
 	 * @return salt
 	 */
+	@Column(nullable = false, length = 32)
 	public String getSalt() {
 		return salt;
 	}
@@ -246,6 +226,9 @@ public class User extends BaseObject {
 	 * 
 	 * @return email
 	 */
+	@Email
+	@Length(max = 128)
+	@Column(length = 128)
 	public String getEmail() {
 		return email;
 	}
@@ -281,6 +264,8 @@ public class User extends BaseObject {
 	 * 
 	 * @return phone
 	 */
+	@Length(max = 32)
+	@Column(length = 32)
 	public String getPhone() {
 		return phone;
 	}
@@ -299,6 +284,8 @@ public class User extends BaseObject {
 	 * 
 	 * @return organization
 	 */
+	@ManyToOne
+	@JoinColumn(name = "orgId")
 	public Organization getOrganization() {
 		return organization;
 	}

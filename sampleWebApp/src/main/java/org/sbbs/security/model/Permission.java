@@ -27,6 +27,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.sbbs.base.model.BaseIDEntity;
 import org.sbbs.base.model.BaseObject;
 
 /**
@@ -37,20 +38,8 @@ import org.sbbs.base.model.BaseObject;
  */
 @Entity
 @Table(name = "security_permission")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Permission extends BaseObject {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE,region="org.sbbs.security")
+public class Permission extends BaseIDEntity {
 
 	/** 描述 */
 	private static final long serialVersionUID = -7905701060290158981L;
@@ -66,22 +55,12 @@ public class Permission extends BaseObject {
 
 	public final static String PERMISSION_DELETE = "delete";
 
-	@NotBlank
-	@Length(min = 1, max = 32)
-	@Column(nullable = false, length = 32)
 	private String name;
 
-	@NotBlank
-	@Length(min = 1, max = 16)
-	@Column(nullable = false, length = 16)
 	private String shortName;
 
-	@Length(max = 255)
-	@Column(length = 255)
 	private String description;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "module")
 	private Module module;
 
 	// private List<RolePermission> rolePermissiones =new
@@ -92,6 +71,9 @@ public class Permission extends BaseObject {
 	 * 
 	 * @return name
 	 */
+	@NotBlank
+	@Length(min = 1, max = 32)
+	@Column(nullable = false, length = 32)
 	public String getName() {
 		return name;
 	}
@@ -116,6 +98,8 @@ public class Permission extends BaseObject {
 	 * 
 	 * @return description
 	 */
+	@Length(max = 255)
+	@Column(length = 255)
 	public String getDescription() {
 		return description;
 	}
@@ -134,7 +118,8 @@ public class Permission extends BaseObject {
 	 * 
 	 * @return module
 	 */
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "module_id")
 	public Module getModule() {
 		return module;
 	}
@@ -172,6 +157,9 @@ public class Permission extends BaseObject {
 	 * 
 	 * @return shortName
 	 */
+	@NotBlank
+	@Length(min = 1, max = 16)
+	@Column(nullable = false, length = 16)
 	public String getShortName() {
 		return shortName;
 	}

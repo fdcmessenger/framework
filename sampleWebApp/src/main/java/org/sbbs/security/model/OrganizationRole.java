@@ -27,6 +27,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Range;
+import org.sbbs.base.model.BaseIDEntity;
 import org.sbbs.base.model.BaseObject;
 
 /**
@@ -36,20 +37,8 @@ import org.sbbs.base.model.BaseObject;
  */
 @Entity
 @Table(name = "security_organization_role")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class OrganizationRole extends BaseObject {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE,region="org.sbbs.security")
+public class OrganizationRole extends BaseIDEntity {
 
 	/** 描述 */
 	private static final long serialVersionUID = -2216187629501296831L;
@@ -57,17 +46,11 @@ public class OrganizationRole extends BaseObject {
 	/**
 	 * 值越小，优先级越高
 	 */
-	@NotNull
-	@Range(min = 1, max = 99)
-	@Column(length = 2, nullable = false)
+
 	private Integer priority = 99;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "roleId")
 	private Role role;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "organizationId")
 	private Organization organization;
 
 	/**
@@ -75,6 +58,8 @@ public class OrganizationRole extends BaseObject {
 	 * 
 	 * @return role
 	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "roleId")
 	public Role getRole() {
 		return role;
 	}
@@ -88,6 +73,8 @@ public class OrganizationRole extends BaseObject {
 		this.role = role;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "organizationId")
 	public Organization getOrganization() {
 		return organization;
 	}
@@ -101,6 +88,9 @@ public class OrganizationRole extends BaseObject {
 	 * 
 	 * @return priority
 	 */
+	@NotNull
+	@Range(min = 1, max = 99)
+	@Column(length = 2, nullable = false)
 	public Integer getPriority() {
 		return priority;
 	}

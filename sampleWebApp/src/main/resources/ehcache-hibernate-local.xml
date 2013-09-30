@@ -16,7 +16,7 @@
 		
 	<!-- security entity-->		
 	<cache 
-		name="org.sbbs.model"
+		name="org.sbbs.security"
 		maxEntriesLocalHeap="10000" 
 		eternal="true" 
 		overflowToDisk="true"

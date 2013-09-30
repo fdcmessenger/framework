@@ -24,6 +24,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.sbbs.base.model.BaseIDEntity;
 import org.sbbs.base.model.BaseObject;
 
 /**
@@ -33,31 +34,14 @@ import org.sbbs.base.model.BaseObject;
  */
 @Entity
 @Table(name = "security_role")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.ketayao.ketacustom.entity.main")
-public class Role extends BaseObject {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE,region="org.sbbs.security")
+public class Role extends BaseIDEntity {
 
 	/** 描述 */
 	private static final long serialVersionUID = -5537665695891354775L;
 
-	@NotBlank
-	@Length(min = 1, max = 32)
-	@Column(nullable = false, length = 32)
 	private String name;
 
-	@Length(max = 255)
-	@Column(length = 255)
 	private String description;
 
 	/*
@@ -83,6 +67,9 @@ public class Role extends BaseObject {
 	 * 
 	 * @return name
 	 */
+	@NotBlank
+	@Length(min = 1, max = 32)
+	@Column(nullable = false, length = 32)
 	public String getName() {
 		return name;
 	}
@@ -101,6 +88,8 @@ public class Role extends BaseObject {
 	 * 
 	 * @return description
 	 */
+	@Length(max = 255)
+	@Column(length = 255)
 	public String getDescription() {
 		return description;
 	}

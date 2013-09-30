@@ -41,66 +41,64 @@ import org.sbbs.demo.model.DemoTreeNode;
  */
 @Entity
 @Table(name = "security_module")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE,region="org.sbbs.security")
 public class Module extends BaseTreeNode<Module, Long> implements Comparable<Module> {
 
 	/** 描述 */
 	private static final long serialVersionUID = -6926690440815291509L;
 
-	@NotBlank
-	@Length(min = 1, max = 32)
-	@Column(nullable = false, length = 32)
 	private String name;
 
 	/**
 	 * 模块的入口地址
 	 */
-	@NotBlank
-	@Length(min = 1, max = 255)
-	@Column(nullable = false, length = 255)
+
 	private String url;
 
-	@Length(max = 255)
-	@Column(length = 255)
 	private String description;
 
 	/**
 	 * 标志符，用于授权名称（类似module:save）
 	 */
-	@NotBlank
-	@Length(min = 1, max = 32)
-	@Column(nullable = false, length = 32, unique = true, updatable = false)
+
 	private String sn;
 
 	/**
 	 * 模块的排序号,越小优先级越高
 	 */
-	@NotNull
-	@Range(min = 1, max = 99)
-	@Column(length = 2)
+
 	private Integer priority = 99;
 
-/*	@ManyToOne
-	@JoinColumn(name = "parentId")
-	private Module parent;
-
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, mappedBy = "parent")
-	@OrderBy("priority ASC")
-	private List<Module> children = new ArrayList<Module>();*/
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "parentId") private Module parent;
+	 * 
+	 * @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
+	 * mappedBy = "parent")
+	 * 
+	 * @OrderBy("priority ASC") private List<Module> children = new
+	 * ArrayList<Module>();
+	 */
 
 	/**
 	 * 因为hibernate更新使用的是merge方法，会自动新增关联的瞬时对象，如果再次配置CascadeType.MERGE，会插入两条数据。<br/>
 	 * 详见我的博客：<a href="ketayao.com">ketayao.com</a>
 	 */
 
-/*	@OneToMany(mappedBy = "module", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
-*/	private List<Permission> permissions = new ArrayList<Permission>();
+	/*
+	 * @OneToMany(mappedBy = "module", cascade = { CascadeType.PERSIST,
+	 * CascadeType.REMOVE }, orphanRemoval = true)
+	 */private List<Permission> permissions = new ArrayList<Permission>();
 
 	/**
 	 * 返回 name 的值
 	 * 
 	 * @return name
 	 */
+	@NotBlank
+	@Length(min = 1, max = 32)
+	@Column(nullable = false, length = 32)
 	public String getName() {
 		return name;
 	}
@@ -119,6 +117,9 @@ public class Module extends BaseTreeNode<Module, Long> implements Comparable<Mod
 	 * 
 	 * @return url
 	 */
+	@NotBlank
+	@Length(min = 1, max = 255)
+	@Column(nullable = false, length = 255)
 	public String getUrl() {
 		return url;
 	}
@@ -137,6 +138,8 @@ public class Module extends BaseTreeNode<Module, Long> implements Comparable<Mod
 	 * 
 	 * @return description
 	 */
+	@Length(max = 255)
+	@Column(length = 255)
 	public String getDescription() {
 		return description;
 	}
@@ -155,6 +158,9 @@ public class Module extends BaseTreeNode<Module, Long> implements Comparable<Mod
 	 * 
 	 * @return priority
 	 */
+	@NotNull
+	@Range(min = 1, max = 99)
+	@Column(length = 2)
 	public Integer getPriority() {
 		return priority;
 	}
@@ -173,42 +179,46 @@ public class Module extends BaseTreeNode<Module, Long> implements Comparable<Mod
 	 * 
 	 * @return parent
 	 */
-/*	public Module getParent() {
-		return parent;
-	}*/
+	/*
+	 * public Module getParent() { return parent; }
+	 */
 
 	/**
 	 * 设置 parent 的值
 	 * 
 	 * @param parent
 	 */
-/*	public void setParent(Module parent) {
-		this.parent = parent;
-	}*/
+	/*
+	 * public void setParent(Module parent) { this.parent = parent; }
+	 */
 
 	/**
 	 * 返回 children 的值
 	 * 
 	 * @return children
 	 */
-/*	public List<Module> getChildren() {
-		return children;
-	}*/
+	/*
+	 * public List<Module> getChildren() { return children; }
+	 */
 
 	/**
 	 * 设置 children 的值
 	 * 
 	 * @param children
 	 */
-/*	public void setChildren(List<Module> children) {
-		this.children = children;
-	}*/
+	/*
+	 * public void setChildren(List<Module> children) { this.children =
+	 * children; }
+	 */
 
 	/**
 	 * 返回 sn 的值
 	 * 
 	 * @return sn
 	 */
+	@NotBlank
+	@Length(min = 1, max = 32)
+	@Column(nullable = false, length = 32, unique = true, updatable = false)
 	public String getSn() {
 		return sn;
 	}

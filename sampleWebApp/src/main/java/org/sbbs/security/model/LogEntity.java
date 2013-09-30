@@ -37,40 +37,22 @@ import org.sbbs.security.log.LogLevel;
  */
 @Entity
 @Table(name = "security_log_entity")
-public class LogEntity extends BaseObject {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+public class LogEntity extends BaseIDEntity {
 
 	/** 描述 */
 	private static final long serialVersionUID = 6057051455824317181L;
 
-	@Column(length = 255)
 	private String message;
 
-	@Column(length = 32)
 	private String username;
 
-	@Column
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date createTime;
 
-	@Column(length = 16)
 	private String ipAddress;
 
-	@Column(length = 16)
-	@Enumerated(EnumType.STRING)
 	private LogLevel logLevel;
 
+	@Column(length = 255)
 	public String getMessage() {
 		return message;
 	}
@@ -79,6 +61,8 @@ public class LogEntity extends BaseObject {
 		this.message = message;
 	}
 
+	@Column
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -87,6 +71,7 @@ public class LogEntity extends BaseObject {
 		this.createTime = createTime;
 	}
 
+	@Column(length = 16)
 	public String getIpAddress() {
 		return ipAddress;
 	}
@@ -95,6 +80,8 @@ public class LogEntity extends BaseObject {
 		this.ipAddress = ipAddress;
 	}
 
+	@Column(length = 16)
+	@Enumerated(EnumType.STRING)
 	public LogLevel getLogLevel() {
 		return logLevel;
 	}
@@ -103,6 +90,7 @@ public class LogEntity extends BaseObject {
 		this.logLevel = logLevel;
 	}
 
+	@Column(length = 32)
 	public String getUsername() {
 		return username;
 	}

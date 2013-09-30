@@ -24,6 +24,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.sbbs.base.model.BaseIDEntity;
 import org.sbbs.base.model.BaseObject;
 
 /**
@@ -33,20 +34,8 @@ import org.sbbs.base.model.BaseObject;
  */
 @Entity
 @Table(name = "security_role_permission")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class RolePermission extends BaseObject {
-
-	protected Long id;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE,region="org.sbbs.security")
+public class RolePermission extends  BaseIDEntity{
 
 	/** 描述 */
 	private static final long serialVersionUID = -7679139844716398059L;

@@ -38,19 +38,14 @@ import org.sbbs.base.model.BaseTreeNode;
  */
 @Entity
 @Table(name = "security_organization")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE,region="org.sbbs.security")
 public class Organization extends BaseTreeNode<Organization, Long> {
 
 	/** 描述 */
 	private static final long serialVersionUID = -7324011210610828114L;
 
-	@NotBlank
-	@Length(min = 1, max = 64)
-	@Column(nullable = false, length = 64)
 	private String name;
 
-	@Length(max = 255)
-	@Column(length = 255)
 	private String description;
 	/*
 	 * @ManyToOne
@@ -64,9 +59,7 @@ public class Organization extends BaseTreeNode<Organization, Long> {
 	 * ArrayList<Organization>();
 	 */
 
-
 	private List<User> users = new ArrayList<User>();
-
 
 	private List<OrganizationRole> organizationRoles = new ArrayList<OrganizationRole>();
 
@@ -75,6 +68,9 @@ public class Organization extends BaseTreeNode<Organization, Long> {
 	 * 
 	 * @return name
 	 */
+	@NotBlank
+	@Length(min = 1, max = 64)
+	@Column(nullable = false, length = 64)
 	public String getName() {
 		return name;
 	}
@@ -93,6 +89,8 @@ public class Organization extends BaseTreeNode<Organization, Long> {
 	 * 
 	 * @return description
 	 */
+	@Length(max = 255)
+	@Column(length = 255)
 	public String getDescription() {
 		return description;
 	}
@@ -157,6 +155,7 @@ public class Organization extends BaseTreeNode<Organization, Long> {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
+
 	@OneToMany(mappedBy = "organization")
 	@OrderBy("priority ASC")
 	public List<OrganizationRole> getOrganizationRoles() {
@@ -173,7 +172,7 @@ public class Organization extends BaseTreeNode<Organization, Long> {
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		//result = prime * result + ((parent == null) ? 0 : parent.hashCode());
+		// result = prime * result + ((parent == null) ? 0 : parent.hashCode());
 		return result;
 	}
 

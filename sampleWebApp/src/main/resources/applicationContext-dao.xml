@@ -22,12 +22,12 @@
 				hibernate.dialect=${hibernate.dialect}
 				hibernate.query.substitutions=true 'Y', false 'N'
 				hibernate.cache.use_second_level_cache=true
-				<!-- hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory -->
-				hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
-			<!-- 	net.sf.ehcache.configurationResourceName=ehcache-hibernate-local.xml -->
+				hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory
+				<!-- hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory -->
+				net.sf.ehcache.configurationResourceName=ehcache-hibernate-local.xml
 				<!--hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider-->
 				<!-- cache.provider_class=org.hibernate.cache.EhCacheProvider -->
-				hibernate.cache.use_query_cache=false
+				hibernate.cache.use_query_cache=true
 				hibernate.jdbc.fetch_size 50
 				hibernate.jdbc.batch_size 30
 				hibernate.show_sql=true

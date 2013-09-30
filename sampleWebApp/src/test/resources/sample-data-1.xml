@@ -375,7 +375,7 @@
     <column>description</column>
     <column>name</column>
     <column>shortName</column>
-    <column>module</column>
+    <column>module_id</column>
     <row>
       <value>25</value>
       <value/>

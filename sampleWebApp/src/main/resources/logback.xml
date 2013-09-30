@@ -11,6 +11,7 @@
 	</appender>
 	<logger name="org.sbbs" level="DEBUG" />
 	<logger name="org.hibernate.tool" level="DEBUG" />
+	<logger name="org.hibernate.cache" level="DEBUG" />
 	<logger name="org.apache.shiro" level="DEBUG" />
 	<logger name="org.springframework" level="DEBUG" />
 	<logger name="com.opensymphony.xwork2" level="DEBUG" />
