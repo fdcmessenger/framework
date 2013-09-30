@@ -10,67 +10,75 @@
  *
  * </pre>
  **/
- 
+
 package org.sbbs.security.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.sbbs.base.model.BaseIDEntity;
+import org.sbbs.base.model.BaseObject;
 
-/** 
- * 	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
- * Version  2.0.0
- * @since   2013-4-16 下午1:47:51 
+/**
+ * 
+ * @author <a href="mailto:ketayao@gmail.com">ketayao</a> Version 2.0.0
+ * @since 2013-4-16 下午1:47:51
  */
 @Entity
-@Table(name="security_role_permission")
-@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class RolePermission extends BaseIDEntity {
+@Table(name = "security_role_permission")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class RolePermission extends BaseObject {
 
-	/** 描述  */
+	protected Long id;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/** 描述 */
 	private static final long serialVersionUID = -7679139844716398059L;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="roleId")
+
 	private Role role;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="permissionId")
+
 	private Permission permission;
 
-	/**  
-	 * 返回 role 的值   
-	 * @return role  
-	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "roleid")
 	public Role getRole() {
 		return role;
 	}
 
-	/**  
-	 * 设置 role 的值  
+	/**
+	 * 设置 role 的值
+	 * 
 	 * @param role
 	 */
 	public void setRole(Role role) {
 		this.role = role;
 	}
 
-	/**  
-	 * 返回 permission 的值   
-	 * @return permission  
-	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "permissionid", nullable = true)
 	public Permission getPermission() {
 		return permission;
 	}
 
-	/**  
-	 * 设置 permission 的值  
+	/**
+	 * 设置 permission 的值
+	 * 
 	 * @param permission
 	 */
 	public void setPermission(Permission permission) {
@@ -103,15 +111,13 @@ public class RolePermission extends BaseIDEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((permission == null) ? 0 : permission.hashCode());
+		result = prime * result + ((permission == null) ? 0 : permission.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
 
 	@Override
 	public String toString() {
-		return "RolePermission [role=" + role + ", permission=" + permission
-				+ "]";
+		return "RolePermission [role=" + role + ", permission=" + permission + "]";
 	}
 }

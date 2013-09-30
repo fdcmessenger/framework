@@ -3,6 +3,9 @@ package org.sbbs.security.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Range;
-import org.sbbs.base.model.BaseIDEntity;
+import org.sbbs.base.model.BaseObject;
 
 /**
  * 
@@ -21,7 +24,19 @@ import org.sbbs.base.model.BaseIDEntity;
 @Entity
 @Table(name = "security_user_role")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class UserRole extends BaseIDEntity {
+public class UserRole extends BaseObject {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	/** 描述 */
 	private static final long serialVersionUID = -8888778227379780116L;
@@ -55,8 +70,7 @@ public class UserRole extends BaseIDEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((priority == null) ? 0 : priority.hashCode());
+		result = prime * result + ((priority == null) ? 0 : priority.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
@@ -100,8 +114,7 @@ public class UserRole extends BaseIDEntity {
 
 	@Override
 	public String toString() {
-		return "UserRole [priority=" + priority + ", role=" + role + ", user="
-				+ user + "]";
+		return "UserRole [priority=" + priority + ", role=" + role + ", user=" + user + "]";
 	}
 
 	/**

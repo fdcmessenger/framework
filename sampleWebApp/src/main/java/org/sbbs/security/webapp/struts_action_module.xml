@@ -32,12 +32,12 @@
 			method="displayFullTree">
 			<result name="success" type="json">
 				<param name="includeProperties">fullTreeList.*</param>
-				<param name="excludeProperties">fullTreeList.*\.parentNode</param>
+				<param name="excludeProperties">fullTreeList.*\.parentNode,fullTreeList.*\.url</param>
 				<param name="noCache">true</param>
 				<param name="ignoreHierarchy">false</param>
 			</result>
 		</action>
-			<action name="rebuildTree" class="org.sbbs.security.webapp.action.ModuleMaintainAction" method="rebuildTree">
+			<action name="rebuildModuleTree" class="org.sbbs.security.webapp.action.ModuleMaintainAction" method="rebuildTree">
 			<!-- <result name="success"  type="json">
 				<param name="includeProperties">gridId,message,msgType,returnCode</param>
 				<param name="noCache">true</param>

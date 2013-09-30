@@ -226,7 +226,7 @@
     <column>id</column>
     <column>description</column>
     <column>name</column>
-    <column>parentId</column>
+    <column>parent_id</column>
     <row>
       <value>1</value>
       <value>²»ÄÜÉ¾³ý¡£</value>
@@ -375,7 +375,7 @@
     <column>description</column>
     <column>name</column>
     <column>shortName</column>
-    <column>moduleId</column>
+    <column>module</column>
     <row>
       <value>25</value>
       <value/>

@@ -8,12 +8,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
-	var gridIdString = "#organizationList";
+	//var gridIdString = "#organizationList";
 
 	jQuery(document).ready(
 			function() {
 
-				grid = jQuery(gridIdString);
+				grid = jQuery("#organizationList");
 				grid.jqGrid({
 					url : "${ctx}/security/organizationGrid",
 					datatype : "json",
@@ -56,11 +56,11 @@
 					rowNum : 10,
 					rowList : [ 5, 10, 20, 50, 100, 200, 500, 1000, 2000 ],
 					rownumbers : true,
-					rownumWidth : 50,
+					//rownumWidth : 50,
 					pager : '#organizationPager',
 					sortname : 'id',
 					sortorder : 'desc',
-					caption : '<s:text name="organizationList.title" />',
+					//caption : '<s:text name="organizationList.title" />',
 					height : "685",
 
 					// width : 800,
@@ -68,8 +68,8 @@
 					forceFit : false,
 					shrinkToFit : false,
 					//loadui: "disable",
-					multiselect : true,
-					multiboxonly : true,
+					//multiselect : true,
+					//multiboxonly : true,
 					hidegrid : false,
 					loadError : function(xhr, status, error) {
 						console.log(xhr.responseText);
@@ -109,17 +109,17 @@
 </script>
 </head>
 <body>
-	<div id="organizationSearchArea" class="pageHeader">
+	<!-- <div id="organizationSearchArea" class="pageHeader">
 		<form id="organizationSearchForm">
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
 						<td>样例主键小于:<input name="filter_lt_demoId" /></td>
 						<td>样例主键大于:<input name="filter_gt_demoId" /></td>
-						<!-- 	<td>样例主键小于:<input name="filter_lt_demoId1" /></td>
+							<td>样例主键小于:<input name="filter_lt_demoId1" /></td>
 						<td>样例主键大于:<input name="filter_gt_demoId2" /></td>
 						<td>样例主键小于:<input name="filter_lt_demoId3" /></td>
-						<td>样例主键小于:<input name="filter_lt_demoId4" /></td> -->
+						<td>样例主键小于:<input name="filter_lt_demoId4" /></td>
 						<td><a class="button buttonActive" href="#"
 							onclick="javascript:propertyFilterSearch('organizationSearchForm','organizationList');"><span>搜索</span></a>
 							<a class="button" href="#" onclick="javascript:cleanSearch();"><span>清空</span></a></td>
@@ -139,15 +139,15 @@
 			<li><a class="edit" href="#"
 				onclick="javascript:editFormDialog('editEntity','样例修改',800,600,'organizationList');"><span>修改</span></a></li>
 			<li class="line">line</li>
-			<!-- 	<li><a class="icon" href="#"
+				<li><a class="icon" href="#"
 				onclick="javascript:exportEntity('exportEntity','organizationList',1);"><span>导出EXCEL</span></a></li>
 			<li><a class="icon"
-				href="javascript:$.printBox('organizationGridContainer')"><span>打印</span></a></li> -->
+				href="javascript:$.printBox('organizationGridContainer')"><span>打印</span></a></li>
 			<li><a class="icon" href="#"
 				onclick="javascript:searchAreaToggle(this,'organizationSearchArea','organizationGridContainer',37);"><span>收起</span></a></li>
 		</ul>
-	</div>
-	<div id="organizationGridContainer" class="pageContent" layoutH="37">
+	</div> -->
+	<div id="organizationGridContainer" class="pageContent" layoutH="8">
 		<table id="organizationList"></table>
 		<div id="organizationPager"></div>
 	</div>

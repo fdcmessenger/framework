@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <!DOCTYPE HTML>
 <html>
@@ -13,18 +12,18 @@
 	$(function() {
 		DWZ.init("dwz.frag.xml", {
 			//	loginUrl:"login_dialog.html", loginTitle:"登录",	// 弹出登录对话框
-			loginUrl:"login.jsp",	// 跳到登录页面
+			loginUrl : "login.jsp", // 跳到登录页面
 			statusCode : {
 				ok : 200,
 				error : 300,
 				timeout : 301
-			},  //【可选】
+			}, //【可选】
 			/* pageInfo : {
 				pageNum : "pageNum",
 				numPerPage : "numPerPage",
 				orderField : "orderField",
 				orderDirection : "orderDirection"
-			}, */ //【可选】
+			}, *///【可选】
 			debug : false, // 调试模式 【true|false】
 			callback : function() {
 				initEnv();
@@ -35,12 +34,9 @@
 		});
 		$.ajaxSettings.global = false;
 	});
-
-
 </script>
 <script type="text/javascript">
-
-
+	
 </script>
 </head>
 
@@ -56,7 +52,7 @@
 						target="dialog" mask="true" width="500" height="200">修改密码</a></li> --%>
 					<li><a href="${ctx}/logout">退出</a></li>
 				</ul>
-			<!-- 	<ul class="themeList" id="themeList">
+				<!-- 	<ul class="themeList" id="themeList">
 					<li theme="default"><div>蓝色</div></li>
 					<li theme="green"><div  class="selected">绿色</div></li>
 					<li theme="red"><div>红色</div></li>
@@ -66,7 +62,7 @@
 				</ul>
 			 -->
 
-			<%-- <a href="${ctx }/logout">logout</a> --%>
+				<%-- <a href="${ctx }/logout">logout</a> --%>
 			</div>
 			<!-- navMenu -->
 
@@ -95,6 +91,22 @@
 					</div> -->
 					<div class="accordionContent">
 						<ul class="tree treeFolder">
+							<li><a>安全管理</a>
+								<ul>
+									<li><a href="${ctx}/security/userList" target="navTab" rel="userList" external="false">用户管理</a></li>
+
+									<li><a href="${ctx}/security/roleList" target="navTab" rel="roleList" external="false">角色管理</a></li>
+
+									<li><a href="${ctx}/security/module_tree_list" target="navTab" rel="moduletreeList" external="false">模块综合管理</a></li>
+									<%-- <li><a href="${ctx}/security/moduleList" target="navTab" rel="moduleList" external="false">模块管理</a></li>
+
+									<li><a href="${ctx}/security/moduleTree" target="navTab" rel="moduleTree" external="false">模块树管理</a></li>
+ --%>
+									<li><a href="${ctx}/security/organization_tree_list" target="navTab" rel="organizationtreeList"
+										external="false">组织综合管理</a></li>
+									<%-- <li><a href="${ctx}/security/organizationList" target="navTab" rel="organizationList" external="false">组织管理</a></li>
+									<li><a href="${ctx}/security/organizationTree" target="navTab" rel="organizationTree" external="false">组织树管理</a></li> --%>
+								</ul></li>
 							<!-- <li><a>主框架面板</a>
 								<ul>
 									<li><a href="main.html" target="navTab" rel="main">我的主页</a></li>
@@ -110,35 +122,20 @@
 								<ul>
 									<li><a href="${ctx}/demoEntityList" target="navTab" rel="demoEntityList" external="false">样例实体列表页面</a></li>
 								</ul></li>
-							<li><a>安全管理</a>
-								<ul>
-									<li><a href="${ctx}/security/userList" target="navTab" rel="userList" external="false">用户管理</a></li>
-
-									<li><a href="${ctx}/security/roleList" target="navTab" rel="roleList" external="false">角色管理</a></li>
-
-									<li><a href="${ctx}/security/module_tree_list" target="navTab" rel="moduletreeList" external="false">模块综合管理</a></li>
-									<%-- <li><a href="${ctx}/security/moduleList" target="navTab" rel="moduleList" external="false">模块管理</a></li>
-
-									<li><a href="${ctx}/security/moduleTree" target="navTab" rel="moduleTree" external="false">模块树管理</a></li>
- --%>
-									<li><a href="${ctx}/security/organizationList" target="navTab" rel="organizationList" external="false">组织管理</a></li>
-								</ul>
-
-								</li>
 						</ul>
 					</div>
 
 				</div>
 			</div>
 		</div>
+		s
 		<div id="container">
 			<div id="navTab" class="tabsPage">
 				<div class="tabsPageHeader">
 					<div class="tabsPageHeaderContent">
 						<!-- 显示左右控制时添加 class="tabsPageHeaderMargin" -->
 						<ul class="navTab-tab">
-							<li tabid="main" class="main"><a href="javascript:;"><span><span
-										class="home_icon">我的主页</span></span></a></li>
+							<li tabid="main" class="main"><a href="javascript:;"><span><span class="home_icon">我的主页</span></span></a></li>
 						</ul>
 					</div>
 					<div class="tabsLeft">left</div>
@@ -153,14 +150,11 @@
 				<div class="navTab-panel tabsPageContent layoutBox">
 					<div class="page unitBox">
 						<div class="accountInfo">
-							<div class="left">qq
-							</div>
-							<div class="right">ee
-							</div>
+							<div class="left">qq</div>
+							<div class="right">ee</div>
 
 						</div>
-						<div class="pageFormContent" layoutH="80"
-							style="margin-right: 230px"></div>
+						<div class="pageFormContent" layoutH="80" style="margin-right: 230px"></div>
 
 
 					</div>

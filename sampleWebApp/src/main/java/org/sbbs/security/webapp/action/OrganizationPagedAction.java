@@ -1,5 +1,7 @@
 package org.sbbs.security.webapp.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.sbbs.base.webapp.action.BaseGridAction;
@@ -25,4 +27,19 @@ public class OrganizationPagedAction extends BaseGridAction {
 		this.organizationManager = organizationManager;
 	}
 
+	private List fullTreeList;
+
+	public final List getFullTreeList() {
+		return fullTreeList;
+	}
+
+	/*
+	 * public void setFullTreeList(List fullTreeList) { this.fullTreeList =
+	 * fullTreeList; }
+	 */
+
+	public final String displayFullTree() {
+		this.fullTreeList = this.organizationManager.findAll();
+		return SUCCESS;
+	}
 }

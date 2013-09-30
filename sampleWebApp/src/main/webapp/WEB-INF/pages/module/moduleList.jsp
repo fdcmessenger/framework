@@ -8,12 +8,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
-	var gridIdString = "#moduleList";
+	//var gridIdString = "#moduleList";
 
 	jQuery(document).ready(
 			function() {
 
-				grid = jQuery(gridIdString);
+				grid = jQuery("#moduleList");
 				grid.jqGrid({
 					url : "${ctx}/security/moduleGrid",
 					datatype : "json",

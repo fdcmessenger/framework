@@ -8,11 +8,10 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class BaseIDEntity extends BaseObject {
 
-	private static final long serialVersionUID = 2419117914596882542L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}

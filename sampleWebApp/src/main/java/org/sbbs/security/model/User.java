@@ -17,6 +17,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -29,7 +32,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.sbbs.base.model.BaseIDEntity;
+import org.sbbs.base.model.BaseObject;
 
 /**
  * 
@@ -40,7 +43,19 @@ import org.sbbs.base.model.BaseIDEntity;
 @Table(name = "security_user")
 // 默认的缓存策略.
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.ketayao.ketacustom.entity.main")
-public class User extends BaseIDEntity {
+public class User extends BaseObject {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	/** 描述 */
 	private static final long serialVersionUID = -4277639149589431277L;
@@ -88,10 +103,13 @@ public class User extends BaseIDEntity {
 	@Column(nullable = false, length = 16)
 	private String status = "enabled";
 
-/*	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST,
-			CascadeType.REMOVE }, orphanRemoval = true)
-	@OrderBy("priority ASC")
-	private List<UserRole> userRoles = new ArrayList<UserRole>();*/
+	/*
+	 * @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST,
+	 * CascadeType.REMOVE }, orphanRemoval = true)
+	 * 
+	 * @OrderBy("priority ASC") private List<UserRole> userRoles = new
+	 * ArrayList<UserRole>();
+	 */
 
 	@ManyToOne
 	@JoinColumn(name = "orgId")
@@ -241,23 +259,22 @@ public class User extends BaseIDEntity {
 		this.email = email;
 	}
 
-/*	*//**
+	/*	*//**
 	 * 返回 userRoles 的值
 	 * 
 	 * @return userRoles
-	 *//*
-	public List<UserRole> getUserRoles() {
-		return userRoles;
-	}
-
-	*//**
+	 */
+	/*
+	 * public List<UserRole> getUserRoles() { return userRoles; }
+	 *//**
 	 * 设置 userRoles 的值
 	 * 
 	 * @param userRoles
-	 *//*
-	public void setUserRoles(List<UserRole> userRoles) {
-		this.userRoles = userRoles;
-	}*/
+	 */
+	/*
+	 * public void setUserRoles(List<UserRole> userRoles) { this.userRoles =
+	 * userRoles; }
+	 */
 
 	/**
 	 * 返回 phone 的值
@@ -299,15 +316,12 @@ public class User extends BaseIDEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((createTime == null) ? 0 : createTime.hashCode());
+		result = prime * result + ((createTime == null) ? 0 : createTime.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result
-				+ ((realname == null) ? 0 : realname.hashCode());
+		result = prime * result + ((realname == null) ? 0 : realname.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result
-				+ ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -355,9 +369,8 @@ public class User extends BaseIDEntity {
 
 	@Override
 	public String toString() {
-		return "User [realname=" + realname + ", username=" + username
-				+ ", phone=" + phone + ", email=" + email + ", createTime="
-				+ createTime + ", status=" + status + "]";
+		return "User [realname=" + realname + ", username=" + username + ", phone=" + phone + ", email=" + email
+				+ ", createTime=" + createTime + ", status=" + status + "]";
 	}
 
 	// 在做debug测试时，可能hibernate默认会调用toString方法，该方法包装了集合的样式，在未打开sessionInView时会造成延迟加载错误，

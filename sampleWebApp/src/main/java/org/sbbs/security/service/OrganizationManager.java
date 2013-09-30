@@ -13,7 +13,7 @@
  
 package org.sbbs.security.service;
 
-import org.sbbs.base.service.IBaseManager;
+import org.sbbs.base.service.BaseTreeManager;
 import org.sbbs.security.model.Organization;
 
 /** 
@@ -23,7 +23,7 @@ import org.sbbs.security.model.Organization;
  * @since   2012-8-27 下午3:56:25 
  */
 
-public interface OrganizationManager extends IBaseManager<Organization, Long>{
+public interface OrganizationManager extends BaseTreeManager<Organization, Long>{
 /*	
 	List<Organization> find(Long parentId, Page page);
 	

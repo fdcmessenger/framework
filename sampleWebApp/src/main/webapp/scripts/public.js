@@ -47,6 +47,10 @@ function updateURLParameter(url, param, paramVal) {
  *	jqgrid对象进行resize时,尺寸的计算方法
  */
 function resizeJqGrid(tgrid) {
+	console.log("当前resize的是：")
+	console.log(tgrid);
+	
+	
 	container = tgrid.parents('.pageContent:first');
 	var cw = container.width();
 	var ch = container.height();

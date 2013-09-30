@@ -19,11 +19,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.sbbs.base.model.BaseIDEntity;
+import org.sbbs.base.model.BaseObject;
 import org.sbbs.security.log.LogLevel;
 
 /**
@@ -33,7 +37,19 @@ import org.sbbs.security.log.LogLevel;
  */
 @Entity
 @Table(name = "security_log_entity")
-public class LogEntity extends BaseIDEntity {
+public class LogEntity extends BaseObject {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	/** 描述 */
 	private static final long serialVersionUID = 6057051455824317181L;
@@ -99,15 +115,11 @@ public class LogEntity extends BaseIDEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((createTime == null) ? 0 : createTime.hashCode());
-		result = prime * result
-				+ ((ipAddress == null) ? 0 : ipAddress.hashCode());
-		result = prime * result
-				+ ((logLevel == null) ? 0 : logLevel.hashCode());
+		result = prime * result + ((createTime == null) ? 0 : createTime.hashCode());
+		result = prime * result + ((ipAddress == null) ? 0 : ipAddress.hashCode());
+		result = prime * result + ((logLevel == null) ? 0 : logLevel.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		result = prime * result
-				+ ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -147,9 +159,8 @@ public class LogEntity extends BaseIDEntity {
 
 	@Override
 	public String toString() {
-		return "LogEntity [message=" + message + ", username=" + username
-				+ ", createTime=" + createTime + ", ipAddress=" + ipAddress
-				+ ", logLevel=" + logLevel + "]";
+		return "LogEntity [message=" + message + ", username=" + username + ", createTime=" + createTime
+				+ ", ipAddress=" + ipAddress + ", logLevel=" + logLevel + "]";
 	}
 
 }

@@ -29,7 +29,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.sbbs.base.model.BaseIDEntity;
+import org.sbbs.base.model.BaseTreeNode;
 
 /**
  * 
@@ -39,7 +39,7 @@ import org.sbbs.base.model.BaseIDEntity;
 @Entity
 @Table(name = "security_organization")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Organization extends BaseIDEntity {
+public class Organization extends BaseTreeNode<Organization, Long> {
 
 	/** 描述 */
 	private static final long serialVersionUID = -7324011210610828114L;
@@ -52,20 +52,22 @@ public class Organization extends BaseIDEntity {
 	@Length(max = 255)
 	@Column(length = 255)
 	private String description;
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "parentId") private Organization parent;
+	 */
 
-	@ManyToOne
-	@JoinColumn(name = "parentId")
-	private Organization parent;
+	/*
+	 * @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
+	 * mappedBy = "parent") private List<Organization> children = new
+	 * ArrayList<Organization>();
+	 */
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, mappedBy = "parent")
-	private List<Organization> children = new ArrayList<Organization>();
 
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "organization")
 	private List<User> users = new ArrayList<User>();
 
-	@OneToMany(mappedBy = "organization", cascade = { CascadeType.PERSIST,
-			CascadeType.REMOVE }, orphanRemoval = true)
-	@OrderBy("priority ASC")
+
 	private List<OrganizationRole> organizationRoles = new ArrayList<OrganizationRole>();
 
 	/**
@@ -104,47 +106,45 @@ public class Organization extends BaseIDEntity {
 		this.description = description;
 	}
 
-	/**
+	/*	*//**
 	 * 返回 parent 的值
 	 * 
 	 * @return parent
 	 */
-	public Organization getParent() {
-		return parent;
-	}
-
-	/**
+	/*
+	 * public Organization getParent() { return parent; }
+	 *//**
 	 * 设置 parent 的值
 	 * 
 	 * @param parent
 	 */
-	public void setParent(Organization parent) {
-		this.parent = parent;
-	}
+	/*
+	 * public void setParent(Organization parent) { this.parent = parent; }
+	 */
 
-	/**
+	/*	*//**
 	 * 返回 children 的值
 	 * 
 	 * @return children
 	 */
-	public List<Organization> getChildren() {
-		return children;
-	}
-
-	/**
+	/*
+	 * public List<Organization> getChildren() { return children; }
+	 *//**
 	 * 设置 children 的值
 	 * 
 	 * @param children
 	 */
-	public void setChildren(List<Organization> children) {
-		this.children = children;
-	}
+	/*
+	 * public void setChildren(List<Organization> children) { this.children =
+	 * children; }
+	 */
 
 	/**
 	 * 返回 users 的值
 	 * 
 	 * @return users
 	 */
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "organization")
 	public List<User> getUsers() {
 		return users;
 	}
@@ -157,7 +157,8 @@ public class Organization extends BaseIDEntity {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-
+	@OneToMany(mappedBy = "organization")
+	@OrderBy("priority ASC")
 	public List<OrganizationRole> getOrganizationRoles() {
 		return organizationRoles;
 	}
@@ -170,10 +171,9 @@ public class Organization extends BaseIDEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
+		//result = prime * result + ((parent == null) ? 0 : parent.hashCode());
 		return result;
 	}
 
@@ -196,27 +196,25 @@ public class Organization extends BaseIDEntity {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (parent == null) {
-			if (other.parent != null)
-				return false;
-		} else if (!parent.equals(other.parent))
-			return false;
+		/*
+		 * if (parent == null) { if (other.parent != null) return false; } else
+		 * if (!parent.equals(other.parent)) return false;
+		 */
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Organization [name=" + name + ", description=" + description
-				+ ", parent=" + parent + "]";
+		// + ", parent=" + parent
+				+ "]";
 	}
 
-/*	@Override
-	public String toString() {
-		return Objects.toStringHelper(this).addValue(id).addValue(name)
-				.addValue(parent == null ? null : parent.getName())
-				// .addValue(children.size())
-				.toString();
-	}*/
-	
-	
+	/*
+	 * @Override public String toString() { return
+	 * Objects.toStringHelper(this).addValue(id).addValue(name) .addValue(parent
+	 * == null ? null : parent.getName()) // .addValue(children.size())
+	 * .toString(); }
+	 */
+
 }

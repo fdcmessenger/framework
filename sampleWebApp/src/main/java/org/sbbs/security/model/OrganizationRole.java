@@ -10,12 +10,15 @@
  *
  * </pre>
  **/
- 
+
 package org.sbbs.security.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -24,48 +27,61 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Range;
-import org.sbbs.base.model.BaseIDEntity;
+import org.sbbs.base.model.BaseObject;
 
-/** 
- * 	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
- * Version  2.0.0
- * @since   2013-4-15 下午4:01:34 
+/**
+ * 
+ * @author <a href="mailto:ketayao@gmail.com">ketayao</a> Version 2.0.0
+ * @since 2013-4-15 下午4:01:34
  */
 @Entity
-@Table(name="security_organization_role")
-@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE )
-public class OrganizationRole extends BaseIDEntity {
+@Table(name = "security_organization_role")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class OrganizationRole extends BaseObject {
 
-	/** 描述  */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/** 描述 */
 	private static final long serialVersionUID = -2216187629501296831L;
 
 	/**
 	 * 值越小，优先级越高
 	 */
 	@NotNull
-	@Range(min=1, max=99)
-	@Column(length=2, nullable=false)
+	@Range(min = 1, max = 99)
+	@Column(length = 2, nullable = false)
 	private Integer priority = 99;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="roleId")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "roleId")
 	private Role role;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="organizationId")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "organizationId")
 	private Organization organization;
 
-	/**  
-	 * 返回 role 的值   
-	 * @return role  
+	/**
+	 * 返回 role 的值
+	 * 
+	 * @return role
 	 */
 	public Role getRole() {
 		return role;
 	}
 
-	/**  
-	 * 设置 role 的值  
+	/**
+	 * 设置 role 的值
+	 * 
 	 * @param role
 	 */
 	public void setRole(Role role) {
@@ -80,16 +96,18 @@ public class OrganizationRole extends BaseIDEntity {
 		this.organization = organization;
 	}
 
-	/**  
-	 * 返回 priority 的值   
-	 * @return priority  
+	/**
+	 * 返回 priority 的值
+	 * 
+	 * @return priority
 	 */
 	public Integer getPriority() {
 		return priority;
 	}
 
-	/**  
-	 * 设置 priority 的值  
+	/**
+	 * 设置 priority 的值
+	 * 
 	 * @param priority
 	 */
 	public void setPriority(Integer priority) {
@@ -100,10 +118,8 @@ public class OrganizationRole extends BaseIDEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((organization == null) ? 0 : organization.hashCode());
-		result = prime * result
-				+ ((priority == null) ? 0 : priority.hashCode());
+		result = prime * result + ((organization == null) ? 0 : organization.hashCode());
+		result = prime * result + ((priority == null) ? 0 : priority.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
@@ -137,8 +153,7 @@ public class OrganizationRole extends BaseIDEntity {
 
 	@Override
 	public String toString() {
-		return "OrganizationRole [priority=" + priority + ", role=" + role
-				+ ", organization=" + organization + "]";
+		return "OrganizationRole [priority=" + priority + ", role=" + role + ", organization=" + organization + "]";
 	}
-	
+
 }

@@ -6,9 +6,9 @@
 <div class="panelBar">
 		<ul class="toolBar">
 		<li><a class="icon" href="#"
-				onclick="javascript:processSimpleRequest('${ctx}/security/rebuildTree');"><span>initMenu</span></a></li>
+				onclick="javascript:processSimpleRequest('${ctx}/security/rebuildModuleTree');"><span>initMenu</span></a></li>
 
-
+<!-- 
 			<li><a class="add" href="#"
 				onclick="javascript:addFormDialog('addEntity','样例添加',800,600,'moduleList');"><span>添加</span></a></li>
 			<li><a class="delete" href="#"
@@ -21,7 +21,7 @@
 			<li><a class="icon"
 				href="javascript:$.printBox('moduleGridContainer')"><span>打印</span></a></li>
 			<li><a class="icon" href="#"
-				onclick="javascript:searchAreaToggle(this,'moduleSearchArea','moduleGridContainer',80);"><span>收起</span></a></li>
+				onclick="javascript:searchAreaToggle(this,'moduleSearchArea','moduleGridContainer',80);"><span>收起</span></a></li> -->
 		</ul>
 	</div>
 	<div class="tabs">

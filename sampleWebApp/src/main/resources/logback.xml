@@ -12,13 +12,13 @@
 	<logger name="org.sbbs" level="DEBUG" />
 	<logger name="org.hibernate.tool" level="DEBUG" />
 	<logger name="org.apache.shiro" level="DEBUG" />
-	<logger name="org.springframework" level="INFO" />
-	<logger name="com.opensymphony.xwork2" level="INFO" />
+	<logger name="org.springframework" level="DEBUG" />
+	<logger name="com.opensymphony.xwork2" level="DEBUG" />
 	<!-- <level value="INFO"/> </logger> -->
-	<logger name="org.apache.struts2" level="INFO" />
+	<logger name="org.apache.struts2" level="DEBUG" />
 	<logger name="org.apache.struts2.spring" level="DEBUG" />
-	<logger name="com.googlecode.genericdao" level="WARN" />
-	<logger name="net.sf.ehcache" level="INFO" />
+	<logger name="com.googlecode.genericdao" level="DEBUG" />
+	<logger name="net.sf.ehcache" level="DEBUG" />
 	<!-- <level value="DEBUG"/> </logger> -->
 	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />

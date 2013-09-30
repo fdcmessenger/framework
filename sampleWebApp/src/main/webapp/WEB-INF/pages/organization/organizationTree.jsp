@@ -14,8 +14,6 @@
 	<SCRIPT type="text/javascript">
 		<!--
 		var zTree;
-		
-		
 		var setting = {
 				edit: {
 					enable: false,
@@ -29,7 +27,7 @@
 					enable: false
 				},
 				callback: {
-					onClick:onModuleClick
+					onClick:onOrgClick
 				},
 				data: {
 					key:{
@@ -43,11 +41,10 @@
 				}
 		};
 
+		function onOrgClick(event, treeId, treeNode, clickFlag) {
 
-		function onModuleClick(event, treeId, treeNode, clickFlag) {
-
-		 	var gridId = "moduleList";
-			var url = "${ctx}/security/moduleGrid";
+		 	var gridId = "organizationList";
+			var url = "${ctx}/security/organizationGrid";
 			var parentId = treeNode.id;
 			if(parentId)
 			url += "?filter_eq_parentNode.id=" + parentId;
@@ -59,28 +56,28 @@
 
 		}
 		
-		function initTree() {
-			$.get("${ctx}/security/moduleTreeJson", function(data) {
-				var treeData = data.fullTreeList;
-				zTree = $.fn.zTree.init($("#treeDemo"), setting, treeData);
+		function initTree(){
+			$.get("${ctx}/security/organizationTreeJson", function(data){
+				var	treeData = data.fullTreeList;
+				zTree=$.fn.zTree.init($("#orgTree"), setting, treeData);
 				zTree.expandAll(true);
-				//zTree = $.fn.zTree.getZTreeObj("treeDemo");
-				//rMenu = $("#rMenu");
-			});
+				//zTree = $.fn.zTree.getZTreeObj("orgTree");
+				rMenu = $("#rMenu");
+					});
 		}
-
+		
 		//var treeData;
-
+		
 		$(document).ready(function() {
 			initTree();
 			/* $.get("demoTreeJson", function(data){
 			var	treeData = data.fullTreeList;
-			zTree=$.fn.zTree.init($("#treeDemo"), setting, treeData);
+			zTree=$.fn.zTree.init($("#orgTree"), setting, treeData);
 			zTree.expandAll(true);
-			//zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			//zTree = $.fn.zTree.getZTreeObj("orgTree");
 			rMenu = $("#rMenu");
 				}); */
-
+			
 		});
 	//-->
 	</SCRIPT>
@@ -107,11 +104,11 @@
 <BODY>
 
 <div class="zTreeDemoBackground left">
-		<ul id="treeDemo" class="ztree"></ul>
+		<ul id="orgTree" class="ztree"></ul>
 	</div>
 
 
-<!-- <div id="rMenu">
+<div id="rMenu">
 	<ul>
 		<li id="m_add" onclick="addTreeNode();">增加节点</li>
 		<li id="m_del" onclick="removeTreeNode();">删除节点</li>
@@ -119,7 +116,7 @@
 		<li id="m_unCheck" onclick="checkTreeNode(false);">unCheck节点</li>
 		<li id="m_reset" onclick="resetTree();">恢复zTree</li>
 	</ul>
-</div> -->
+</div>
 </BODY>
 </HTML>
 

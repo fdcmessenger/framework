@@ -10,133 +10,159 @@
  *
  * </pre>
  **/
- 
+
 package org.sbbs.security.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.sbbs.base.model.BaseIDEntity;
+import org.sbbs.base.model.BaseObject;
 
-/** 
- * 	
- * @author 	<a href="mailto:ketayao@gmail.com">ketayao</a>
- * Version  1.1.0
- * @since   2012-6-7 上午11:07:45 
+/**
+ * 
+ * @author <a href="mailto:ketayao@gmail.com">ketayao</a> Version 1.1.0
+ * @since 2012-6-7 上午11:07:45
  */
 @Entity
-@Table(name="security_role")
-@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="com.ketayao.ketacustom.entity.main")
-public class Role extends BaseIDEntity {
-	
-	/** 描述  */
+@Table(name = "security_role")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "com.ketayao.ketacustom.entity.main")
+public class Role extends BaseObject {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/** 描述 */
 	private static final long serialVersionUID = -5537665695891354775L;
-	
+
 	@NotBlank
-	@Length(min=1, max=32)
-	@Column(nullable=false, length=32)
+	@Length(min = 1, max = 32)
+	@Column(nullable = false, length = 32)
 	private String name;
-	
-	@Length(max=255)
-	@Column(length=255)
+
+	@Length(max = 255)
+	@Column(length = 255)
 	private String description;
-	
-/*	@OneToMany(mappedBy="role", cascade={CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval=true)
-	@OrderBy("priority ASC")
-	private List<UserRole> userRoles = new ArrayList<UserRole>(0);
-	
-	@OneToMany(mappedBy="role", cascade={CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval=true)
-	@OrderBy("priority ASC")
-	private List<OrganizationRole> organizationRoles = new ArrayList<OrganizationRole>();
-	
-	@OneToMany(mappedBy="role", cascade={CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval=true)
-	private List<RolePermission> rolePermissions = new ArrayList<RolePermission>();*/
-	
-	/**  
-	 * 返回 name 的值   
-	 * @return name  
+
+	/*
+	 * @OneToMany(mappedBy="role", cascade={CascadeType.PERSIST,
+	 * CascadeType.REMOVE}, orphanRemoval=true)
+	 * 
+	 * @OrderBy("priority ASC") private List<UserRole> userRoles = new
+	 * ArrayList<UserRole>(0);
+	 * 
+	 * @OneToMany(mappedBy="role", cascade={CascadeType.PERSIST,
+	 * CascadeType.REMOVE}, orphanRemoval=true)
+	 * 
+	 * @OrderBy("priority ASC") private List<OrganizationRole> organizationRoles
+	 * = new ArrayList<OrganizationRole>();
+	 * 
+	 * @OneToMany(mappedBy="role", cascade={CascadeType.PERSIST,
+	 * CascadeType.REMOVE}, orphanRemoval=true) private List<RolePermission>
+	 * rolePermissions = new ArrayList<RolePermission>();
+	 */
+
+	/**
+	 * 返回 name 的值
+	 * 
+	 * @return name
 	 */
 	public String getName() {
 		return name;
 	}
 
-	/**  
-	 * 设置 name 的值  
+	/**
+	 * 设置 name 的值
+	 * 
 	 * @param name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	/**  
-	 * 返回 description 的值   
-	 * @return description  
+
+	/**
+	 * 返回 description 的值
+	 * 
+	 * @return description
 	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/**  
-	 * 设置 description 的值  
+	/**
+	 * 设置 description 的值
+	 * 
 	 * @param description
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-/*	*//**  
-	 * 返回 userRoles 的值   
-	 * @return userRoles  
-	 *//*
-	public List<UserRole> getUserRoles() {
-		return userRoles;
-	}
-
-	*//**  
-	 * 设置 userRoles 的值  
+	/*	*//**
+	 * 返回 userRoles 的值
+	 * 
+	 * @return userRoles
+	 */
+	/*
+	 * public List<UserRole> getUserRoles() { return userRoles; }
+	 *//**
+	 * 设置 userRoles 的值
+	 * 
 	 * @param userRoles
-	 *//*
-	public void setUserRoles(List<UserRole> userRoles) {
-		this.userRoles = userRoles;
-	}
-
-	*//**  
-	 * 返回 organizationRoles 的值   
-	 * @return organizationRoles  
-	 *//*
-	public List<OrganizationRole> getOrganizationRoles() {
-		return organizationRoles;
-	}
-
-	*//**  
-	 * 设置 organizationRoles 的值  
+	 */
+	/*
+	 * public void setUserRoles(List<UserRole> userRoles) { this.userRoles =
+	 * userRoles; }
+	 *//**
+	 * 返回 organizationRoles 的值
+	 * 
+	 * @return organizationRoles
+	 */
+	/*
+	 * public List<OrganizationRole> getOrganizationRoles() { return
+	 * organizationRoles; }
+	 *//**
+	 * 设置 organizationRoles 的值
+	 * 
 	 * @param organizationRoles
-	 *//*
-	public void setOrganizationRoles(List<OrganizationRole> organizationRoles) {
-		this.organizationRoles = organizationRoles;
-	}
-
-	*//**  
-	 * 返回 rolePermissions 的值   
-	 * @return rolePermissions  
-	 *//*
-	public List<RolePermission> getRolePermissions() {
-		return rolePermissions;
-	}
-
-	*//**  
-	 * 设置 rolePermissions 的值  
+	 */
+	/*
+	 * public void setOrganizationRoles(List<OrganizationRole>
+	 * organizationRoles) { this.organizationRoles = organizationRoles; }
+	 *//**
+	 * 返回 rolePermissions 的值
+	 * 
+	 * @return rolePermissions
+	 */
+	/*
+	 * public List<RolePermission> getRolePermissions() { return
+	 * rolePermissions; }
+	 *//**
+	 * 设置 rolePermissions 的值
+	 * 
 	 * @param rolePermissions
-	 *//*
-	public void setRolePermissions(List<RolePermission> rolePermissions) {
-		this.rolePermissions = rolePermissions;
-	}*/
-	
+	 */
+	/*
+	 * public void setRolePermissions(List<RolePermission> rolePermissions) {
+	 * this.rolePermissions = rolePermissions; }
+	 */
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -163,8 +189,7 @@ public class Role extends BaseIDEntity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
