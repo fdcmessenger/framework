@@ -1,10 +1,10 @@
 package org.sbbs.demo.webapp.action;
 
 import org.sbbs.base.webapp.action.BaseMaintainAction;
-import org.sbbs.demo.model.DemoEntity;
+import org.sbbs.demo.model.User;
 import org.sbbs.demo.service.DemoEntityManager;
 
-public class DemoDwzMaintainAction extends BaseMaintainAction<DemoEntity, Long> {
+public class DemoDwzMaintainAction extends BaseMaintainAction<User, Long> {
 
 	/**
      *
@@ -13,7 +13,7 @@ public class DemoDwzMaintainAction extends BaseMaintainAction<DemoEntity, Long> 
 
 	public String add() {
 		try {
-			this.model = new DemoEntity();
+			this.model = new User();
 			this.setEditTypeAdd();
 			return SUCCESS;
 		} catch (Exception e) {
@@ -79,7 +79,7 @@ public class DemoDwzMaintainAction extends BaseMaintainAction<DemoEntity, Long> 
 	private DemoEntityManager demoEntityManager;
 
 	// @Valid
-	private DemoEntity model;
+	private User model;
 
 	public DemoEntityManager getDemoEntityManager() {
 		return demoEntityManager;
@@ -89,11 +89,11 @@ public class DemoDwzMaintainAction extends BaseMaintainAction<DemoEntity, Long> 
 		this.demoEntityManager = demoEntityManager;
 	}
 
-	public DemoEntity getModel() {
+	public User getModel() {
 		return model;
 	}
 
-	public void setModel(DemoEntity model) {
+	public void setModel(User model) {
 		this.model = model;
 	}
 
