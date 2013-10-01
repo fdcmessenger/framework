@@ -10,7 +10,7 @@ import org.hibernate.proxy.HibernateProxy;
 import org.junit.Test;
 import org.sbbs.base.dao.BaseDaoTestCase;
 import org.sbbs.demo.dao.DemoEntityDao;
-import org.sbbs.demo.model.DemoEntity;
+import org.sbbs.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
@@ -26,7 +26,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testFind() {
 		Long id = -1l;
-		DemoEntity de = this.demoEntityDao.find(id);
+		User de = this.demoEntityDao.find(id);
 		Assert.assertNotNull(de);
 		de = this.demoEntityDao.find(1l);
 		Assert.assertNull(de);
@@ -37,7 +37,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 	/*	Long id = -1l;
 		DemoEntity de = this.demoEntityDao.find(id);
 		Assert.assertNotNull(de);*/
-		DemoEntity de = this.demoEntityDao.find(1l);
+		User de = this.demoEntityDao.find(1l);
 		Assert.assertNull(de);
 		
 	}
@@ -45,7 +45,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testFindByIds() {
 		Long[] ids = { -1l, -7l, -200l };
-		DemoEntity[] de = this.demoEntityDao.find(ids);
+		User[] de = this.demoEntityDao.find(ids);
 		Assert.assertTrue(de.length == 3);
 		Long[] ids1 = { 1l, 2l };
 		de = this.demoEntityDao.find(ids1);
@@ -63,8 +63,8 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testGetReference() {
 		Long id1 = -1l;// , id2 = 1l;
-		DemoEntity de0 = this.demoEntityDao.find(-2l);
-		DemoEntity de = this.demoEntityDao.getReference(id1);
+		User de0 = this.demoEntityDao.find(-2l);
+		User de = this.demoEntityDao.getReference(id1);
 		Assert.assertNotNull(de);
 		Assert.assertTrue(de instanceof HibernateProxy);
 		Assert.assertTrue(!(de0 instanceof HibernateProxy));
@@ -72,7 +72,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 
 	@Test(expected = HibernateException.class)
 	public void testGetReferenceException() throws Exception {
-		DemoEntity de = this.demoEntityDao.getReference(1l);
+		User de = this.demoEntityDao.getReference(1l);
 		Assert.assertNotNull(de);
 		try {
 			int intv = de.getIntField();
@@ -86,7 +86,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testGetReferences() {
 		Long[] ids0 = { -1l, -2l };// , ids1 = { 1l, 2l };
-		DemoEntity[] des = this.demoEntityDao.getReferences(ids0);
+		User[] des = this.demoEntityDao.getReferences(ids0);
 		Assert.assertTrue(des.length == 2);
 		Assert.assertTrue(des[0] instanceof HibernateProxy);
 		int iv = des[0].getIntField();
@@ -98,7 +98,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 	@Test(expected = HibernateException.class)
 	public void testGetReferencesException() {
 		Long[] ids0 = { 1l, 2l };
-		DemoEntity[] des = this.demoEntityDao.getReferences(ids0);
+		User[] des = this.demoEntityDao.getReferences(ids0);
 		Assert.assertTrue(des.length == 2);
 		Assert.assertTrue(des[0] instanceof HibernateProxy);
 		int iv = des[0].getIntField();
@@ -107,11 +107,11 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSave_Update() {
-		DemoEntity de = this.demoEntityDao.find(-1l);
+		User de = this.demoEntityDao.find(-1l);
 		de.setIntField(100);
 		boolean saveType = this.demoEntityDao.save(de);
 		Assert.assertTrue(!saveType);
-		DemoEntity de1 = this.demoEntityDao.find(-1l);
+		User de1 = this.demoEntityDao.find(-1l);
 		Assert.assertEquals(100, de1.getIntField());
 		this.demoEntityDao.flush();
 		int jdbcv = this.jdbcTemplate
@@ -121,7 +121,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSave_insert() {
-		DemoEntity de = new DemoEntity();
+		User de = new User();
 		de.setIntField(99);
 		de.setStringField("aaa");
 		boolean saveType = this.demoEntityDao.save(de);
@@ -153,7 +153,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testRemove1() {
 		Long id = -1l;
-		DemoEntity de = this.demoEntityDao.find(id);
+		User de = this.demoEntityDao.find(id);
 		boolean rs = this.demoEntityDao.remove(de);
 		List l = this.demoEntityDao.findAll();
 		Assert.assertTrue(l.size() == 199);
@@ -182,7 +182,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 		
 		//this.demoEntityDao.
 		Assert.assertTrue(l.size() == 50);
-		DemoEntity[] des = new DemoEntity[l.size()];
+		User[] des = new User[l.size()];
 		l.toArray(des);
 		this.demoEntityDao.remove(des);
 
@@ -251,14 +251,14 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 		s.addSort("demoId", true);
 		List l = this.demoEntityDao.search(s);
 		Assert.assertTrue(l.size() == 48);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -2l);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -2l);
 
 		s.removeSort("demoId");
 		s.addSort("demoId", false);
 		l = this.demoEntityDao.search(s);
 
 		Assert.assertTrue(l.size() == 48);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -49l);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -49l);
 	}
 
 	@Test
@@ -298,11 +298,11 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 		s.setFirstResult(4);
 		l = this.demoEntityDao.search(s);
 		Assert.assertTrue(l.size() == 3);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -5);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -5);
 
 		s.setMaxResults(-1);
 		l = this.demoEntityDao.search(s);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -5);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -5);
 		Assert.assertTrue(l.size() == 46);
 
 		s.setMaxResults(4);
@@ -326,16 +326,16 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 		s.setPage(0);
 		List l = this.demoEntityDao.search(s);
 		Assert.assertTrue(l.size() == 4);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -1);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -1);
 		s.setPage(2);
 		l = this.demoEntityDao.search(s);
 		Assert.assertTrue(l.size() == 4);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -9);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -9);
 
 		s.setPage(10);
 		l = this.demoEntityDao.search(s);
 		Assert.assertTrue(l.size() == 4);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -41);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -41);
 	}
 
 	@Test
@@ -382,7 +382,7 @@ public class DemoEntityDaoTest extends BaseDaoTestCase {
 		SearchResult sr = this.demoEntityDao.searchAndCount(s);
 		Assert.assertTrue(sr.getTotalCount() == 50);
 		Assert.assertTrue(sr.getResult().size() == 20);
-		Assert.assertTrue(((DemoEntity) sr.getResult().get(0)).getDemoId() == -1l);
+		Assert.assertTrue(((User) sr.getResult().get(0)).getDemoId() == -1l);
 
 	}
 

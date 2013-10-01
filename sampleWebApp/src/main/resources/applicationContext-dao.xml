@@ -22,8 +22,8 @@
 				hibernate.dialect=${hibernate.dialect}
 				hibernate.query.substitutions=true 'Y', false 'N'
 				hibernate.cache.use_second_level_cache=true
-				hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory
-				<!-- hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory -->
+				<!--hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory-->
+				hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
 				net.sf.ehcache.configurationResourceName=ehcache-hibernate-local.xml
 				<!--hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider-->
 				<!-- cache.provider_class=org.hibernate.cache.EhCacheProvider -->
@@ -39,7 +39,7 @@
 
 	</bean>
 
-	<!-- Transaction manager for a single Hibernate SessionFactory (alternative 
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative
 		to JTA) -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -52,7 +52,7 @@
 
 	<!-- Activates scanning of @Repository -->
 	<context:component-scan base-package="org.sbbs" />
-	
+
 <bean id="searchFacade"
 		class="com.googlecode.genericdao.search.hibernate.HibernateSearchFacade">
 		<!-- The Hibernate sessionFactory bean is defined elsewhere -->

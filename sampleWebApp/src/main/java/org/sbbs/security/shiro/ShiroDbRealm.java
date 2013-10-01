@@ -6,7 +6,7 @@
  * Date:			2012-8-2
  * Author:			<a href="mailto:ketayao@gmail.com">ketayao</a>
  * Version          1.1.0
- * Description:		
+ * Description:
  *
  * </pre>
  **/
@@ -53,15 +53,16 @@ import org.sbbs.security.utils.Encodes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.octo.captcha.service.image.ImageCaptchaService;
 
 /**
- * 
+ *
  * @author <a href="mailto:ketayao@gmail.com">ketayao</a> Version 1.1.0
  * @since 2012-8-2 下午3:09:50
  */
-
+@Service("shiroRealm")
 public class ShiroDbRealm extends AuthorizingRealm {
 	private static final Logger log = LoggerFactory.getLogger(ShiroDbRealm.class);
 
@@ -227,9 +228,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	}
 
 	/**
-	 * 
+	 *
 	 * 验证密码
-	 * 
+	 *
 	 * @param plainPassword
 	 *            明文密码
 	 * @param password
@@ -266,7 +267,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 	/**
 	 * 设置 isActiveRoot 的值
-	 * 
+	 *
 	 * @param isActiveRoot
 	 */
 	public void setActiveRoot(boolean activeRoot) {
@@ -275,7 +276,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 	/**
 	 * 设置 useCaptcha 的值
-	 * 
+	 *
 	 * @param useCaptcha
 	 */
 	public void setUseCaptcha(boolean useCaptcha) {
@@ -288,7 +289,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 	/**
 	 * 设置 userRoleService 的值
-	 * 
+	 *
 	 * @param userRoleService
 	 */
 	public void setUserRoleService(UserRoleManager userRoleService) {
@@ -297,7 +298,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 	/**
 	 * 设置 moduleService 的值
-	 * 
+	 *
 	 * @param moduleService
 	 */
 	public void setModuleService(ModuleManager moduleService) {
@@ -306,7 +307,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 	/**
 	 * 设置 organizationRoleService 的值
-	 * 
+	 *
 	 * @param organizationRoleService
 	 */
 	public void setOrganizationRoleService(OrganizationRoleManager organizationRoleService) {
@@ -334,7 +335,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 		/**
 		 * 构造函数
-		 * 
+		 *
 		 * @param id
 		 * @param loginName
 		 * @param email
@@ -349,7 +350,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 		/**
 		 * 返回 id 的值
-		 * 
+		 *
 		 * @return id
 		 */
 		public Long getId() {
@@ -358,7 +359,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 		/**
 		 * 返回 loginName 的值
-		 * 
+		 *
 		 * @return loginName
 		 */
 		public String getLoginName() {
@@ -375,7 +376,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 		/**
 		 * 返回 user 的值
-		 * 
+		 *
 		 * @return user
 		 */
 		public User getUser() {

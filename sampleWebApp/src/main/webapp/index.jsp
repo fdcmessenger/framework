@@ -36,7 +36,7 @@
 	});
 </script>
 <script type="text/javascript">
-	
+
 </script>
 </head>
 
@@ -47,9 +47,9 @@
 				<ul class="nav">
 					<%-- <li><a href="${contextPath}/management/index">主页</a></li>
 					<li><a href="${contextPath}/management/index/updateBase"
-						target="dialog" mask="true" width="550" height="250">修改用户信息</a></li>
-					<li><a href="${contextPath}/management/index/updatePwd"
-						target="dialog" mask="true" width="500" height="200">修改密码</a></li> --%>
+						target="dialog" mask="true" width="550" height="250">修改用户信息</a></li>--%>
+					<li><a href="${ctx}/security/updatePwd"
+						target="dialog" mask="true" width="500" height="200">修改密码</a></li>
 					<li><a href="${ctx}/logout">退出</a></li>
 				</ul>
 				<!-- 	<ul class="themeList" id="themeList">

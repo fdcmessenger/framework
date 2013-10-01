@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.sbbs.base.dao.BaseDaoTestCase;
 import org.sbbs.base.dao.GeneralDao;
 import org.sbbs.base.dao.hibernate.CallReturn;
-import org.sbbs.demo.model.DemoEntity;
+import org.sbbs.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
@@ -36,9 +36,9 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testFind() {
 		Long id = -1l;
-		DemoEntity de = this.generalDao.find(DemoEntity.class, id);
+		User de = this.generalDao.find(User.class, id);
 		Assert.assertNotNull(de);
-		de = this.generalDao.find(DemoEntity.class, 1l);
+		de = this.generalDao.find(User.class, 1l);
 		Assert.assertNull(de);
 
 	}
@@ -46,16 +46,16 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testFindByIds() {
 		Long[] ids = { -1l, -7l, -200l };
-		DemoEntity[] de = this.generalDao.find(DemoEntity.class, ids);
+		User[] de = this.generalDao.find(User.class, ids);
 		Assert.assertTrue(de.length == 3);
 		Long[] ids1 = { 1l, 2l };
-		de = this.generalDao.find(DemoEntity.class, ids1);
+		de = this.generalDao.find(User.class, ids1);
 		Assert.assertTrue(de.length == 2);
 		Assert.assertNull(de[0]);
 		Assert.assertNull(de[1]);
 
 		Long[] ids2 = { -1l, 2l };
-		de = this.generalDao.find(DemoEntity.class, ids2);
+		de = this.generalDao.find(User.class, ids2);
 		Assert.assertTrue(de.length == 2);
 		Assert.assertNotNull(de[0]);
 		Assert.assertNull(de[1]);
@@ -64,8 +64,8 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testGetReference() {
 		Long id1 = -1l;// , id2 = 1l;
-		DemoEntity de0 = this.generalDao.find(DemoEntity.class, -2l);
-		DemoEntity de = this.generalDao.getReference(DemoEntity.class, id1);
+		User de0 = this.generalDao.find(User.class, -2l);
+		User de = this.generalDao.getReference(User.class, id1);
 		Assert.assertNotNull(de);
 		Assert.assertTrue(de instanceof HibernateProxy);
 		Assert.assertTrue(!(de0 instanceof HibernateProxy));
@@ -73,7 +73,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test(expected = HibernateException.class)
 	public void testGetReferenceException() throws Exception {
-		DemoEntity de = this.generalDao.getReference(DemoEntity.class, 1l);
+		User de = this.generalDao.getReference(User.class, 1l);
 		Assert.assertNotNull(de);
 		try {
 			int intv = de.getIntField();
@@ -87,7 +87,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testGetReferences() {
 		Long[] ids0 = { -1l, -2l };// , ids1 = { 1l, 2l };
-		DemoEntity[] des = this.generalDao.getReferences(DemoEntity.class, ids0);
+		User[] des = this.generalDao.getReferences(User.class, ids0);
 		Assert.assertTrue(des.length == 2);
 		Assert.assertTrue(des[0] instanceof HibernateProxy);
 		int iv = des[0].getIntField();
@@ -99,7 +99,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Test(expected = HibernateException.class)
 	public void testGetReferencesException() {
 		Long[] ids0 = { 1l, 2l };
-		DemoEntity[] des = this.generalDao.getReferences(DemoEntity.class, ids0);
+		User[] des = this.generalDao.getReferences(User.class, ids0);
 		Assert.assertTrue(des.length == 2);
 		Assert.assertTrue(des[0] instanceof HibernateProxy);
 		int iv = des[0].getIntField();
@@ -108,11 +108,11 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSave_Update() {
-		DemoEntity de = this.generalDao.find(DemoEntity.class, -1l);
+		User de = this.generalDao.find(User.class, -1l);
 		de.setIntField(100);
 		boolean saveType = this.generalDao.save(de);
 		Assert.assertTrue(!saveType);
-		DemoEntity de1 = this.generalDao.find(DemoEntity.class, -1l);
+		User de1 = this.generalDao.find(User.class, -1l);
 		Assert.assertEquals(100, de1.getIntField());
 		this.generalDao.flush();
 		int jdbcv = this.jdbcTemplate.queryForInt("SELECT a.intField from t_demo_entity a where demoId=-1 ");
@@ -121,7 +121,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSave_insert() {
-		DemoEntity de = new DemoEntity();
+		User de = new User();
 		de.setIntField(99);
 		de.setStringField("aaa");
 		boolean saveType = this.generalDao.save(de);
@@ -131,20 +131,20 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		int jdbcv = this.jdbcTemplate.queryForInt("SELECT a.intField from t_demo_entity a where demoId="
 				+ de.getDemoId());
 		Assert.assertTrue(jdbcv == de.getIntField());
-		List l = this.generalDao.findAll(DemoEntity.class);
+		List l = this.generalDao.findAll(User.class);
 		Assert.assertTrue(l.size() == 201);
 	}
 
 	@Test
 	public void testRemove() {
 		Long id = -1l;
-		boolean rs = this.generalDao.removeById(DemoEntity.class, id);
-		List l = this.generalDao.findAll(DemoEntity.class);
+		boolean rs = this.generalDao.removeById(User.class, id);
+		List l = this.generalDao.findAll(User.class);
 		Assert.assertTrue(l.size() == 199);
 		Assert.assertTrue(rs);
 		Long id1 = 1l;
-		boolean rs1 = this.generalDao.removeById(DemoEntity.class, id1);
-		List l1 = this.generalDao.findAll(DemoEntity.class);
+		boolean rs1 = this.generalDao.removeById(User.class, id1);
+		List l1 = this.generalDao.findAll(User.class);
 		Assert.assertTrue(l1.size() == 199);
 		Assert.assertTrue(!rs1);
 	}
@@ -152,14 +152,14 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testRemove1() {
 		Long id = -1l;
-		DemoEntity de = this.generalDao.find(DemoEntity.class, id);
+		User de = this.generalDao.find(User.class, id);
 		boolean rs = this.generalDao.remove(de);
-		List l = this.generalDao.findAll(DemoEntity.class);
+		List l = this.generalDao.findAll(User.class);
 		Assert.assertTrue(l.size() == 199);
 		Assert.assertTrue(rs);
 
 		rs = this.generalDao.remove(de);
-		l = this.generalDao.findAll(DemoEntity.class);
+		l = this.generalDao.findAll(User.class);
 		Assert.assertTrue(l.size() == 199);
 		Assert.assertTrue(!rs);
 	}
@@ -167,11 +167,11 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	@Test
 	public void testRemoveByIds() {
 		Long[] ids1 = { -1l, -2l, -3l }, ids2 = { -4l, 1l };
-		this.generalDao.removeByIds(DemoEntity.class, ids1);
-		List l = this.generalDao.findAll(DemoEntity.class);
+		this.generalDao.removeByIds(User.class, ids1);
+		List l = this.generalDao.findAll(User.class);
 		Assert.assertTrue(l.size() == 197);
-		this.generalDao.removeByIds(DemoEntity.class, ids2);
-		l = this.generalDao.findAll(DemoEntity.class);
+		this.generalDao.removeByIds(User.class, ids2);
+		l = this.generalDao.findAll(User.class);
 		Assert.assertTrue(l.size() == 196);
 	}
 
@@ -180,25 +180,25 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		List l = this.generalDao.getSession().createQuery("from DemoEntity where demoId>=-50 and demoId<=-1")
 				.list();
 		Assert.assertTrue(l.size() == 50);
-		DemoEntity[] des = new DemoEntity[l.size()];
+		User[] des = new User[l.size()];
 		l.toArray(des);
 		this.generalDao.remove(des);
 
-		List all = this.generalDao.findAll(DemoEntity.class);
+		List all = this.generalDao.findAll(User.class);
 		Assert.assertTrue(all.size() == 150);
 
 	}
 
 	@Test
 	public void testFindAll() {
-		List l = this.generalDao.findAll(DemoEntity.class);
+		List l = this.generalDao.findAll(User.class);
 		Assert.assertTrue(l.size() == 200);
 
 	}
 
 	@Test
 	public void testSearch() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessThan("demoId", -1l);
 		s.addFilterGreaterThan("demoId", -50l);
 		List l = this.generalDao.search(s);
@@ -207,7 +207,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testCount() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessThan("demoId", -1l);
 		s.addFilterGreaterThan("demoId", -50l);
 		int c = this.generalDao.count(s);
@@ -216,7 +216,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSearchUnique() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessThan("demoId", -1l);
 		s.addFilterGreaterThan("demoId", -3l);
 		Object o = this.generalDao.searchUnique(s);
@@ -225,7 +225,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSearchUniqueNull() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessThan("demoId", -1l);
 		s.addFilterGreaterThan("demoId", -2l);
 		Object o = this.generalDao.searchUnique(s);
@@ -234,7 +234,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test(expected = IncorrectResultSizeDataAccessException.class)
 	public void testSearchUniqueException() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessThan("demoId", -1l);
 		s.addFilterGreaterThan("demoId", -5l);
 		Object o = this.generalDao.searchUnique(s);
@@ -243,20 +243,20 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSearchSort() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessThan("demoId", -1l);
 		s.addFilterGreaterThan("demoId", -50l);
 		s.addSort("demoId", true);
 		List l = this.generalDao.search(s);
 		Assert.assertTrue(l.size() == 48);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -2l);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -2l);
 
 		s.removeSort("demoId");
 		s.addSort("demoId", false);
 		l = this.generalDao.search(s);
 
 		Assert.assertTrue(l.size() == 48);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -49l);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -49l);
 	}
 
 	@Test
@@ -264,7 +264,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 	 * TODO 还没有搞明白具体的使用方式
 	 */
 	public void testSearchResultMode() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessThan("demoId", -1l);
 		s.addFilterGreaterThan("demoId", -50l);
 		// s.setResultMode( Search.RESULT_ARRAY );
@@ -284,7 +284,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSearchPaging() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessOrEqual("demoId", -1l);
 		s.addFilterGreaterOrEqual("demoId", -50l);
 		s.addSort(Sort.desc("demoId"));
@@ -296,11 +296,11 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		s.setFirstResult(4);
 		l = this.generalDao.search(s);
 		Assert.assertTrue(l.size() == 3);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -5);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -5);
 
 		s.setMaxResults(-1);
 		l = this.generalDao.search(s);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -5);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -5);
 		Assert.assertTrue(l.size() == 46);
 
 		s.setMaxResults(4);
@@ -316,7 +316,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSearchPaging_1() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessOrEqual("demoId", -1l);
 		s.addFilterGreaterOrEqual("demoId", -50l);
 		s.addSort(Sort.desc("demoId"));
@@ -324,16 +324,16 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		s.setPage(0);
 		List l = this.generalDao.search(s);
 		Assert.assertTrue(l.size() == 4);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -1);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -1);
 		s.setPage(2);
 		l = this.generalDao.search(s);
 		Assert.assertTrue(l.size() == 4);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -9);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -9);
 
 		s.setPage(10);
 		l = this.generalDao.search(s);
 		Assert.assertTrue(l.size() == 4);
-		Assert.assertTrue(((DemoEntity) l.get(0)).getDemoId() == -41);
+		Assert.assertTrue(((User) l.get(0)).getDemoId() == -41);
 	}
 
 	@Test
@@ -342,7 +342,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		List<List<?>> resultList;
 		List<Map<String, Object>> resultMap;
 
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessOrEqual("demoId", -1l);
 		s.addFilterGreaterOrEqual("demoId", -50l);
 		s.addSort(Sort.desc("demoId"));
@@ -370,7 +370,7 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 
 	@Test
 	public void testSearchAndCount() {
-		Search s = new Search(DemoEntity.class);
+		Search s = new Search(User.class);
 		s.addFilterLessOrEqual("demoId", -1l);
 		s.addFilterGreaterOrEqual("demoId", -50l);
 		s.addSort(Sort.desc("demoId"));
@@ -380,15 +380,15 @@ public class DemoEntityGeneralDaoTest extends BaseDaoTestCase {
 		SearchResult sr = this.generalDao.searchAndCount(s);
 		Assert.assertTrue(sr.getTotalCount() == 50);
 		Assert.assertTrue(sr.getResult().size() == 20);
-		Assert.assertTrue(((DemoEntity) sr.getResult().get(0)).getDemoId() == -1l);
+		Assert.assertTrue(((User) sr.getResult().get(0)).getDemoId() == -1l);
 
 	}
 
 	@Test
 	public void testExists() {
-		boolean rs = this.generalDao.exists(DemoEntity.class, -1l);
+		boolean rs = this.generalDao.exists(User.class, -1l);
 		Assert.assertTrue(rs);
-		rs = this.generalDao.exists(DemoEntity.class, 1l);
+		rs = this.generalDao.exists(User.class, 1l);
 		Assert.assertTrue(!rs);
 	}
 
