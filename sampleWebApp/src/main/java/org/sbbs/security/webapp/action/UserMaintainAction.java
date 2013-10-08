@@ -52,6 +52,18 @@ public class UserMaintainAction extends BaseMaintainAction<User, Long> {
 
 	public String delete() {
 		try {
+
+			this.userManager.removeById(this.getId());
+			return this.ajaxReturn.success(getText((isNew()) ? "user.deleted" : "user.updated",
+					"no msg key found,save successed."));
+
+		} catch (Exception e) {
+			return this.ajaxReturn.error(getText("error.deleted", new String[] { e.getMessage() }));
+		}
+	}
+
+	public String deletes() {
+		try {
 			String[] sIds = this.getIds().split(",");
 
 			Long[] lIds = new Long[sIds.length];
@@ -70,29 +82,28 @@ public class UserMaintainAction extends BaseMaintainAction<User, Long> {
 
 	}
 
-	public  String updatePassword() {
-		String plainPassword=this.getRequest().getParameter("plainPassword");
-		String newPassword=this.getRequest().getParameter("newPassword");
-		String rPassword=this.getRequest().getParameter("rPassword");
+	public String updatePassword() {
+		String plainPassword = this.getRequest().getParameter("plainPassword");
+		String newPassword = this.getRequest().getParameter("newPassword");
+		String rPassword = this.getRequest().getParameter("rPassword");
 
-
-		User user = (User)this.getRequest().getSession().getAttribute(SecurityConstants.LOGIN_USER);
+		User user = (User) this.getRequest().getSession().getAttribute(SecurityConstants.LOGIN_USER);
 
 		if (newPassword != null && newPassword.equals(rPassword)) {
 			user.setPlainPassword(plainPassword);
 			try {
 				userManager.updatePwd(user, newPassword);
 			} catch (ServiceException e) {
-				LogUitl.putArgs(LogMessageObject.newIgnore());//忽略日志
-				return ajaxReturn.error(e.getMessage());//.setCallbackType("").toString();
+				LogUitl.putArgs(LogMessageObject.newIgnore());// 忽略日志
+				return ajaxReturn.error(e.getMessage());// .setCallbackType("").toString();
 			}
-		//	LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new Object[]{user.getUsername()}));
-			return ajaxReturn.success("修改密码成功！");//.toString();
+			// LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new
+			// Object[]{user.getUsername()}));
+			return ajaxReturn.success("修改密码成功！");// .toString();
 		}
 
-		return ajaxReturn.error("修改密码失败！");//.setCallbackType("").toString();
+		return ajaxReturn.error("修改密码失败！");// .setCallbackType("").toString();
 	}
-
 
 	private UserManager userManager;
 
