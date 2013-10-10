@@ -134,11 +134,11 @@
 	<div class="panelBar">
 		<ul class="toolBar">
 			<li><a class="add" href="#"
-				onclick="javascript:addFormDialog('addEntity','样例添加',800,600,'userList');"><span>添加</span></a></li>
+				onclick="javascript:addFormDialog('${ctx}/security/addUser','用户添加',800,600,'userList');"><span>添加</span></a></li>
 			<li><a class="delete" href="#"
 				onclick="javascript:processMultiSelectedRecords('userList','deleteEntity','你确认要删除demo数据吗?');"><span>删除</span></a></li>
 			<li><a class="edit" href="#"
-				onclick="javascript:editFormDialog('editEntity','样例修改',800,600,'userList');"><span>修改</span></a></li>
+				onclick="javascript:editFormDialog('${ctx}/security/editUser','用户修改',800,600,'userList');"><span>修改</span></a></li>
 			<li class="line">line</li>
 		<!-- 	<li><a class="icon" href="#"
 				onclick="javascript:exportEntity('exportEntity','userList',1);"><span>导出EXCEL</span></a></li>

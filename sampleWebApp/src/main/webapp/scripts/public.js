@@ -149,7 +149,7 @@ function atLeastOneSelectCheck(gridId) {
 }
 
 /**
- * 表单提交的校验回调方法 ,可以体会DWZ自己定义的validateCallback回调方法
+ * 表单提交的校验回调方法 ,可以替代DWZ自己定义的validateCallback回调方法
  *
  */
 function formValidateCallback(form, callback, confirmMsg) {
@@ -189,7 +189,7 @@ function formValidateCallback(form, callback, confirmMsg) {
  *
  */
 function dialogFormCallBack(data, form) {
-	 console.log(data);
+	 //console.log(data);
 	if (data.fieldErrors != null && data.fieldErrors.length !== 0) {
 
 		$.each(data.fieldErrors, function(e) {
@@ -201,7 +201,7 @@ function dialogFormCallBack(data, form) {
 		});
 		$(form).validate().showErrors(data.fieldErrors);
 
-		console.log(data.fieldErrors);
+		//console.log(data.fieldErrors);
 		return false;
 
 	}

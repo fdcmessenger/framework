@@ -7,8 +7,7 @@
 		<action name="userList" class="org.sbbs.security.webapp.action.UserPagedAction">
 			<result name="success">/WEB-INF/pages/user/userList.jsp</result>
 		</action>
-		<action name="userGrid" class="org.sbbs.security.webapp.action.UserPagedAction"
-			method="gridPageList">
+		<action name="userGrid" class="org.sbbs.security.webapp.action.UserPagedAction" method="gridPageList">
 			<result type="json">
 				<param name="includeProperties">pageList.*,total,records,page,statusCode,message</param>
 				<param name="noCache">true</param>
@@ -17,22 +16,28 @@
 		</action>
 
 		<action name="updatePwd">
-		<result name="success">/WEB-INF/pages/user/updatePwd.jsp</result>
+			<result name="success">/WEB-INF/pages/user/updatePwd.jsp</result>
 		</action>
 
-		<action name="savePwd" class="org.sbbs.security.webapp.action.UserMaintainAction" method="updatePassword">
+		<action name="savePwd" class="org.sbbs.security.webapp.action.UserMaintainAction" method="updatePassword" />
+
+
+		<action name="editUser" class="org.sbbs.security.webapp.action.UserMaintainAction" method="edit">
+			<result name="success">/WEB-INF/pages/user/userForm.jsp</result>
 		</action>
-
-
-		<!-- <action name="editEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction"
-			method="edit"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result>
-			</action> <action name="addEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction"
-			method="add"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result>
-			</action> <action name="saveEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction"
-			method="save"/> <action name="deleteEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction"
-			method="delete"/> -->
-		<!-- <action name="exportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction"
-			method="excelExport"/> <action name="beforeExportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction"
-			method="beforeExcelExport"/> -->
+		<action name="addUser" class="org.sbbs.security.webapp.action.UserMaintainAction" method="add">
+			<result name="success">/WEB-INF/pages/user/userForm.jsp</result>
+		</action>
+		<action name="saveUser" class="org.sbbs.security.webapp.action.UserMaintainAction" method="save" />
+		<action name="deleteUser" class="org.sbbs.security.webapp.action.UserMaintainAction" method="delete" />
+		<action name="deleteUsers" class="org.sbbs.security.webapp.action.UserMaintainAction" method="deletes" />
+		<!-- <action name="exportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="excelExport"/> <action 
+			name="beforeExportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="beforeExcelExport"/> -->
+			
+			<action name="userLookupOrg" >
+				<result name="success">/WEB-INF/pages/user/lookup_org.jsp</result>
+		</action>
+			
+			
 	</package>
 </struts>

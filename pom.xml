@@ -385,7 +385,7 @@
 								configurationfile="${hibernatetools.configurationfile}"
 								propertyfile="${hibernatetools.propertyfile}" />
 							<!-- <verbose>2</verbose> -->
-							<hbm2ddl export="true" update="true" drop="true" create="true"
+							<hbm2ddl export="true" update="false" drop="true" create="true"
 								outputfilename="schemaDiff.sql" format="true" haltonerror="false"
 								console="true" />
 							<hbm2hbmxml />
