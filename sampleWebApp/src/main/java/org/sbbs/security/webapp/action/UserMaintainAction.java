@@ -1,13 +1,20 @@
 package org.sbbs.security.webapp.action;
 
+import java.util.List;
+
 import org.hibernate.service.spi.ServiceException;
-import org.sbbs.base.webapp.action.AjaxReturn;
 import org.sbbs.base.webapp.action.BaseMaintainAction;
 import org.sbbs.security.SecurityConstants;
 import org.sbbs.security.log.LogMessageObject;
 import org.sbbs.security.log.impl.LogUitl;
+import org.sbbs.security.model.Role;
 import org.sbbs.security.model.User;
+import org.sbbs.security.model.UserRole;
+import org.sbbs.security.service.RoleManager;
 import org.sbbs.security.service.UserManager;
+import org.sbbs.security.service.UserRoleManager;
+
+import com.google.common.collect.Lists;
 
 public class UserMaintainAction extends BaseMaintainAction<User, Long> {
 
@@ -40,7 +47,11 @@ public class UserMaintainAction extends BaseMaintainAction<User, Long> {
 
 	public String save() {
 		try {
-			this.userManager.save(this.getModel());
+			if (this.getModel().getId() == null)
+				this.userManager.insertUser(getModel());
+			else
+				this.userManager.updateUser(getModel());// save(this.getModel());
+
 			return this.ajaxReturn.formSuccessRefreshGridCloseFormDialog(
 					getText((isNew()) ? "user.added" : "user.updated", "no msg key found,save successed."),
 					this.getGridId());
@@ -105,8 +116,73 @@ public class UserMaintainAction extends BaseMaintainAction<User, Long> {
 		return ajaxReturn.error("修改密码失败！");// .setCallbackType("").toString();
 	}
 
-	private UserManager userManager;
+	public String resetPsw() {
+		User user = this.userManager.find(getId());
+		this.userManager.restPsw(user, "123456");
+		return ajaxReturn.success("重置密码成功！");
+	}
 
+	public String assignRole() {
+		String uid = this.getRequest().getParameter("userId");
+		String rid = this.getRequest().getParameter("roleId");
+		String priority = this.getRequest().getParameter("priority");
+		UserRole ur = new UserRole();
+		ur.setUser(this.userManager.find(Long.parseLong(uid)));
+		ur.setRole(this.roleManager.find(Long.parseLong(rid)));
+		ur.setPriority(Integer.parseInt(priority));
+		userRoleManager.save(ur);
+		return ajaxReturn.success("添加角色成功。");
+	}
+
+	public String listUnassignRole() {
+		userId = this.getId();
+		userRoles = userRoleManager.findByUserId(this.getId());
+		roles = roleManager.findAll();
+
+		List<Role> rentList = Lists.newArrayList();
+		// 删除已分配roles
+		for (Role role : roles) {
+			boolean isHas = false;
+			for (UserRole or : userRoles) {
+				if (or.getRole().getId().equals(role.getId())) {
+					isHas = true;
+					break;
+				}
+			}
+			if (isHas == false) {
+				rentList.add(role);
+			}
+		}
+		roles = rentList;
+		/*
+		 * map.put("userRoles", userRoles); map.put("roles", rentList);
+		 * 
+		 * map.put("userId", this.getId());
+		 */
+		return this.SUCCESS;
+	}
+
+	public String listAssginedUserRole() {
+		userId = this.getId();
+		userRoles = userRoleManager.findByUserId(userId);
+		return this.SUCCESS;
+	}
+
+	public String deleteUserRole() {
+		String urid = this.getRequest().getParameter("userRoleId");
+		Long userRoleId = Long.parseLong(urid);
+		UserRole userRole = userRoleManager.find(userRoleId);
+		userRoleManager.removeById(userRoleId);
+		return this.SUCCESS;
+	}
+
+	private List<UserRole> userRoles;
+	private List<Role> roles;
+	private Long userId;
+
+	private UserManager userManager;
+	private UserRoleManager userRoleManager;
+	private RoleManager roleManager;
 	// @Valid
 	private User model;
 
@@ -118,12 +194,32 @@ public class UserMaintainAction extends BaseMaintainAction<User, Long> {
 		this.userManager = userManager;
 	}
 
+	public void setUserRoleManager(UserRoleManager userRoleManager) {
+		this.userRoleManager = userRoleManager;
+	}
+
+	public void setRoleManager(RoleManager roleManager) {
+		this.roleManager = roleManager;
+	}
+
 	public User getModel() {
 		return model;
 	}
 
 	public void setModel(User model) {
 		this.model = model;
+	}
+
+	public List<UserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public Long getUserId() {
+		return userId;
 	}
 
 }

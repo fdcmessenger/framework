@@ -140,7 +140,14 @@
 			<li><a class="edit" href="#"
 				onclick="javascript:editFormDialog('${ctx}/security/editUser','用户修改',800,600,'userList');"><span>修改</span></a></li>
 			<li class="line">line</li>
-		<!-- 	<li><a class="icon" href="#"
+			<li><a class="icon" href="#"
+				onclick="javascript:processSingleSelectedRecords('userList','${ctx}/security/resetPsw','你确认要重置此用户的密码吗?');"><span>重置密码</span></a></li>
+			<li><a iconClass="shield_add" href="#" onclick="javascript:editFormDialog('${ctx}/security/listUnassignUserRole','分配角色',800,600,'userList');"><span>分配角色</span></a></li>
+			<li><a iconClass="shield_delete" href="#" onclick="javascript:editFormDialog('${ctx}/security/listAssignedUserRole','删除角色',800,600,'userList');"><span>删除角色</span></a></li>
+
+
+
+			<!-- 	<li><a class="icon" href="#"
 				onclick="javascript:exportEntity('exportEntity','userList',1);"><span>导出EXCEL</span></a></li>
 			<li><a class="icon"
 				href="javascript:$.printBox('userGridContainer')"><span>打印</span></a></li> -->

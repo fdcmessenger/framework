@@ -31,13 +31,24 @@
 		<action name="saveUser" class="org.sbbs.security.webapp.action.UserMaintainAction" method="save" />
 		<action name="deleteUser" class="org.sbbs.security.webapp.action.UserMaintainAction" method="delete" />
 		<action name="deleteUsers" class="org.sbbs.security.webapp.action.UserMaintainAction" method="deletes" />
+		<action name="resetPsw" class="org.sbbs.security.webapp.action.UserMaintainAction" method="resetPsw" />
+		<action name="listUnassignUserRole" class="org.sbbs.security.webapp.action.UserMaintainAction" method="listUnassignRole">
+			<result name="success">/WEB-INF/pages/user/assign_user_role.jsp</result>
+		</action>
+		<action name="assignUserRole" class="org.sbbs.security.webapp.action.UserMaintainAction" method="assignRole" />
+		<action name="listAssignedUserRole" class="org.sbbs.security.webapp.action.UserMaintainAction" method="listAssginedUserRole">
+			<result name="success">/WEB-INF/pages/user/delete_user_role.jsp</result>
+		</action>
+		<action name="deleteUserRole" class="org.sbbs.security.webapp.action.UserMaintainAction" method="deleteUserRole" />
+
+
 		<!-- <action name="exportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="excelExport"/> <action 
 			name="beforeExportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="beforeExcelExport"/> -->
-			
-			<action name="userLookupOrg" >
-				<result name="success">/WEB-INF/pages/user/lookup_org.jsp</result>
+
+		<action name="userLookupOrg">
+			<result name="success">/WEB-INF/pages/user/lookup_org.jsp</result>
 		</action>
-			
-			
+
+
 	</package>
 </struts>

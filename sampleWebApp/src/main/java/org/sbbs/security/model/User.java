@@ -38,8 +38,11 @@ import org.sbbs.base.model.BaseIDEntity;
  */
 @Entity
 @Table(name = "security_user")
+//@SelectBeforeUpdate
+//@DynamicUpdate
+//@DynamicInsert
 // 默认的缓存策略.
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE,region="org.sbbs.security")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "org.sbbs.security")
 public class User extends BaseIDEntity {
 
 	/** 描述 */

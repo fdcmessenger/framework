@@ -241,6 +241,31 @@ function processMultiSelectedRecords(jqGridId, url, msg) {
 	}
 }
 
+
+/**
+ * grid上选择一条记录,并进行相应的功能处理(由url所对应的action进行处理)
+ */
+function processSingleSelectedRecords(jqGridId, url, msg) {
+
+	if (onlyOneSelectCheck(jqGridId)) {
+		alertMsg.confirm(msg, {
+			okCall : function() {
+				//var sid = jQuery("#" + jqGridId).jqGrid('getGridParam', 'selarrrow');
+				var sid = jQuery("#" + jqGridId).jqGrid('getGridParam', 'selrow');
+				var eurl = url + "?id=" + sid;
+				eurl = encodeURI(eurl);
+				jQuery.post(eurl, {}, function(json) {
+					DWZ.ajaxDone(json);
+					jQuery("#" + jqGridId).jqGrid('setGridParam', {
+						page : 1
+					}).trigger("reloadGrid");
+
+				}, "json");
+			}
+		})
+
+	}
+}
 /**
  * 处理简单请求
  */
@@ -340,6 +365,20 @@ function exportEntity(url, gridId, isXml) {
 
 		}
 	});
+}
+
+/*
+ * TODO 抄来的，角色分配与删除页面使用到
+ */
+function getCurrentNavtabRel() {
+	var $pDiv = $(
+			'.tabsPage div[class="page unitBox"][style*="block"]')
+			.first();
+	var $ub = $("div.unitBox", $pDiv);
+	if ($ub.length > 0) {
+		return $ub.first();
+	}
+	return $pDiv;
 }
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

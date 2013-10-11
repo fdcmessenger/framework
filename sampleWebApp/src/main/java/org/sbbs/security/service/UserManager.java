@@ -15,6 +15,7 @@ package org.sbbs.security.service;
 
 import org.hibernate.service.spi.ServiceException;
 import org.sbbs.base.service.IBaseManager;
+import org.sbbs.security.exception.ExistedException;
 import org.sbbs.security.model.User;
 
 /**
@@ -27,7 +28,10 @@ import org.sbbs.security.model.User;
 public interface UserManager extends IBaseManager<User, Long>{
 
 	User getByUserName(String username);
+	public void restPsw(User user, String restPsw);
 	void updatePwd(User user, String newPwd) throws ServiceException;
+	public void updateUser(User user) ;
+	public void insertUser(User user) throws ExistedException ;
 	/*List<User> find(Page page, String name);
 
 	void update(User user);
