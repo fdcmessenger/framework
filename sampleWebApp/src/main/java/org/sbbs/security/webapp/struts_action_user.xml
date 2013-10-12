@@ -10,6 +10,7 @@
 		<action name="userGrid" class="org.sbbs.security.webapp.action.UserPagedAction" method="gridPageList">
 			<result type="json">
 				<param name="includeProperties">pageList.*,total,records,page,statusCode,message</param>
+				<param name="excludeProperties">pageList.*\.userRoles</param>
 				<param name="noCache">true</param>
 				<param name="ignoreHierarchy">false</param>
 			</result>

@@ -5,10 +5,8 @@
 <struts>
 	<package name="organization" extends="default" namespace="/security">
 
-	<action name="organization_tree_list">
-			<result name="success">/WEB-INF/pages/organization/organization_tree_list.jsp
-			</result>
-
+		<action name="organization_tree_list">
+			<result name="success">/WEB-INF/pages/organization/organization_tree_list.jsp</result>
 		</action>
 
 		<action name="organizationList" class="org.sbbs.security.webapp.action.OrganizationPagedAction">
@@ -18,11 +16,11 @@
 		<action name="organizationGrid" class="org.sbbs.security.webapp.action.OrganizationPagedAction" method="gridPageList">
 			<result type="json">
 				<param name="includeProperties">pageList.*,total,records,page,statusCode,message</param>
+				<param name="excludeProperties">pageList.*\.parentNode,pageList.*\.users,pageList.*\.organizationRoles</param>
 				<param name="noCache">true</param>
 				<param name="ignoreHierarchy">false</param>
 			</result>
 		</action>
-
 
 		<action name="organizationTree" class="org.sbbs.security.webapp.action.OrganizationPagedAction">
 			<result name="success">/WEB-INF/pages/organization/organizationTree.jsp
@@ -31,18 +29,43 @@
 		<action name="organizationTreeJson" class="org.sbbs.security.webapp.action.OrganizationPagedAction" method="displayFullTree">
 			<result name="success" type="json">
 				<param name="includeProperties">fullTreeList.*</param>
-				<param name="excludeProperties">fullTreeList.*\.parentNode</param>
+				<param name="excludeProperties">fullTreeList.*\.description,fullTreeList.*\.disabled,fullTreeList.*\.parentNode,fullTreeList.*\.users,fullTreeList.*\.organizationRoles</param>
 				<param name="noCache">true</param>
 				<param name="ignoreHierarchy">false</param>
 			</result>
 		</action>
-		<action name="rebuildOrgTree" class="org.sbbs.security.webapp.action.OrganizationMaintainAction" method="rebuildTree">
+		<action name="rebuildOrgTree" class="org.sbbs.security.webapp.action.OrganizationMaintainAction" method="rebuildTree" />
+
+
+		<action name="editOrg" class="org.sbbs.security.webapp.action.OrganizationMaintainAction" method="edit">
+			<result name="success">/WEB-INF/pages/organization/orgForm.jsp</result>
 		</action>
-		<!-- <action name="editEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="edit"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result>
-			</action> <action name="addEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="add"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result>
-			</action> <action name="saveEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="save"/> <action name="deleteEntity"
+		<action name="addOrg" class="org.sbbs.security.webapp.action.OrganizationMaintainAction" method="add">
+			<result name="success">/WEB-INF/pages/organization/orgForm.jsp</result>
+		</action>
+		<action name="saveOrg" class="org.sbbs.security.webapp.action.OrganizationMaintainAction" method="save" />
+		<action name="deleteOrgs" class="org.sbbs.security.webapp.action.OrganizationMaintainAction" method="deletes" />
+
+		<action name="listUnassignOrganizationRole" class="org.sbbs.security.webapp.action.OrganizationMaintainAction"
+			method="listUnassignRole">
+			<result name="success">/WEB-INF/pages/organization/assign_organization_role.jsp</result>
+		</action>
+		<action name="assignOrganizationRole" class="org.sbbs.security.webapp.action.OrganizationMaintainAction"
+			method="assignRole" />
+		<action name="listAssignedOrganizationRole" class="org.sbbs.security.webapp.action.OrganizationMaintainAction"
+			method="listAssginedOrganizationRole">
+			<result name="success">/WEB-INF/pages/organization/delete_organization_role.jsp</result>
+		</action>
+		<action name="deleteOrganizationRole" class="org.sbbs.security.webapp.action.OrganizationMaintainAction"
+			method="deleteOrganizationRole" />
+
+
+
+		<!-- <action name="editEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="edit"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result> 
+			</action> <action name="addEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="add"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result> 
+			</action> <action name="saveEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="save"/> <action name="deleteEntity" 
 			class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="delete"/> -->
-		<!-- <action name="exportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="excelExport"/> <action
+		<!-- <action name="exportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="excelExport"/> <action 
 			name="beforeExportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="beforeExcelExport"/> -->
 	</package>
 </struts>

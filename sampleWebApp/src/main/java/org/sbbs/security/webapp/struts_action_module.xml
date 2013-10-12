@@ -18,6 +18,7 @@
 			class="org.sbbs.security.webapp.action.ModulePagedAction" method="gridPageList">
 			<result type="json">
 				<param name="includeProperties">pageList.*,total,records,page,statusCode,message</param>
+				<param name="excludeProperties">pageList.*\.parentNode,pageList.*\.url,pageList.*\.permissions</param>
 				<param name="noCache">true</param>
 				<param name="ignoreHierarchy">false</param>
 			</result>
@@ -32,7 +33,7 @@
 			method="displayFullTree">
 			<result name="success" type="json">
 				<param name="includeProperties">fullTreeList.*</param>
-				<param name="excludeProperties">fullTreeList.*\.parentNode,fullTreeList.*\.url</param>
+				<param name="excludeProperties">fullTreeList.*\.parentNode,fullTreeList.*\.url,fullTreeList.*\.permissions</param>
 				<param name="noCache">true</param>
 				<param name="ignoreHierarchy">false</param>
 			</result>

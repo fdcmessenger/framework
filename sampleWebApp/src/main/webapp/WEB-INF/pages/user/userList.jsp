@@ -136,7 +136,7 @@
 			<li><a class="add" href="#"
 				onclick="javascript:addFormDialog('${ctx}/security/addUser','用户添加',800,600,'userList');"><span>添加</span></a></li>
 			<li><a class="delete" href="#"
-				onclick="javascript:processMultiSelectedRecords('userList','deleteEntity','你确认要删除demo数据吗?');"><span>删除</span></a></li>
+				onclick="javascript:processMultiSelectedRecords('userList','${ctx}/security/deleteUsers','你确认要删除user吗?');"><span>删除</span></a></li>
 			<li><a class="edit" href="#"
 				onclick="javascript:editFormDialog('${ctx}/security/editUser','用户修改',800,600,'userList');"><span>修改</span></a></li>
 			<li class="line">line</li>

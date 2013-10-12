@@ -7,21 +7,17 @@
 		<ul class="toolBar">
 		<li><a class="icon" href="#"
 				onclick="javascript:processSimpleRequest('${ctx}/security/rebuildOrgTree');"><span>重建组织树</span></a></li>
-
-
-	<!-- 		<li><a class="add" href="#"
-				onclick="javascript:addFormDialog('addEntity','样例添加',800,600,'organizationList');"><span>添加</span></a></li>
+<li><a class="add" href="#"
+				onclick="javascript:addFormDialog('${ctx}/security/addOrg','用户添加',800,600,'organizationList');"><span>添加</span></a></li>
 			<li><a class="delete" href="#"
-				onclick="javascript:processMultiSelectedRecords('organizationList','deleteEntity','你确认要删除demo数据吗?');"><span>删除</span></a></li>
+				onclick="javascript:processMultiSelectedRecords('organizationList','${ctx}/security/deleteOrgs','你确认要删除organization吗?');"><span>删除</span></a></li>
 			<li><a class="edit" href="#"
-				onclick="javascript:editFormDialog('editEntity','样例修改',800,600,'organizationList');"><span>修改</span></a></li>
+				onclick="javascript:editFormDialog('${ctx}/security/editOrg','用户修改',800,600,'organizationList');"><span>修改</span></a></li>
 			<li class="line">line</li>
-				<li><a class="icon" href="#"
-				onclick="javascript:exportEntity('exportEntity','organizationList',1);"><span>导出EXCEL</span></a></li>
-			<li><a class="icon"
-				href="javascript:$.printBox('organizationGridContainer')"><span>打印</span></a></li>
-			<li><a class="icon" href="#"
-				onclick="javascript:searchAreaToggle(this,'organizationSearchArea','organizationGridContainer',80);"><span>收起</span></a></li> -->
+
+			<li><a iconClass="shield_add" href="#" onclick="javascript:editFormDialog('${ctx}/security/listUnassignOrganizationRole','分配角色',800,600,'organizationList');"><span>分配角色</span></a></li>
+			<li><a iconClass="shield_delete" href="#" onclick="javascript:editFormDialog('${ctx}/security/listAssignedOrganizationRole','删除角色',800,600,'organizationList');"><span>删除角色</span></a></li>
+
 		</ul>
 	</div>
 	<div class="tabs">

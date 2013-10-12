@@ -13,12 +13,17 @@
 
 package org.sbbs.security.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -74,13 +79,9 @@ public class User extends BaseIDEntity {
 
 	private String status = "enabled";
 
-	/*
-	 * @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST,
-	 * CascadeType.REMOVE }, orphanRemoval = true)
-	 * 
-	 * @OrderBy("priority ASC") private List<UserRole> userRoles = new
-	 * ArrayList<UserRole>();
-	 */
+	
+
+	private List<UserRole> userRoles = new ArrayList<UserRole>();
 
 	private Organization organization;
 
@@ -250,17 +251,18 @@ public class User extends BaseIDEntity {
 	 * 
 	 * @return userRoles
 	 */
-	/*
-	 * public List<UserRole> getUserRoles() { return userRoles; }
-	 *//**
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
+	@OrderBy("priority ASC")
+	 public List<UserRole> getUserRoles() { return userRoles; }
+	 /**
 	 * 设置 userRoles 的值
 	 * 
 	 * @param userRoles
 	 */
-	/*
-	 * public void setUserRoles(List<UserRole> userRoles) { this.userRoles =
-	 * userRoles; }
-	 */
+	
+	  public void setUserRoles(List<UserRole> userRoles) { this.userRoles =
+	  userRoles; }
+	 
 
 	/**
 	 * 返回 phone 的值

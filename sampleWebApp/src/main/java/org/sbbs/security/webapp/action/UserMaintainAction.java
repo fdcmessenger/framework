@@ -108,8 +108,6 @@ public class UserMaintainAction extends BaseMaintainAction<User, Long> {
 				LogUitl.putArgs(LogMessageObject.newIgnore());// 忽略日志
 				return ajaxReturn.error(e.getMessage());// .setCallbackType("").toString();
 			}
-			// LogUitl.putArgs(LogMessageObject.newWrite().setObjects(new
-			// Object[]{user.getUsername()}));
 			return ajaxReturn.success("修改密码成功！");// .toString();
 		}
 

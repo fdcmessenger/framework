@@ -11,6 +11,7 @@
 			method="gridPageList">
 			<result type="json">
 				<param name="includeProperties">pageList.*,total,records,page,statusCode,message</param>
+				<param name="excludeProperties">pageList.*\.userRoles,pageList.*\.organizationRoles,pageList.*\.rolePermissions</param>
 				<param name="noCache">true</param>
 				<param name="ignoreHierarchy">false</param>
 			</result>

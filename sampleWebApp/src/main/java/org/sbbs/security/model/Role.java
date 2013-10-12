@@ -13,11 +13,14 @@
 
 package org.sbbs.security.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -25,7 +28,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.sbbs.base.model.BaseIDEntity;
-import org.sbbs.base.model.BaseObject;
 
 /**
  * 
@@ -34,7 +36,7 @@ import org.sbbs.base.model.BaseObject;
  */
 @Entity
 @Table(name = "security_role")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE,region="org.sbbs.security")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "org.sbbs.security")
 public class Role extends BaseIDEntity {
 
 	/** 描述 */
@@ -44,23 +46,11 @@ public class Role extends BaseIDEntity {
 
 	private String description;
 
-	/*
-	 * @OneToMany(mappedBy="role", cascade={CascadeType.PERSIST,
-	 * CascadeType.REMOVE}, orphanRemoval=true)
-	 * 
-	 * @OrderBy("priority ASC") private List<UserRole> userRoles = new
-	 * ArrayList<UserRole>(0);
-	 * 
-	 * @OneToMany(mappedBy="role", cascade={CascadeType.PERSIST,
-	 * CascadeType.REMOVE}, orphanRemoval=true)
-	 * 
-	 * @OrderBy("priority ASC") private List<OrganizationRole> organizationRoles
-	 * = new ArrayList<OrganizationRole>();
-	 * 
-	 * @OneToMany(mappedBy="role", cascade={CascadeType.PERSIST,
-	 * CascadeType.REMOVE}, orphanRemoval=true) private List<RolePermission>
-	 * rolePermissions = new ArrayList<RolePermission>();
-	 */
+	private List<UserRole> userRoles = new ArrayList<UserRole>(0);
+
+	private List<OrganizationRole> organizationRoles = new ArrayList<OrganizationRole>();
+
+	private List<RolePermission> rolePermissions = new ArrayList<RolePermission>();
 
 	/**
 	 * 返回 name 的值
@@ -108,49 +98,62 @@ public class Role extends BaseIDEntity {
 	 * 
 	 * @return userRoles
 	 */
-	/*
-	 * public List<UserRole> getUserRoles() { return userRoles; }
-	 *//**
+	@OneToMany(mappedBy = "role", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
+	@OrderBy("priority ASC")
+	public List<UserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	/**
 	 * 设置 userRoles 的值
 	 * 
 	 * @param userRoles
 	 */
-	/*
-	 * public void setUserRoles(List<UserRole> userRoles) { this.userRoles =
-	 * userRoles; }
-	 *//**
+
+	public void setUserRoles(List<UserRole> userRoles) {
+		this.userRoles = userRoles;
+	}
+
+	/**
 	 * 返回 organizationRoles 的值
 	 * 
 	 * @return organizationRoles
 	 */
-	/*
-	 * public List<OrganizationRole> getOrganizationRoles() { return
-	 * organizationRoles; }
-	 *//**
+	@OneToMany(mappedBy = "role", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
+	@OrderBy("priority ASC")
+	public List<OrganizationRole> getOrganizationRoles() {
+		return organizationRoles;
+	}
+
+	/**
 	 * 设置 organizationRoles 的值
 	 * 
 	 * @param organizationRoles
 	 */
-	/*
-	 * public void setOrganizationRoles(List<OrganizationRole>
-	 * organizationRoles) { this.organizationRoles = organizationRoles; }
-	 *//**
+
+	public void setOrganizationRoles(List<OrganizationRole> organizationRoles) {
+		this.organizationRoles = organizationRoles;
+	}
+
+	/**
 	 * 返回 rolePermissions 的值
 	 * 
 	 * @return rolePermissions
 	 */
-	/*
-	 * public List<RolePermission> getRolePermissions() { return
-	 * rolePermissions; }
-	 *//**
+	@OneToMany(mappedBy = "role", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
+	public List<RolePermission> getRolePermissions() {
+		return rolePermissions;
+	}
+
+	/**
 	 * 设置 rolePermissions 的值
 	 * 
 	 * @param rolePermissions
 	 */
-	/*
-	 * public void setRolePermissions(List<RolePermission> rolePermissions) {
-	 * this.rolePermissions = rolePermissions; }
-	 */
+
+	public void setRolePermissions(List<RolePermission> rolePermissions) {
+		this.rolePermissions = rolePermissions;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

@@ -68,7 +68,7 @@
 					forceFit : false,
 					shrinkToFit : false,
 					//loadui: "disable",
-					//multiselect : true,
+					multiselect : true,
 					//multiboxonly : true,
 					hidegrid : false,
 					loadError : function(xhr, status, error) {
