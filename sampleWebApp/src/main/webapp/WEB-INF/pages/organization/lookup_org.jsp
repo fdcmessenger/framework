@@ -55,24 +55,24 @@
 					jQuery("#" + gridId).jqGrid('setGridParam', {
 					url : url,
 					page : 1
-					}).trigger("reloadGrid"); 
+					}).trigger("reloadGrid");
 					 */
-					 
+
 					/*  onclick=\"$.bringBack({id:'" + o.getId() + "', name:'" + o.getName() + "'})
  */					console.log(treeNode);
 					 $.bringBack({id:treeNode.id , name: treeNode.name });
-					 
-					 
+
+
 				}
 
 				function initTree() {
 					$.get("${ctx}/security/organizationTreeJson",
 							function(data) {
 								var treeData = data.fullTreeList;
-								uloTree = $.fn.zTree.init($("#usrLookUpOrg"),
+								uloTree = $.fn.zTree.init($("#lookUpOrg"),
 										setting, treeData);
 								uloTree.expandAll(true);
-								//uloTree = $.fn.zTree.getZTreeObj("usrLookUpOrg");
+								//uloTree = $.fn.zTree.getZTreeObj("lookUpOrg");
 								//rMenu = $("#rMenu");
 							});
 				}
@@ -104,7 +104,7 @@ div#rMenu ul li {
 <div class="pageContent">
 	<div class="pageFormContent" layoutH="58">
 	<div class="zTreeDemoBackground left">
-		<ul id="usrLookUpOrg" class="ztree"></ul>
+		<ul id="lookUpOrg" class="ztree"></ul>
 	</div>
 </div>
 	<div class="formBar">

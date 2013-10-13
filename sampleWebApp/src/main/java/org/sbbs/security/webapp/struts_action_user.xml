@@ -46,9 +46,7 @@
 		<!-- <action name="exportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="excelExport"/> <action 
 			name="beforeExportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="beforeExcelExport"/> -->
 
-		<action name="userLookupOrg">
-			<result name="success">/WEB-INF/pages/user/lookup_org.jsp</result>
-		</action>
+		
 
 
 	</package>

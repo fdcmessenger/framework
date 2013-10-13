@@ -42,4 +42,12 @@ public class OrganizationPagedAction extends BaseGridAction {
 		this.fullTreeList = this.organizationManager.findAll();
 		return SUCCESS;
 	}
+
+/*	public final String lookupParent() {
+	String selfId = this.getRequest().getParameter("selfId");
+		this.fullTreeList = this.organizationManager.findAllExceptSelf(Long.parseLong(selfId));
+
+		return this.SUCCESS;
+	}*/
+
 }

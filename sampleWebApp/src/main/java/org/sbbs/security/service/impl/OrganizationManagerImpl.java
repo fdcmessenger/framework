@@ -1,5 +1,7 @@
 package org.sbbs.security.service.impl;
 
+import java.util.List;
+
 import org.sbbs.base.service.impl.BaseTreeManagerImpl;
 import org.sbbs.security.dao.OrganizationDao;
 import org.sbbs.security.model.Organization;
@@ -17,4 +19,10 @@ public class OrganizationManagerImpl extends BaseTreeManagerImpl<Organization, L
 		super(organizationDao);
 		this.organizationDao = organizationDao;
 	}
+
+	/*@Override
+	public List<Organization> findAllExceptSelf(Long selfId) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
 }

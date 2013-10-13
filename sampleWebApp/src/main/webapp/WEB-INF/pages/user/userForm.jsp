@@ -37,7 +37,7 @@
 			<p>
 				<label>关联组织：</label> <input name="model.organization.id" value="${model.organization.id}" type="hidden" /> <input
 					class="validate[required] required" name="model.organization.name" type="text" readonly="readonly"  value="${model.organization.name}" /> <a class="btnLook"
-					href="${ctx}/security/userLookupOrg" lookupGroup="model.organization" title="关联组织" width="400">查找带回</a>
+					href="${ctx}/security/lookupOrg" lookupGroup="model.organization" title="关联组织" width="400">查找带回</a>
 			</p>
 		</div>
 

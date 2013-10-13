@@ -31,8 +31,9 @@ html {
 body { /* Setting default text color, background and a font stack */
 	font-size: 0.825em;
 	color: #eee;
-	background: #222222;
+	 background: #222222;
 	font-family: Arial, Helvetica, sans-serif;
+	/* border-color:#3b6200; background:#aae31d; */
 }
 
 #carbonForm { /* The main form container */
@@ -45,7 +46,7 @@ body { /* Setting default text color, background and a font stack */
 	-webkit-box-shadow: 0 0 1px #444 inset;
 	box-shadow: 0 0 1px #444 inset;
 	vertical-align: middle;
-	position: absolute;
+	/* position: absolute; */
 	top: 20%;
 	left: 35%
 }

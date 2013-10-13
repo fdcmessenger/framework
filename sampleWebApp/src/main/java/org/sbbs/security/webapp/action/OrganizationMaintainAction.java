@@ -151,6 +151,12 @@ public class OrganizationMaintainAction extends BaseMaintainAction<Organization,
 		return this.SUCCESS;
 	}
 
+	
+	
+	
+	
+	
+	
 	private List<OrganizationRole> organizationRoles;
 	private List<Role> roles;
 	private Long organizationId;
