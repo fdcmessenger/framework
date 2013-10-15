@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <div class="pageContent">
-	<form method="post" action="${ctx }/security/saveUser" class="pageForm required-validate" onsubmit="return formValidateCallback(this,dialogFormCallBack)">
+	<form method="post" action="${ctx }/security/saveUser?gridId=${gridId}" class="pageForm required-validate" onsubmit="return formValidateCallback(this,dialogFormCallBack)">
 		<div class="pageFormContent" layoutH="58">
 		<c:if test="${editType==0}"><input type="hidden" name="model.id" class="required" size="20"
 					maxlength="32" value="${model.id}"/></c:if>

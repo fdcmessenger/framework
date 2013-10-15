@@ -140,7 +140,7 @@ public class Role extends BaseIDEntity {
 	 * 
 	 * @return rolePermissions
 	 */
-	@OneToMany(mappedBy = "role", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
+	@OneToMany(mappedBy = "role", cascade = { CascadeType.PERSIST},orphanRemoval=false)
 	public List<RolePermission> getRolePermissions() {
 		return rolePermissions;
 	}

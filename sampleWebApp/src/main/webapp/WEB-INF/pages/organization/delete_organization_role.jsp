@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ include file="/WEB-INF/views/include.inc.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true" pageEncoding="UTF-8"%>
+<%@ include file="/common/taglibs.jsp"%>
 <script type="text/javascript">
 <!--
 // top
@@ -10,7 +10,8 @@ jQuery(document).ready(function(){
     	jQuery.ajax({
             type: 'POST',
             contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-            url: '${contextPath}/management/security/organization/delete/organizationRole/' + organizationRoleId,
+            //url: '${contextPath}/management/security/organization/delete/organizationRole/' + organizationRoleId,
+             url: '${ctx}/security/deleteOrganizationRole?organizationRoleId=' + organizationRoleId,
             error: function() { 
     	 		alertMsg.error('删除角色关联失败！');
     		},

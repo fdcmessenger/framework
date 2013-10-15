@@ -1,22 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html>
 <head>
-<%@ include file="/common/links.jsp"%>
 <title><s:text name="label.login" /></title>
+<script type="text/javascript" src="${ctx}/scripts/jquery/jquery-1.8.1.js"/>
 <script>
- /*    jQuery(document).ready(function(){
-        jQuery("#formID").validationEngine();
-    }); */
-    jQuery(document).ready(function(){
-    	$("#captcha").click(function(){
-    		$(this).attr("src", "${ctx}/Captcha.jpg?time=" + new Date());
-    		return false;
-    	});
-    });
-
+	jQuery(document).ready(function() {
+		$("#captcha").click(function() {
+			$(this).attr("src", "${ctx}/Captcha.jpg?time=" + new Date());
+			return false;
+		});
+	});
 </script>
 <style>
 * { /* Resetting the default styles of the page */
@@ -31,7 +26,7 @@ html {
 body { /* Setting default text color, background and a font stack */
 	font-size: 0.825em;
 	color: #eee;
-	 background: #222222;
+	background: #222222;
 	font-family: Arial, Helvetica, sans-serif;
 	/* border-color:#3b6200; background:#aae31d; */
 }
@@ -194,9 +189,7 @@ a img {
 			<s:text name="label.login" />
 		</h1>
 
-		<form method="post" id="loginForm"
-			action="<c:url value='/login'/>"
-			onsubmit="return validateForm(this)">
+		<form method="post" id="loginForm" action="<c:url value='/login'/>" onsubmit="return validateForm(this)">
 			<div class="fieldContainer">
 
 				<div class="formRow">
@@ -240,7 +233,7 @@ a img {
 							id="captcha" /></span>
 					</div>
 				</div> --%>
-			<!-- 	<div class="formRow">
+				<!-- 	<div class="formRow">
 					<div class="label">
 						<label>记住我:</label>
 					</div>
@@ -256,8 +249,7 @@ a img {
 
 			<div class="signupButton">
 
-				<input type="submit" id="submit" name="login"
-					value="<s:text name='button.login'/>" tabindex="4" /> <label
+				<input type="submit" id="submit" name="login" value="<s:text name='button.login'/>" tabindex="4" /> <label
 					class="checkbox"> <%--  <input type="checkbox" name="_spring_security_remember_me" id="rememberMe" tabindex="3"/>
                         <s:text name="login.rememberMe"/> --%>
 				</label>

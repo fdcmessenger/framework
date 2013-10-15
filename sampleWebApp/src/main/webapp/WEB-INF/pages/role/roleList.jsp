@@ -132,12 +132,12 @@
 	</div>
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="#"
-				onclick="javascript:addFormDialog('addEntity','样例添加',800,600,'roleList');"><span>添加</span></a></li>
+		<li><a class="add" href="#"
+				onclick="javascript:addFormDialog('${ctx}/security/addRole','用户添加',800,600,'roleList');"><span>添加</span></a></li>
 			<li><a class="delete" href="#"
-				onclick="javascript:processMultiSelectedRecords('roleList','deleteEntity','你确认要删除demo数据吗?');"><span>删除</span></a></li>
+				onclick="javascript:processMultiSelectedRecords('roleList','${ctx}/security/deleteRoles','你确认要删除role吗?');"><span>删除</span></a></li>
 			<li><a class="edit" href="#"
-				onclick="javascript:editFormDialog('editEntity','样例修改',800,600,'roleList');"><span>修改</span></a></li>
+				onclick="javascript:editFormDialog('${ctx}/security/editRole','用户修改',800,600,'roleList');"><span>修改</span></a></li>
 			<li class="line">line</li>
 			<!-- 	<li><a class="icon" href="#"
 				onclick="javascript:exportEntity('exportEntity','roleList',1);"><span>导出EXCEL</span></a></li>

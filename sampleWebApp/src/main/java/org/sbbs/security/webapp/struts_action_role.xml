@@ -16,6 +16,15 @@
 				<param name="ignoreHierarchy">false</param>
 			</result>
 		</action>
+		
+		<action name="editRole" class="org.sbbs.security.webapp.action.RoleMaintainAction" method="edit">
+			<result name="success">/WEB-INF/pages/role/roleForm.jsp</result>
+		</action>
+		<action name="addRole" class="org.sbbs.security.webapp.action.RoleMaintainAction" method="add">
+			<result name="success">/WEB-INF/pages/role/roleForm.jsp</result>
+		</action>
+		<action name="saveRole" class="org.sbbs.security.webapp.action.RoleMaintainAction" method="save" />
+		
 		<!-- <action name="editEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" 
 			method="edit"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result> 
 			</action> <action name="addEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" 
