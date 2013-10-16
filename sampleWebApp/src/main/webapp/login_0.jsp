@@ -41,7 +41,7 @@ body { /* Setting default text color, background and a font stack */
 	-webkit-box-shadow: 0 0 1px #444 inset;
 	box-shadow: 0 0 1px #444 inset;
 	vertical-align: middle;
-	/* position: absolute; */
+	 position: absolute; 
 	top: 20%;
 	left: 35%
 }

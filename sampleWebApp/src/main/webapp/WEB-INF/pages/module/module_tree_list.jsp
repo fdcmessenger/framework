@@ -7,6 +7,12 @@
 		<ul class="toolBar">
 		<li><a class="icon" href="#"
 				onclick="javascript:processSimpleRequest('${ctx}/security/rebuildModuleTree');"><span>initMenu</span></a></li>
+<li><a class="add" href="#"
+				onclick="javascript:addFormDialog('${ctx}/security/addModule','用户添加',800,600,'moduleList');"><span>添加</span></a></li>
+			<li><a class="delete" href="#"
+				onclick="javascript:processMultiSelectedRecords('moduleList','${ctx}/security/deleteModules','你确认要删除module吗?');"><span>删除</span></a></li>
+			<li><a class="edit" href="#"
+				onclick="javascript:editFormDialog('${ctx}/security/editModule','用户修改',800,600,'moduleList');"><span>修改</span></a></li>
 
 <!-- 
 			<li><a class="add" href="#"
