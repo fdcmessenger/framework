@@ -16,23 +16,21 @@ package org.sbbs.security.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.sbbs.base.model.BaseTreeNode;
-import org.sbbs.demo.model.DemoTreeNode;
 
 /**
  * 
@@ -237,7 +235,8 @@ public class Module extends BaseTreeNode<Module, Long> implements Comparable<Mod
 	 * 
 	 * @return permissions
 	 */
-	@OneToMany(mappedBy = "module")
+	@OneToMany(mappedBy = "module",fetch=FetchType.LAZY)
+	// @Cascade({CascadeType.ALL})
 	public List<Permission> getPermissions() {
 		return permissions;
 	}

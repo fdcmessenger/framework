@@ -40,6 +40,7 @@
 		<action name="addModule" class="org.sbbs.security.webapp.action.ModuleMaintainAction" method="add">
 			<result name="success">/WEB-INF/pages/module/moduleForm.jsp</result>
 		</action>
+		<action name="saveModule" class="org.sbbs.security.webapp.action.ModuleMaintainAction" method="save" />
 		<!-- <action name="editEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="edit"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result> 
 			</action> <action name="addEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="add"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result> 
 			</action> <action name="saveEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="save"/> <action name="deleteEntity" 

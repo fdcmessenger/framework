@@ -25,6 +25,9 @@ import org.sbbs.security.model.Module;
  */
 
 public interface ModuleManager extends BaseTreeManager<Module, Long>{
+	
+	void insertModule(Module module);
+	void updateModule(Module module);
 /*	void save(Module module) throws ExistedException;
 	
 	Module get(Long id);
