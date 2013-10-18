@@ -30,5 +30,13 @@
 		class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="delete"/>
 		<!-- <action name="exportEntity"		class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="excelExport"/>
 		<action name="beforeExportEntity"		class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="beforeExcelExport"/> -->
+		
+		
+		
+		<action name="gridDemo1">
+			<result name="success">/WEB-INF/pages/jqgrid/demo1.jsp</result>
+		</action>
+		
+		
 	</package>
 </struts>

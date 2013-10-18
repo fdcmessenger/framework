@@ -278,6 +278,35 @@ function initUI(_box){
 	if ($.fn.pagerForm) $("form[rel=pagerForm]", $p).pagerForm({parentBox:$p});
 
 	// 这里放其他第三方jQuery插件...
+	readyToolbarCSS();
 }
 
-
+/**
+ * 自动加载toolbar的图片，iconClass=contexPath#imageName
+ */
+function readyToolbarCSS() {
+	var $a = $("a[iconClass]");
+	$a.each(function(){
+		var imageName = $(this).attr("iconClass");
+		var $span = $("span", this);
+		if ($span.length == 0) {
+			// 用作<td>中的<a>
+			$(this).css({
+				"background":"url(scripts/dwz/themes/css/images/toolbar_icons16/" + imageName + ".png) no-repeat",
+				"background-position":"50% 50%",
+				"width":"22px",
+				"height":"20px",
+				"text-indent":"-1000px",
+				"overflow":"hidden",
+				"display":"block",
+				"float":"left"
+			});	
+		} else {
+			// 用作panelBar toolBar中的<span>
+			$span.css({
+				"background-image":"url(scripts/dwz/themes/css/images/toolbar_icons16/" + imageName + ".png)",
+				"background-position": "0 3px"
+			});						
+		}
+	});
+}

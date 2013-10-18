@@ -114,6 +114,11 @@
 										rel="page1">页面一(外部页面)</a></li>
 
 								</ul></li> -->
+								<li><a>工具箱</a>
+								<ul>
+<li><a href="${ctx}/utils/list" target="navTab" rel="iconList" external="false">图标列表</a></li>
+
+								</ul></li>
 							<li><a>dwz布局学习</a>
 								<ul>
 
@@ -121,6 +126,7 @@
 							<li><a>Demo样例</a>
 								<ul>
 									<li><a href="${ctx}/demoEntityList" target="navTab" rel="demoEntityList" external="false">样例实体列表页面</a></li>
+<li><a href="${ctx}/gridDemo1" target="navTab" rel="gridDemo1" external="false">jqgrid样例一</a></li>
 								</ul></li>
 						</ul>
 					</div>

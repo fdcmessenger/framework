@@ -29,6 +29,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
@@ -153,6 +154,7 @@ public class User extends BaseIDEntity {
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(updatable = false)
+	@JSON(format="yyyy-MM-dd HH:mm:ss")
 	public Date getCreateTime() {
 		return createTime;
 	}

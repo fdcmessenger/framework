@@ -102,7 +102,7 @@
 
 			});
 
-	function cleanSearch() {
+	function cleanRoleSearch() {
 		clear_input_elements("roleSearchArea");
 		propertyFilterSearch('roleSearchForm', 'roleList');
 	}
@@ -114,15 +114,14 @@
 			<div class="searchBar">
 				<table class="searchContent">
 					<tr>
-						<td>样例主键小于:<input name="filter_lt_demoId" /></td>
-						<td>样例主键大于:<input name="filter_gt_demoId" /></td>
+						<td>角色名称:<input name="filter_cn_name" /></td>
 						<!-- 	<td>样例主键小于:<input name="filter_lt_demoId1" /></td>
 						<td>样例主键大于:<input name="filter_gt_demoId2" /></td>
 						<td>样例主键小于:<input name="filter_lt_demoId3" /></td>
 						<td>样例主键小于:<input name="filter_lt_demoId4" /></td> -->
 						<td><a class="button buttonActive" href="#"
 							onclick="javascript:propertyFilterSearch('roleSearchForm','roleList');"><span>搜索</span></a>
-							<a class="button" href="#" onclick="javascript:cleanSearch();"><span>清空</span></a></td>
+							<a class="button" href="#" onclick="javascript:cleanRoleSearch();"><span>清空</span></a></td>
 					</tr>
 				</table>
 

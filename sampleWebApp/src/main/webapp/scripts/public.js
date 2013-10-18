@@ -331,12 +331,14 @@ function searchAreaToggle(button, sAreaId, pcContentId, deffH) {
 	$content = $("#" + pcContentId);
 	//console.log($this);
 	if ($this.find("span:first").text() == '展开') {
-		$this.find("span:first").text('收起')
+		$this.find("span:first").text('收起');
+		console.log($this.find("span:first"));
 		$search.toggle();
 		$content.attr("layoutH", parseInt($content.attr("layoutH")) + deffH);
 		$content.layoutH();
 	} else {
-		$this.find("span:first").text('展开')
+		$this.find("span:first").text('展开');
+		console.log($this.find("span:first"));
 		$search.toggle();
 		$content.attr("layoutH", parseInt($content.attr("layoutH")) - deffH);
 		$content.layoutH();

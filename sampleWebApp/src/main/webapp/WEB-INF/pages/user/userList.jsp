@@ -23,20 +23,57 @@
 						index : 'id',
 						align : 'center',
 						label : '<s:text name="user.id" />',
-						hidden : false,
+						hidden : true,
 						key : true
-					}, {
-						name : 'realname',
-						index : 'realname',
-						align : 'center',
-						label : '<s:text name="user.realname" />'
-					}, {
+					}
+					, {
 						name : 'username',
 						index : 'username',
 						align : 'center',
 						label : '<s:text name="user.username" />'
 					
-					}],
+					}
+					, {
+						name : 'realname',
+						index : 'realname',
+						align : 'center',
+						label : '<s:text name="user.realname" />'
+					}
+					, {
+						name : 'email',
+						index : 'email',
+						align : 'center',
+						label : '<s:text name="user.email" />'
+					}
+					, {
+						name : 'phone',
+						index : 'phone',
+						align : 'center',
+						label : '<s:text name="user.phone" />'
+					}
+					, {
+						name : 'organization.name',
+						index : 'organization.name',
+						align : 'center',
+						label : '<s:text name="user.organizationName" />'
+					}
+					, {
+						name : 'status',
+						index : 'status',
+						align : 'center',
+						label : '<s:text name="user.status" />',
+						formatter:'select',
+							 editable: true,edittype:"select",editoptions:{value:"enabled:可用;disabled:不可用"}
+					}
+					, {
+						name : 'createTime',
+						index : 'createTime',
+						align : 'center',
+						label : '<s:text name="user.createTime" />'
+					}
+					
+					
+					],
 
 					jsonReader : {
 						root : "pageList", // (2)
@@ -102,7 +139,7 @@
 
 			});
 
-	function cleanDemoEntitySearch() {
+	function cleanUserSearch() {
 		clear_input_elements("userSearchArea");
 		propertyFilterSearch('userSearchForm', 'userList');
 	}
@@ -112,10 +149,10 @@
 	<div id="userSearchArea" class="pageHeader">
 		<form id="userSearchForm">
 			<div class="searchBar">
-				<table class="searchContent">
+				<table class="">
 					<tr>
-						<td>样例主键小于:<input name="filter_lt_demoId" /></td>
-						<td>样例主键大于:<input name="filter_gt_demoId" /></td>
+						<td>用户名:<input name="filter_cn_username" /></td>
+						<td>真实姓名:<input name="filter_cn_realname" /></td>
 						<!-- 	<td>样例主键小于:<input name="filter_lt_demoId1" /></td>
 						<td>样例主键大于:<input name="filter_gt_demoId2" /></td>
 						<td>样例主键小于:<input name="filter_lt_demoId3" /></td>
@@ -123,7 +160,7 @@
 						<td><a class="button buttonActive" href="#"
 							onclick="javascript:propertyFilterSearch('userSearchForm','userList');"><span>搜索</span></a>
 							<a class="button" href="#"
-							onclick="javascript:cleanDemoEntitySearch();"><span>清空</span></a></td>
+							onclick="javascript:cleanUserSearch();"><span>清空</span></a></td>
 					</tr>
 				</table>
 
@@ -140,10 +177,10 @@
 			<li><a class="edit" href="#"
 				onclick="javascript:editFormDialog('${ctx}/security/editUser','用户修改',800,600,'userList');"><span>修改</span></a></li>
 			<li class="line">line</li>
-			<li><a class="icon" href="#"
+			<li><a iconClass="arrow_refresh"  href="#"
 				onclick="javascript:processSingleSelectedRecords('userList','${ctx}/security/resetPsw','你确认要重置此用户的密码吗?');"><span>重置密码</span></a></li>
-			<li><a iconClass="shield_add" href="#" onclick="javascript:editFormDialog('${ctx}/security/listUnassignUserRole','分配角色',800,600,'userList');"><span>分配角色</span></a></li>
-			<li><a iconClass="shield_delete" href="#" onclick="javascript:editFormDialog('${ctx}/security/listAssignedUserRole','删除角色',800,600,'userList');"><span>删除角色</span></a></li>
+			<li><a iconClass="lightning_add" href="#" onclick="javascript:editFormDialog('${ctx}/security/listUnassignUserRole','分配角色',800,600,'userList');"><span>分配角色</span></a></li>
+			<li><a iconClass="lightning_delete" href="#" onclick="javascript:editFormDialog('${ctx}/security/listAssignedUserRole','删除角色',800,600,'userList');"><span>删除角色</span></a></li>
 
 
 
@@ -151,7 +188,7 @@
 				onclick="javascript:exportEntity('exportEntity','userList',1);"><span>导出EXCEL</span></a></li>
 			<li><a class="icon"
 				href="javascript:$.printBox('userGridContainer')"><span>打印</span></a></li> -->
-			<li><a class="icon" href="#"
+			<li><a iconClass="magnifier" href="#"
 				onclick="javascript:searchAreaToggle(this,'userSearchArea','userGridContainer',37);"><span>收起</span></a></li>
 		</ul>
 	</div>

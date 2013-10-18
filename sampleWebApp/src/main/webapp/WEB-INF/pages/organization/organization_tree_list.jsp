@@ -5,7 +5,7 @@
 <div class="pageContent">
 <div class="panelBar">
 		<ul class="toolBar">
-		<li><a class="icon" href="#"
+		<li><a iconClass="magnet" href="#"
 				onclick="javascript:processSimpleRequest('${ctx}/security/rebuildOrgTree');"><span>重建组织树</span></a></li>
 <li><a class="add" href="#"
 				onclick="javascript:addFormDialog('${ctx}/security/addOrg','用户添加',800,600,'organizationList');"><span>添加</span></a></li>
