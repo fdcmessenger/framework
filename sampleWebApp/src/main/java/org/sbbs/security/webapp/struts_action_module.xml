@@ -15,7 +15,7 @@
 		<action name="moduleGrid" class="org.sbbs.security.webapp.action.ModulePagedAction" method="gridPageList">
 			<result type="json">
 				<param name="includeProperties">pageList.*,total,records,page,statusCode,message</param>
-				<param name="excludeProperties">pageList.*\.parentNode,pageList.*\.url,pageList.*\.permissions</param>
+				<param name="excludeProperties">pageList.*\.parentNode.permissions,pageList.*\.permissions</param>
 				<param name="noCache">true</param>
 				<param name="ignoreHierarchy">false</param>
 			</result>
@@ -41,11 +41,11 @@
 			<result name="success">/WEB-INF/pages/module/moduleForm.jsp</result>
 		</action>
 		<action name="saveModule" class="org.sbbs.security.webapp.action.ModuleMaintainAction" method="save" />
-		<!-- <action name="editEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="edit"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result> 
-			</action> <action name="addEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="add"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result> 
-			</action> <action name="saveEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="save"/> <action name="deleteEntity" 
+		<!-- <action name="editEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="edit"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result>
+			</action> <action name="addEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="add"> <result name="success">/WEB-INF/pages/demo/demoEntityForm.jsp</result>
+			</action> <action name="saveEntity" class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="save"/> <action name="deleteEntity"
 			class="org.sbbs.demo.webapp.action.DemoDwzMaintainAction" method="delete"/> -->
-		<!-- <action name="exportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="excelExport"/> <action 
+		<!-- <action name="exportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="excelExport"/> <action
 			name="beforeExportEntity" class="org.sbbs.demo.webapp.action.DemoDwzPagedAction" method="beforeExcelExport"/> -->
 		<action name="lookupModule">
 			<result name="success">/WEB-INF/pages/module/lookup_module.jsp</result>

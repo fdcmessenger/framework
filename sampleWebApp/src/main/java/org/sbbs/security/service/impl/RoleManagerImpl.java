@@ -66,7 +66,7 @@ public class RoleManagerImpl extends BaseManagerImpl<Role, Long> implements Role
 		List<RolePermission> rolePermissions = Lists.newArrayList();
 		if (role.getRolePermissions() != null) {
 			for (RolePermission rolePermission : role.getRolePermissions()) {
-				if (rolePermission.getPermission() != null && rolePermission.getPermission().getId() != null) {
+				if (rolePermission!=null && rolePermission.getPermission() != null && rolePermission.getPermission().getId() != null) {
 					rolePermissions.add(rolePermission);
 				}
 			}

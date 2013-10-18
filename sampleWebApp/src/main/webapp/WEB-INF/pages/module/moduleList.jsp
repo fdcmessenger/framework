@@ -23,7 +23,7 @@
 						index : 'id',
 						align : 'center',
 						label : '<s:text name="module.id" />',
-						hidden : false,
+						hidden : true,
 						key : true
 					},
 					{
