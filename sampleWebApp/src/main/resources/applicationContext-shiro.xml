@@ -43,11 +43,12 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/Captcha.jpg = anon
-				/styles/** = anon
+				/scripts/** = anon
 				/login/timeout = anon
 				/login = authc
 				/logout = logout
-				/** = user
+				/security/userList = user 
+				/** = user , perms[User:view]
 			</value>
 		</property>
 	</bean>

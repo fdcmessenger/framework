@@ -17,6 +17,7 @@
 	<logger name="com.opensymphony.xwork2" level="DEBUG" />
 	<!-- <level value="INFO"/> </logger> -->
 	<logger name="org.apache.struts2" level="DEBUG" />
+	<logger name="org.apache.shiro" level="DEBUG" />
 	<logger name="org.apache.struts2.spring" level="DEBUG" />
 	<logger name="com.googlecode.genericdao" level="DEBUG" />
 	<logger name="net.sf.ehcache" level="DEBUG" />
