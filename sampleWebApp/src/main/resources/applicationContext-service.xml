@@ -28,13 +28,14 @@
 		<tx:attributes>
 			<!-- Read-only commented out to make things easier for end-users -->
 			<!-- http://issues.appfuse.org/browse/APF-556 -->
-			<!-- --><tx:method name="get*" read-only="true"/> <tx:method name="find*"
-				read-only="true"/> 
+			<!-- -->
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="find*"	read-only="true"/> 
 			<tx:method name="*" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<!-- <aop:advisor pointcut="execution(* org.sbbs..*.*(..))"
+	<!-- 	<aop:advisor pointcut="execution(* org.sbbs..*.*(..))"
 			advice-ref="txAdvice" /> -->
 			    <aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Manager.*(..))" order="0"/>
 	</aop:config>

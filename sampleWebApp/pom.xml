@@ -16,7 +16,7 @@
 	<commons-codec.version>1.7</commons-codec.version>
 	<springside.version>4.1.0.GA</springside.version>
 	<jcaptcha.version>1.0-RC6</jcaptcha.version>
-	<shiro.version>1.2.1</shiro.version>
+	<shiro.version>1.2.2</shiro.version>
 		<!-- <spring.security.version>3.1.4.RELEASE</spring.security.version> -->
 		<hibernatetools.configurationfile>src/main/resources/hibernate.cfg.xml</hibernatetools.configurationfile>
 		<hibernatetools.propertyfile>target/classes/jdbc.properties</hibernatetools.propertyfile>
@@ -74,6 +74,11 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<dependency>
+  <groupId>org.apache.shiro</groupId>
+  <artifactId>shiro-aspectj</artifactId>
+	<version>${shiro.version}</version>
+</dependency>
+		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
 			<version>${shiro.version}</version>
@@ -121,6 +126,11 @@
 			<artifactId>springside-core</artifactId>
 			<version>${springside.version}</version>
 		</dependency> -->
+		<dependency>
+    <groupId>org.apache.struts</groupId>
+    <artifactId>struts2-convention-plugin</artifactId>
+    <version>${struts2.version}</version>
+</dependency>
 	</dependencies>
 	<build>
 		<finalName>sampleWebApp</finalName>

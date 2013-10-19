@@ -58,7 +58,7 @@ public class RoleMaintainAction extends BaseMaintainAction<Role, Long> {
 
 	private String buildMPTree(Module module, Role role, Integer[] moduleIndex) {
 		StringBuilder explandBuilder = new StringBuilder("<span class='inputValueRole'>");
-		explandBuilder.append("<span class='inputValueRole'>");
+		//explandBuilder.append("<span class='inputValueRole'>");
 		for (Permission permission : module.getPermissions()) {
 			explandBuilder.append(permission.getName() + "<input type='checkbox' name='model.rolePermissions["
 					+ moduleIndex[0] + "].permission.id' value='" + permission.getId() + "' ");

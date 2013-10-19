@@ -235,7 +235,7 @@ public class Module extends BaseTreeNode<Module, Long> implements Comparable<Mod
 	 * 
 	 * @return permissions
 	 */
-	@OneToMany(mappedBy = "module",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "module",fetch=FetchType.EAGER)
 	// @Cascade({CascadeType.ALL})
 	public List<Permission> getPermissions() {
 		return permissions;

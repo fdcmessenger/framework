@@ -11,7 +11,7 @@ import com.googlecode.genericdao.search.Search;
 import com.googlecode.genericdao.search.SearchResult;
 
 public class UserPagedAction extends BaseGridAction {
-	@Log(message="列表显示用户的信息。")
+	@Log(message = "列表显示用户的信息。")
 	public String gridPageList() {
 		HttpServletRequest req = this.getRequest();
 		Search search = PropertySearchBuilder.BuildSearch(getRequest());
